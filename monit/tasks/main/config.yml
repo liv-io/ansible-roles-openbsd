@@ -1,0 +1,38 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - monit
+
+- name: create file config
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_monit_d}}/{{item.name}}.cfg"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
+  notify:
+    - validate monit
+    - restart service monit
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - monit
+
+- name: remove file config
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
+  notify:
+    - validate monit
+    - restart service monit
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - monit

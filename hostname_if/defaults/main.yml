@@ -1,0 +1,15 @@
+---
+
+hostname_if_state: 'install'
+
+hostname_if_carp_allow: 'true'
+
+hostname_if_carp_preempt: 'true'
+
+hostname_if_config_all: []
+
+hostname_if_config_group: []
+
+hostname_if_config_host: []
+
+hostname_if_mygate: "{{ansible_default_ipv4.gateway}}"

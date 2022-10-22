@@ -1,0 +1,22 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - hostname_if
+
+- name: create file mygate
+  template:
+    src: "{{file_src_mygate}}"
+    dest: "{{file_dst_mygate}}"
+    mode: "{{file_mode_mygate}}"
+    owner: "{{file_owner_mygate}}"
+    group: "{{file_group_mygate}}"
+  when: not (hostname_if_mygate is match('quiesce|inactive'))
+  tags:
+    - hostname_if

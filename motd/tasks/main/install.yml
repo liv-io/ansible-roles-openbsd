@@ -1,0 +1,31 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - motd
+
+- name: create file motd
+  template:
+    src: "{{file_src_motd}}"
+    dest: "{{file_dst_motd}}"
+    mode: "{{file_mode_motd}}"
+    owner: "{{file_owner_motd}}"
+    group: "{{file_group_motd}}"
+  tags:
+    - motd
+
+- name: line disable motd-patch
+  lineinfile:
+    state: 'present'
+    line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"
+    regexp: "{{file_regexp_motd_patch}}"
+    dest: "{{file_dst_motd_patch}}"
+    create: 'yes'
+  tags:
+    - motd

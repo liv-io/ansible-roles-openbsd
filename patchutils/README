@@ -1,0 +1,91 @@
+INFORMATION
+
+Name   : patchutils
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+DESCRIPTION
+
+This is a collection of programs that can manipulate patch files in a variety of
+ways, such as interpolating between two pre-patches, combining two incremental
+patches, fixing line numbers in hand-edited patches, and simply listing the
+files modified by a patch.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+USAGE
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: patchutils
+    vars:
+      patchutils_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: patchutils
+    vars:
+      patchutils_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: patchutils
+    vars:
+      patchutils_state: 'inactive'
+
+PARAMETERS
+
+ROLE
+  patchutils_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+CONFLICTS
+
+ROLES
+
+DEPENDENCIES
+
+PACKAGES
+  patchutils
+    Version: >= 0.3
+    Name   :
+      OpenBSD 7.1: 'patchutils'
+      OpenBSD 7.2: 'patchutils'
+
+ROLES
+
+PARAMETERS
+
+REQUIREMENTS
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+SUPPORT
+
+OPERATING SYSTEMS
+  OpenBSD
+    Version: 7.1
+      Status: Stable
+    Version: 7.2
+      Status: Stable

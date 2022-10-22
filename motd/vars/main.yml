@@ -1,0 +1,16 @@
+---
+
+# motd_os_color
+motd_os_color: '0;33m'
+
+# motd-patch
+file_line_motd_patch: 'cmp -s $T /etc/motd || cp $T /etc/motd'
+file_regexp_motd_patch: '.*cmp.*/etc/motd.*cp.*/etc/motd'
+file_dst_motd_patch: '/etc/rc'
+
+# motd
+file_src_motd: "templates/{{motd_motd_template}}/motd"
+file_dst_motd: '/etc/motd'
+file_mode_motd: '0644'
+file_owner_motd: 'root'
+file_group_motd: 'wheel'

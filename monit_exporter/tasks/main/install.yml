@@ -1,0 +1,133 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - monit_exporter
+
+- name: create group monit_exporter
+  group:
+    state: 'present'
+    name: "{{group_name_monit_exporter}}"
+    system: "{{group_system_monit_exporter}}"
+  tags:
+    - monit_exporter
+
+- name: create user monit_exporter
+  user:
+    state: 'present'
+    name: "{{user_name_monit_exporter}}"
+    comment: "{{user_comment_monit_exporter}}"
+    group: "{{user_group_monit_exporter}}"
+    append: "{{user_append_monit_exporter}}"
+    createhome: "{{user_home_create_monit_exporter}}"
+    move_home: "{{user_home_move_monit_exporter}}"
+    remove: "{{user_home_remove_monit_exporter}}"
+    force: "{{user_home_force_monit_exporter}}"
+    password: "{{user_password_monit_exporter}}"
+    update_password: "{{user_password_update_monit_exporter}}"
+    shell: "{{user_shell_monit_exporter}}"
+    system: "{{user_system_monit_exporter}}"
+  tags:
+    - monit_exporter
+
+- name: create file src.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_src_dir}}"
+    mode: "{{file_mode_src_dir}}"
+    owner: "{{file_owner_src_dir}}"
+    group: "{{file_group_src_dir}}"
+  tags:
+    - monit_exporter
+
+- name: create file monit_exporter_etc.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_exporter_etc_dir}}"
+    mode: "{{file_mode_monit_exporter_etc_dir}}"
+    owner: "{{file_owner_monit_exporter_etc_dir}}"
+    group: "{{file_group_monit_exporter_etc_dir}}"
+  tags:
+    - monit_exporter
+
+- name: download file monit_exporter.tar.gz
+  get_url:
+    url: "{{file_src_monit_exporter_tar_gz}}"
+    dest: "{{file_dst_monit_exporter_tar_gz}}"
+    mode: "{{file_mode_monit_exporter_tar_gz}}"
+    owner: "{{file_owner_monit_exporter_tar_gz}}"
+    group: "{{file_group_monit_exporter_tar_gz}}"
+    checksum: "{{file_checksum_monit_exporter_tar_gz}}"
+  tags:
+    - monit_exporter
+
+- name: unarchive file monit_exporter
+  unarchive:
+    src: "{{file_src_monit_exporter}}"
+    dest: "{{file_dst_monit_exporter}}"
+    owner: "{{file_owner_monit_exporter}}"
+    group: "{{file_group_monit_exporter}}"
+    exclude: "{{file_exclude_monit_exporter}}"
+    remote_src: 'yes'
+  tags:
+    - monit_exporter
+
+- name: config line monit_exporter_flags
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_monit_exporter_flags}}"
+    regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
+    dest: "{{file_dest_monit_exporter_flags}}"
+    create: 'yes'
+  tags:
+    - monit_exporter
+
+- name: create file monit_exporter.service
+  template:
+    src: "{{file_src_monit_exporter_service}}"
+    dest: "{{file_dst_monit_exporter_service}}"
+    mode: "{{file_mode_monit_exporter_service}}"
+    owner: "{{file_owner_monit_exporter_service}}"
+    group: "{{file_group_monit_exporter_service}}"
+  tags:
+    - monit_exporter
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - monit_exporter
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (monit_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - monit_exporter
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 2)
+  failed_when: (register_check_service_monit.rc > 2)
+  check_mode: 'no'
+  when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - monit_exporter
+
+- name: flush meta handlers
+  meta: 'flush_handlers'
+  tags:
+    - monit_exporter

@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - openbsd_pf
+
+- name: create file pf.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_pf_dir}}"
+    mode: "{{file_mode_pf_dir}}"
+    owner: "{{file_owner_pf_dir}}"
+    group: "{{file_group_pf_dir}}"
+  tags:
+    - openbsd_pf

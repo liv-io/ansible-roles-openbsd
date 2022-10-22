@@ -1,0 +1,18 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - http_ping
+
+- name: install package http_ping
+  package:
+    state: 'present'
+    name: "{{package_name_http_ping}}"
+  tags:
+    - http_ping

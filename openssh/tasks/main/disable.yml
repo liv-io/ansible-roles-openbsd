@@ -1,0 +1,95 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - openssh
+
+- name: create file banner
+  template:
+    src: "{{file_src_banner}}"
+    dest: "{{file_dst_banner}}"
+    mode: "{{file_mode_banner}}"
+    owner: "{{file_owner_banner}}"
+    group: "{{file_group_banner}}"
+  tags:
+    - openssh
+
+- name: create file moduli
+  template:
+    src: "{{file_src_moduli}}"
+    dest: "{{file_dst_moduli}}"
+    mode: "{{file_mode_moduli}}"
+    owner: "{{file_owner_moduli}}"
+    group: "{{file_group_moduli}}"
+  tags:
+    - openssh
+
+- name: create file ssh_config
+  template:
+    src: "{{file_src_ssh_config}}"
+    dest: "{{file_dst_ssh_config}}"
+    mode: "{{file_mode_ssh_config}}"
+    owner: "{{file_owner_ssh_config}}"
+    group: "{{file_group_ssh_config}}"
+  tags:
+    - openssh
+
+- name: create file sshd_config
+  template:
+    src: "{{file_src_sshd_config}}"
+    dest: "{{file_dst_sshd_config}}"
+    mode: "{{file_mode_sshd_config}}"
+    owner: "{{file_owner_sshd_config}}"
+    group: "{{file_group_sshd_config}}"
+  tags:
+    - openssh
+
+- name: create file openssh.cfg
+  template:
+    src: "{{file_src_openssh_cfg}}"
+    dest: "{{file_dst_openssh_cfg}}"
+    mode: "{{file_mode_openssh_cfg}}"
+    owner: "{{file_owner_openssh_cfg}}"
+    group: "{{file_group_openssh_cfg}}"
+  notify: reload service monit
+  when: (openssh_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - openssh
+
+- name: status openssh
+  command: "{{command_cmd_status_openssh}}"
+  register: register_status_openssh
+  changed_when: (register_status_openssh.rc > 1)
+  failed_when: (register_status_openssh.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openssh
+
+- name: disable openssh
+  command: "{{command_cmd_disable_openssh}}"
+  check_mode: 'no'
+  when: register_status_openssh.rc == 0
+  tags:
+    - openssh
+
+- name: check openssh
+  command: "{{command_cmd_check_openssh}}"
+  register: register_check_openssh
+  changed_when: (register_check_openssh.rc > 1)
+  failed_when: (register_check_openssh.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openssh
+
+- name: stop openssh
+  command: "{{command_cmd_stop_openssh}}"
+  check_mode: 'no'
+  when: register_check_openssh.rc == 0
+  tags:
+    - openssh

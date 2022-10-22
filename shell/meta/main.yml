@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: colorls, when: not (shell_state is match('false|no|remove|quiesce|inactive'))}

@@ -1,0 +1,147 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - openbsd_pf
+
+- name: create file anchors.conf
+  template:
+    src: "{{file_src_anchors_conf}}"
+    dest: "{{file_dst_anchors_conf}}"
+    mode: "{{file_mode_anchors_conf}}"
+    owner: "{{file_owner_anchors_conf}}"
+    group: "{{file_group_anchors_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file filters.conf
+  template:
+    src: "{{file_src_filters_conf}}"
+    dest: "{{file_dst_filters_conf}}"
+    mode: "{{file_mode_filters_conf}}"
+    owner: "{{file_owner_filters_conf}}"
+    group: "{{file_group_filters_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file macros.conf
+  template:
+    src: "{{file_src_macros_conf}}"
+    dest: "{{file_dst_macros_conf}}"
+    mode: "{{file_mode_macros_conf}}"
+    owner: "{{file_owner_macros_conf}}"
+    group: "{{file_group_macros_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file normalization.conf
+  template:
+    src: "{{file_src_normalization_conf}}"
+    dest: "{{file_dst_normalization_conf}}"
+    mode: "{{file_mode_normalization_conf}}"
+    owner: "{{file_owner_normalization_conf}}"
+    group: "{{file_group_normalization_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file options.conf
+  template:
+    src: "{{file_src_options_conf}}"
+    dest: "{{file_dst_options_conf}}"
+    mode: "{{file_mode_options_conf}}"
+    owner: "{{file_owner_options_conf}}"
+    group: "{{file_group_options_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file queues.conf
+  template:
+    src: "{{file_src_queues_conf}}"
+    dest: "{{file_dst_queues_conf}}"
+    mode: "{{file_mode_queues_conf}}"
+    owner: "{{file_owner_queues_conf}}"
+    group: "{{file_group_queues_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file tables.conf
+  template:
+    src: "{{file_src_tables_conf}}"
+    dest: "{{file_dst_tables_conf}}"
+    mode: "{{file_mode_tables_conf}}"
+    owner: "{{file_owner_tables_conf}}"
+    group: "{{file_group_tables_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: create file pf.conf
+  template:
+    src: "{{file_src_pf_conf}}"
+    dest: "{{file_dst_pf_conf}}"
+    mode: "{{file_mode_pf_conf}}"
+    owner: "{{file_owner_pf_conf}}"
+    group: "{{file_group_pf_conf}}"
+  notify:
+    - validate openbsd_pf
+    - reload openbsd_pf
+  tags:
+    - openbsd_pf
+
+- name: status openbsd_pf
+  command: "{{command_cmd_status_openbsd_pf}}"
+  register: register_status_openbsd_pf
+  changed_when: (register_status_openbsd_pf.rc > 1)
+  failed_when: (register_status_openbsd_pf.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_pf
+
+- name: enable openbsd_pf
+  command: "{{command_cmd_enable_openbsd_pf}}"
+  when: (register_status_openbsd_pf.rc == 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_pf
+
+- name: check openbsd_pf
+  shell: "{{command_cmd_check_openbsd_pf}}"
+  register: register_check_openbsd_pf
+  changed_when: (register_check_openbsd_pf.rc > 1)
+  failed_when: (register_check_openbsd_pf.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_pf
+
+- name: start openbsd_pf
+  command: "{{command_cmd_start_openbsd_pf}}"
+  when: (register_check_openbsd_pf.rc == 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_pf

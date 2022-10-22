@@ -1,0 +1,7 @@
+---
+
+- name: import tasks main
+  import_tasks: main/main.yml
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.1|7\.2')))
+  tags:
+    - fping

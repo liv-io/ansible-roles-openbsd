@@ -1,0 +1,28 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - monit
+
+- name: install package monit
+  package:
+    state: 'present'
+    name: "{{package_name_monit}}"
+  tags:
+    - monit
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  tags:
+    - monit

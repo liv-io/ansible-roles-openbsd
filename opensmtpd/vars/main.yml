@@ -1,0 +1,71 @@
+---
+
+# aliases
+file_src_aliases: "templates/{{ansible_distribution_version}}/aliases"
+file_dst_aliases: '/etc/mail/aliases'
+file_mode_aliases: '0644'
+file_owner_aliases: 'root'
+file_group_aliases: 'wheel'
+
+# secrets
+file_src_secrets: 'templates/main/secrets'
+file_dst_secrets: '/etc/mail/secrets'
+file_mode_secrets: '0640'
+file_owner_secrets: 'root'
+file_group_secrets: '_smtpd'
+
+# smtpd.conf
+file_src_smtpd_conf: 'templates/main/smtpd.conf'
+file_dst_smtpd_conf: '/etc/mail/smtpd.conf'
+file_mode_smtpd_conf: '0644'
+file_owner_smtpd_conf: 'root'
+file_group_smtpd_conf: 'wheel'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# opensmtpd.cfg
+file_src_opensmtpd_cfg: 'templates/main/opensmtpd.cfg'
+file_dst_opensmtpd_cfg: '/etc/monit.d/opensmtpd.cfg'
+file_mode_opensmtpd_cfg: '0640'
+file_owner_opensmtpd_cfg: 'root'
+file_group_opensmtpd_cfg: 'wheel'
+
+# pkill postfix
+command_cmd_pkill_postfix: 'pkill master ; true'
+
+# pkill sendmail
+command_cmd_pkill_sendmail: 'pkill sendmail ; true'
+
+# smtpctl aliases
+command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
+
+# check opensmtpd
+command_cmd_check_opensmtpd: 'rcctl check smtpd'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
+# disable opensmtpd
+command_cmd_disable_opensmtpd: 'rcctl disable smtpd'
+
+# enable opensmtpd
+command_cmd_enable_opensmtpd: 'rcctl enable smtpd'
+
+# start opensmtpd
+command_cmd_start_opensmtpd: 'rcctl start smtpd'
+
+# status opensmtpd
+command_cmd_status_opensmtpd: 'rcctl get smtpd status'
+
+# stop opensmtpd
+command_cmd_stop_opensmtpd: 'rcctl stop smtpd'
+
+# monit
+service_name_monit: 'monit'
+
+# smtpd
+service_name_opensmtpd: 'smtpd'

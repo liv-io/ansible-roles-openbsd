@@ -1,0 +1,4 @@
+---
+
+# rc.conf
+file_dst_rc_conf: '/etc/rc.conf.local'

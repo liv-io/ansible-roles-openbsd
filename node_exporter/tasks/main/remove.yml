@@ -1,0 +1,68 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - node_exporter
+
+- name: status node_exporter
+  command: "{{command_cmd_status_node_exporter}}"
+  register: register_status_node_exporter
+  changed_when: (register_status_node_exporter.rc > 1)
+  failed_when: (register_status_node_exporter.rc > 1)
+  check_mode: 'no'
+  tags:
+    - node_exporter
+
+- name: disable node_exporter
+  command: "{{command_cmd_disable_node_exporter}}"
+  check_mode: 'no'
+  when: register_status_node_exporter.rc == 0
+  tags:
+    - node_exporter
+
+- name: check node_exporter
+  command: "{{command_cmd_check_node_exporter}}"
+  register: register_check_node_exporter
+  changed_when: (register_check_node_exporter.rc > 1)
+  failed_when: (register_check_node_exporter.rc > 1)
+  check_mode: 'no'
+  tags:
+    - node_exporter
+
+- name: stop node_exporter
+  command: "{{command_cmd_stop_node_exporter}}"
+  check_mode: 'no'
+  when: register_check_node_exporter.rc == 0
+  tags:
+    - node_exporter
+
+- name: remove file node_exporter.cfg
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_cfg}}"
+  notify: reload service monit
+  tags:
+    - node_exporter
+
+- name: config line node_exporter_flags
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_node_exporter_flags}}"
+    regexp: "^{{file_regexp_node_exporter_flags}}=.*"
+    dest: "{{file_dest_node_exporter_flags}}"
+    create: 'yes'
+  tags:
+    - node_exporter
+
+- name: remove file node_exporter_var.dir
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_var_dir}}"
+  tags:
+    - node_exporter

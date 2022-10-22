@@ -1,0 +1,18 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - gnu_diff
+
+- name: install package gnu-diff
+  package:
+    state: 'present'
+    name: "{{package_name_gnu_diff}}"
+  tags:
+    - gnu_diff

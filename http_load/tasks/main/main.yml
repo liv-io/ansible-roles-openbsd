@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (http_load_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - http_load
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (http_load_state is match('false|no|remove'))
+  tags:
+    - http_load

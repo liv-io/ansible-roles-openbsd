@@ -1,0 +1,4 @@
+---
+
+# fstab
+file_dst_fstab: '/etc/fstab'

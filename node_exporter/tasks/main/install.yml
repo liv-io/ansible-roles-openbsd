@@ -1,0 +1,77 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - node_exporter
+
+- name: install package node_exporter
+  package:
+    state: 'present'
+    name: "{{package_name_node_exporter}}"
+  tags:
+    - node_exporter
+
+- name: create file node_exporter_var.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_node_exporter_var_dir}}"
+    mode: "{{file_mode_node_exporter_var_dir}}"
+    owner: "{{file_owner_node_exporter_var_dir}}"
+    group: "{{file_group_node_exporter_var_dir}}"
+  tags:
+    - node_exporter
+
+- name: create file textfile_collector.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_textfile_collector_dir}}"
+    mode: "{{file_mode_textfile_collector_dir}}"
+    owner: "{{file_owner_textfile_collector_dir}}"
+    group: "{{file_group_textfile_collector_dir}}"
+  tags:
+    - node_exporter
+
+- name: config line node_exporter_flags
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_node_exporter_flags}}"
+    regexp: "^{{file_regexp_node_exporter_flags}}=.*"
+    dest: "{{file_dest_node_exporter_flags}}"
+    create: 'yes'
+  tags:
+    - node_exporter
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - node_exporter
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (node_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - node_exporter
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 2)
+  failed_when: (register_check_service_monit.rc > 2)
+  check_mode: 'no'
+  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - node_exporter

@@ -1,0 +1,54 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - monit
+
+- name: info monit
+  shell: "{{command_cmd_info_monit}}"
+  register: register_info_monit
+  failed_when: (register_info_monit.rc > 1)
+  check_mode: 'no'
+  tags:
+    - monit
+
+- name: disable monit
+  command: "{{command_cmd_disable_monit}}"
+  check_mode: 'no'
+  when: register_info_monit.rc == 0
+  tags:
+    - monit
+
+- name: stop monit
+  command: "{{command_cmd_stop_monit}}"
+  check_mode: 'no'
+  when: register_info_monit.rc == 0
+  tags:
+    - monit
+
+- name: remove package monit
+  package:
+    state: 'absent'
+    name: "{{package_name_monit}}"
+  tags:
+    - monit
+
+- name: remove file monit.d
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_d}}"
+  tags:
+    - monit
+
+- name: remove file monitrc
+  file:
+    state: 'absent'
+    path: "{{file_dst_monitrc}}"
+  tags:
+    - monit

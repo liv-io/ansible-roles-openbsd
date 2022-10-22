@@ -1,0 +1,53 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - monit
+
+- name: create file monitrc
+  template:
+    src: "{{file_src_monitrc}}"
+    dest: "{{file_dst_monitrc}}"
+    mode: "{{file_mode_monitrc}}"
+    owner: "{{file_owner_monitrc}}"
+    group: "{{file_group_monitrc}}"
+  tags:
+    - monit
+
+- name: status monit
+  command: "{{command_cmd_status_monit}}"
+  register: register_status_monit
+  changed_when: (register_status_monit.rc > 1)
+  failed_when: (register_status_monit.rc > 1)
+  check_mode: 'no'
+  tags:
+    - monit
+
+- name: disable monit
+  command: "{{command_cmd_disable_monit}}"
+  check_mode: 'no'
+  when: register_status_monit.rc == 0
+  tags:
+    - monit
+
+- name: check monit
+  command: "{{command_cmd_check_monit}}"
+  register: register_check_monit
+  changed_when: (register_check_monit.rc > 1)
+  failed_when: (register_check_monit.rc > 1)
+  check_mode: 'no'
+  tags:
+    - monit
+
+- name: stop monit
+  command: "{{command_cmd_stop_monit}}"
+  check_mode: 'no'
+  when: register_check_monit.rc == 0
+  tags:
+    - monit

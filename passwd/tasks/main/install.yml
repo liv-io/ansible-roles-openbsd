@@ -1,0 +1,51 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - passwd
+
+- name: ensure file master.passwd
+  file:
+    state: 'file'
+    dest: "{{file_dst_master_passwd}}"
+    mode: "{{file_mode_master_passwd}}"
+    owner: "{{file_owner_master_passwd}}"
+    group: "{{file_group_master_passwd}}"
+  tags:
+    - passwd
+
+- name: ensure file passwd
+  file:
+    state: 'file'
+    dest: "{{file_dst_passwd}}"
+    mode: "{{file_mode_passwd}}"
+    owner: "{{file_owner_passwd}}"
+    group: "{{file_group_passwd}}"
+  tags:
+    - passwd
+
+- name: ensure file pwd.db
+  file:
+    state: 'file'
+    dest: "{{file_dst_pwd_db}}"
+    mode: "{{file_mode_pwd_db}}"
+    owner: "{{file_owner_pwd_db}}"
+    group: "{{file_group_pwd_db}}"
+  tags:
+    - passwd
+
+- name: ensure file spwd.db
+  file:
+    state: 'file'
+    dest: "{{file_dst_spwd_db}}"
+    mode: "{{file_mode_spwd_db}}"
+    owner: "{{file_owner_spwd_db}}"
+    group: "{{file_group_spwd_db}}"
+  tags:
+    - passwd

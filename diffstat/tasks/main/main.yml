@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (diffstat_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - diffstat
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (diffstat_state is match('false|no|remove'))
+  tags:
+    - diffstat

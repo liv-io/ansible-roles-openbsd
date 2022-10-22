@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (pv_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - pv
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (pv_state is match('false|no|remove'))
+  tags:
+    - pv

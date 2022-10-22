@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# System-wide .profile file for sh(1).
+
+# Source general Shell environment variables
+for shell in /etc/profile.d/*.sh ; do
+  [ -r "$shell" ] && . "$shell"
+done
+
+# Source Bash specific environment variables
+if [ $(echo $0 | tr -d '-') == 'bash' ]; then
+  for bash in /etc/profile.d/*.bash ; do
+    [ -r "$bash" ] && . "$bash"
+  done
+fi

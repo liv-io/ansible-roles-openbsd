@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - resolver
+
+- name: create file resolv.conf
+  template:
+    src: "{{file_src_resolv_conf}}"
+    dest: "{{file_dst_resolv_conf}}"
+    mode: "{{file_mode_resolv_conf}}"
+    owner: "{{file_owner_resolv_conf}}"
+    group: "{{file_group_resolv_conf}}"
+  tags:
+    - resolver

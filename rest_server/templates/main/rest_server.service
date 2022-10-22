@@ -1,0 +1,15 @@
+#!/bin/ksh
+
+{{ansible_managed|comment(decoration='#')}}
+
+daemon="{{file_creates_rest_server}}"
+daemon_logger="daemon.info"
+daemon_flags="{% for item in (rest_server_options|default([])) %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}"
+daemon_user="{{user_name_rest_server}}"
+
+. /etc/rc.d/rc.subr
+
+rc_bg=YES
+rc_reload=NO
+
+rc_cmd $1

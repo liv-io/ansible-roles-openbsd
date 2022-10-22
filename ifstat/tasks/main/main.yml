@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (ifstat_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - ifstat
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (ifstat_state is match('false|no|remove'))
+  tags:
+    - ifstat

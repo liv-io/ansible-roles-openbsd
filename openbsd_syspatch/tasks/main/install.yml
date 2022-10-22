@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - main_syspatch
+
+- name: create file installurl
+  template:
+    src: "{{file_src_installurl}}"
+    dest: "{{file_dst_installurl}}"
+    mode: "{{file_mode_installurl}}"
+    owner: "{{file_owner_installurl}}"
+    group: "{{file_group_installurl}}"
+  tags:
+    - main_syspatch

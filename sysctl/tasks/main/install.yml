@@ -1,0 +1,29 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - sysctl
+
+- name: stat file sysctl.conf
+  stat:
+    path: "{{file_dst_sysctl_conf}}"
+  register: register_sysctl_conf
+  tags:
+    - sysctl
+
+- name: create file sysctl.conf
+  template:
+    src: "{{file_src_sysctl_conf}}"
+    dest: "{{file_dst_sysctl_conf}}"
+    mode: "{{file_mode_sysctl_conf}}"
+    owner: "{{file_owner_sysctl_conf}}"
+    group: "{{file_group_sysctl_conf}}"
+  when: not (register_sysctl_conf.stat.exists)
+  tags:
+    - sysctl

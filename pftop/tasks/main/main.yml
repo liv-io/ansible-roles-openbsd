@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (pftop_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - pftop
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (pftop_state is match('false|no|remove'))
+  tags:
+    - pftop

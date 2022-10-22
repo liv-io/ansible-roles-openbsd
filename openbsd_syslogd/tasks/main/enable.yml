@@ -1,0 +1,77 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - openbsd_syslogd
+
+- name: config line syslogd_flags
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_syslogd_flags}}=-h # Ansible: Configure syslogd"
+    regexp: "^{{file_line_syslogd_flags}}=.*"
+    dest: "{{file_dst_syslogd_flags}}"
+    create: 'yes'
+  notify: reload service syslogd
+  tags:
+    - openbsd_syslogd
+
+- name: create file syslog.conf
+  template:
+    src: "{{file_src_syslog_conf}}"
+    dest: "{{file_dst_syslog_conf}}"
+    mode: "{{file_mode_syslog_conf}}"
+    owner: "{{file_owner_syslog_conf}}"
+    group: "{{file_group_syslog_conf}}"
+  notify: reload service syslogd
+  tags:
+    - openbsd_syslogd
+
+- name: create file syslogd.cfg
+  template:
+    src: "{{file_src_syslogd_cfg}}"
+    dest: "{{file_dst_syslogd_cfg}}"
+    mode: "{{file_mode_syslogd_cfg}}"
+    owner: "{{file_owner_syslogd_cfg}}"
+    group: "{{file_group_syslogd_cfg}}"
+  notify: reload service monit
+  when: (openbsd_syslogd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - openbsd_syslogd
+
+- name: status syslogd
+  command: "{{command_cmd_status_syslogd}}"
+  register: register_status_syslogd
+  changed_when: (register_status_syslogd.rc > 1)
+  failed_when: (register_status_syslogd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_syslogd
+
+- name: enable syslogd
+  command: "{{command_cmd_enable_syslogd}}"
+  check_mode: 'no'
+  when: (register_status_syslogd.rc == 1)
+  tags:
+    - openbsd_syslogd
+
+- name: check syslogd
+  command: "{{command_cmd_check_syslogd}}"
+  register: register_check_syslogd
+  changed_when: (register_check_syslogd.rc > 1)
+  failed_when: (register_check_syslogd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - openbsd_syslogd
+
+- name: start syslogd
+  command: "{{command_cmd_start_syslogd}}"
+  check_mode: 'no'
+  when: (register_check_syslogd.rc == 1)
+  tags:
+    - openbsd_syslogd

@@ -1,0 +1,82 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# INTERFACE
+
+{% if not ((item.description|default('')) == '') %}description "{{item.description}}" {% endif %}
+{%- if not ((item.comment|default('')) == '') %}# {{item.comment}}{% endif %}
+
+{% for interface in item.interfaces|default([]) %}
+{%- if ((interface.type|default('')) is match('pfsync')) %}
+{%- if not ((interface.syncdev|default('')) == '') %}syncdev {{interface.syncdev}} {% endif %}
+{%- if not ((interface.description|default('')) == '') %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
+{% elif ((interface.type|default('')) is match('carp')) %}
+{%- if ((interface.version|default('inet')) is match('ipv6|ip6|inet6')) %}inet6 {% else %}inet {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
+{%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
+{%- if not ((interface.broadcast|default('')) == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
+{%- if not ((interface.vhid|default('')) == '') %}vhid {{interface.vhid}} {% endif %}
+{%- if not ((interface.carpdev|default('')) == '') %}carpdev {{interface.carpdev}} {% endif %}
+{%- if not ((interface.advbase|default('')) == '') %}advbase {{interface.advbase}} {% else %} {% endif %}
+{%- if not ((interface.advskew|default('')) == '') %}advskew {{interface.advskew}} {% else %} {% endif %}
+{%- if not ((interface.pass|default('')) == '') %}pass "{{interface.pass}}" {% endif %}
+{%- if not ((interface.description|default('')) == '') %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
+{% elif ((interface.type|default('')) is match('trunk')) %}
+{%- if not ((interface.trunkproto|default('')) == '') %}trunkproto {{interface.trunkproto}} {% endif %}
+{%- if not ((interface.trunkports|default([])) == []) %}{% for trunkport in interface.trunkports %}trunkport {{trunkport}} {% endfor %}{% endif %}
+{%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
+{%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}
+{%- if not ((interface.broadcast|default('')) == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
+{% endif %}
+{%- if not (((interface.description|default('')) == '') and not ((interface.alias|default('false')) is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
+{% elif ((interface.type|default('')) is match('aggr')) %}
+{%- if not ((interface.trunkports|default([])) == []) %}{% for trunkport in interface.trunkports %}trunkport {{trunkport}} {% endfor %}{% endif %}
+{%- if ((interface.lacpmode|default('active')) is match('passive')) %}lacpmode passive {% else %}lacpmode active {% endif %}
+{%- if ((interface.lacptimeout|default('slow')) is match('fast')) %}lacptimeout fast {% else %}lacptimeout slow {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
+{%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}
+{%- if not ((interface.broadcast|default('')) == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
+{% endif %}
+{%- if not (((interface.description|default('')) == '') and not ((interface.alias|default('false')) is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
+{% else %}
+{%- if ((interface.version|default('inet')) is match('ipv6|ip6|inet6')) %}inet6 {% else %}inet {% endif %}
+{%- if ((interface.alias|default('false')) is match('true|yes|enable')) %}alias {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
+{%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
+{%- if not ((interface.broadcast|default('')) == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
+{%- if not ((interface.vnetid|default('')) == '') %}vnetid {{interface.vnetid}} {% endif %}
+{%- if not ((interface.vlandev|default('')) == '') %}vlandev {{(interface.vlandev|default(ansible_default_ipv4.device))}} {% endif %}
+{%- if not (((interface.description|default('')) == '') and not ((interface.alias|default('false')) is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
+{% endif %}
+{% endfor %}
+
+{%- if not ((item.routes|default([])) == []) %}
+# ROUTE
+
+{% for route in (item.routes|default([])) %}
+!route add -net {{route.network}}
+{%- if not ((route.prefix|default('')) == '') %}/{{route.prefix}} {% else %} {% endif %}
+{{route.gateway}}
+{%- if not ((route.comment|default('')) == '') %} # {{route.comment}}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+# STATE
+
+{% if ((item.status|default('true')) is match('false|no|disable|down')) %}
+down
+{% else %}
+up
+{% endif %}

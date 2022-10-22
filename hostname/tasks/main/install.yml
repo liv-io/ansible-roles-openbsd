@@ -1,0 +1,22 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - hostname
+
+- name: create file myname
+  template:
+    src: "{{file_src_myname}}"
+    dest: "{{file_dst_myname}}"
+    mode: "{{file_mode_myname}}"
+    owner: "{{file_owner_myname}}"
+    group: "{{file_group_myname}}"
+  notify: run netstart
+  tags:
+    - hostname

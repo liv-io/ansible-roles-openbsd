@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - group
+
+- name: ensure file group
+  file:
+    state: 'file'
+    dest: "{{file_dst_group}}"
+    mode: "{{file_mode_group}}"
+    owner: "{{file_owner_group}}"
+    group: "{{file_group_group}}"
+  tags:
+    - group

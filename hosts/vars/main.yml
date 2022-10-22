@@ -1,0 +1,4 @@
+---
+
+# hosts
+file_dst_hosts: '/etc/hosts'

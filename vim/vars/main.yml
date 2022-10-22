@@ -1,0 +1,11 @@
+---
+
+# vim--no_x11
+package_name_vim: 'vim--no_x11'
+
+# vimrc
+file_src_vimrc: 'templates/main/vimrc'
+file_dst_vimrc: '/usr/local/share/vim/vimrc'
+file_mode_vimrc: '0644'
+file_owner_vimrc: 'root'
+file_group_vimrc: 'wheel'

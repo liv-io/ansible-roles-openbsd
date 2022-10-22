@@ -1,0 +1,25 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - vim
+
+- name: remove package vim
+  package:
+    state: 'absent'
+    name: "{{package_name_vim}}"
+  tags:
+    - vim
+
+- name: remove file vimrc
+  file:
+    state: 'absent'
+    path: "{{file_dst_vimrc}}"
+  tags:
+    - vim
