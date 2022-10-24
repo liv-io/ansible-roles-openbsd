@@ -1,0 +1,71 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - nginx
+
+- name: install package nginx
+  package:
+    state: 'present'
+    name: "{{package_name_nginx}}"
+  tags:
+    - nginx
+
+- name: create file vhosts.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_vhosts_d}}"
+    mode: "{{file_mode_vhosts_d}}"
+    owner: "{{file_owner_vhosts_d}}"
+    group: "{{file_group_vhosts_d}}"
+  tags:
+    - nginx
+
+- name: stat file dhparam.pem
+  stat:
+    path: "{{file_dst_dhparam_pem}}"
+  register: register_dhparam_pem
+  tags:
+    - nginx
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - nginx
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (nginx_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - nginx
+
+- name: generate dhparam
+  shell: "{{command_cmd_generate_dhparam}}"
+  check_mode: 'no'
+  when: (register_dhparam_pem.stat.exists == False)
+  tags:
+    - nginx
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 2)
+  failed_when: (register_check_service_monit.rc > 2)
+  check_mode: 'no'
+  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - nginx

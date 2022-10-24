@@ -1,0 +1,66 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - nginx
+
+- name: create file nginx.conf
+  template:
+    src: "{{file_src_nginx_conf}}"
+    dest: "{{file_dst_nginx_conf}}"
+    mode: "{{file_mode_nginx_conf}}"
+    owner: "{{file_owner_nginx_conf}}"
+    group: "{{file_group_nginx_conf}}"
+  notify: check nginx
+  tags:
+    - nginx
+
+- name: create file nginx.cfg
+  template:
+    src: "{{file_src_nginx_cfg}}"
+    dest: "{{file_dst_nginx_cfg}}"
+    mode: "{{file_mode_nginx_cfg}}"
+    owner: "{{file_owner_nginx_cfg}}"
+    group: "{{file_group_nginx_cfg}}"
+  notify: reload service monit
+  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - nginx
+
+- name: status nginx
+  command: "{{command_cmd_status_nginx}}"
+  register: register_status_nginx
+  changed_when: (register_status_nginx.rc > 1)
+  failed_when: (register_status_nginx.rc > 1)
+  check_mode: 'no'
+  tags:
+    - nginx
+
+- name: disable nginx
+  command: "{{command_cmd_disable_nginx}}"
+  check_mode: 'no'
+  when: register_status_nginx.rc == 0
+  tags:
+    - nginx
+
+- name: check nginx
+  command: "{{command_cmd_check_nginx}}"
+  register: register_check_nginx
+  changed_when: (register_check_nginx.rc > 1)
+  failed_when: (register_check_nginx.rc > 1)
+  check_mode: 'no'
+  tags:
+    - nginx
+
+- name: stop nginx
+  command: "{{command_cmd_stop_nginx}}"
+  check_mode: 'no'
+  when: register_check_nginx.rc == 0
+  tags:
+    - nginx

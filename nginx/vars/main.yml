@@ -1,0 +1,72 @@
+---
+
+# nginx
+package_name_nginx: 'nginx'
+
+# config
+file_src_config: 'templates/main/config'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'wheel'
+
+# dhparam.pem
+file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
+
+# nginx.conf
+file_src_nginx_conf: 'templates/main/nginx.conf'
+file_dst_nginx_conf: '/etc/nginx/nginx.conf'
+file_mode_nginx_conf: '0644'
+file_owner_nginx_conf: 'root'
+file_group_nginx_conf: 'wheel'
+
+# vhosts.d
+file_dst_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
+file_mode_vhosts_d: '0755'
+file_owner_vhosts_d: 'root'
+file_group_vhosts_d: 'wheel'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# nginx.cfg
+file_src_nginx_cfg: 'templates/main/nginx.cfg'
+file_dst_nginx_cfg: '/etc/monit.d/nginx.cfg'
+file_mode_nginx_cfg: '0640'
+file_owner_nginx_cfg: 'root'
+file_group_nginx_cfg: 'wheel'
+
+# check nginx
+command_cmd_check_nginx: 'rcctl check nginx'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
+# disable nginx
+command_cmd_disable_nginx: 'rcctl disable nginx'
+
+# enable nginx
+command_cmd_enable_nginx: 'rcctl enable nginx'
+
+# info nginx
+command_cmd_info_nginx: 'pkg_info | grep -q "^nginx-[0-9]\..*"'
+
+# start nginx
+command_cmd_start_nginx: 'rcctl start nginx'
+
+# status nginx
+command_cmd_status_nginx: 'rcctl get nginx status'
+
+# stop nginx
+command_cmd_stop_nginx: 'rcctl stop nginx'
+
+# generate dhparam
+command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_dst_dhparam_pem}}"
+
+# monit
+service_name_monit: 'monit'
+
+# nginx
+service_name_nginx: 'nginx'
