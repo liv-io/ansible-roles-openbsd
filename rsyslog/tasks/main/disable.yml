@@ -1,0 +1,65 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - rsyslog
+
+- name: create file rsyslog.conf
+  template:
+    src: "{{file_src_rsyslog_conf}}"
+    dest: "{{file_dst_rsyslog_conf}}"
+    mode: "{{file_mode_rsyslog_conf}}"
+    owner: "{{file_owner_rsyslog_conf}}"
+    group: "{{file_group_rsyslog_conf}}"
+  tags:
+    - rsyslog
+
+- name: create file rsyslog.cfg
+  template:
+    src: "{{file_src_rsyslog_cfg}}"
+    dest: "{{file_dst_rsyslog_cfg}}"
+    mode: "{{file_mode_rsyslog_cfg}}"
+    owner: "{{file_owner_rsyslog_cfg}}"
+    group: "{{file_group_rsyslog_cfg}}"
+  notify: reload service monit
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - rsyslog
+
+- name: status rsyslogd
+  command: "{{command_cmd_status_rsyslogd}}"
+  register: register_status_rsyslogd
+  changed_when: (register_status_rsyslogd.rc > 1)
+  failed_when: (register_status_rsyslogd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - rsyslog
+
+- name: disable rsyslogd
+  command: "{{command_cmd_disable_rsyslogd}}"
+  check_mode: 'no'
+  when: register_status_rsyslogd.rc == 0
+  tags:
+    - rsyslog
+
+- name: check rsyslogd
+  command: "{{command_cmd_check_rsyslogd}}"
+  register: register_check_rsyslogd
+  changed_when: (register_check_rsyslogd.rc > 1)
+  failed_when: (register_check_rsyslogd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - rsyslog
+
+- name: stop rsyslogd
+  command: "{{command_cmd_stop_rsyslogd}}"
+  check_mode: 'no'
+  when: register_check_rsyslogd.rc == 0
+  tags:
+    - rsyslog

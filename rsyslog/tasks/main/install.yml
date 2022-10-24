@@ -1,0 +1,57 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - rsyslog
+
+- name: install package rsyslog
+  package:
+    state: 'present'
+    name: "{{package_name_rsyslog}}"
+  tags:
+    - rsyslog
+
+- name: create file rsyslog.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_rsyslog_d}}"
+    mode: "{{file_mode_rsyslog_d}}"
+    owner: "{{file_owner_rsyslog_d}}"
+    group: "{{file_group_rsyslog_d}}"
+  tags:
+    - rsyslog
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - rsyslog
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - rsyslog
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 2)
+  failed_when: (register_check_service_monit.rc > 2)
+  check_mode: 'no'
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - rsyslog

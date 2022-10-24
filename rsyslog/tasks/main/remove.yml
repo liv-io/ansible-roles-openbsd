@@ -1,0 +1,62 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - rsyslog
+
+- name: info rsyslog
+  shell: "{{command_cmd_info_rsyslog}}"
+  register: register_info_rsyslog
+  failed_when: (register_info_rsyslog.rc > 1)
+  check_mode: 'no'
+  tags:
+    - rsyslog
+
+- name: disable rsyslogd
+  command: "{{command_cmd_disable_rsyslogd}}"
+  check_mode: 'no'
+  when: register_info_rsyslog.rc == 0
+  tags:
+    - rsyslog
+
+- name: stop rsyslogd
+  command: "{{command_cmd_stop_rsyslogd}}"
+  check_mode: 'no'
+  when: register_info_rsyslog.rc == 0
+  tags:
+    - rsyslog
+
+- name: remove package rsyslog
+  package:
+    state: 'absent'
+    name: "{{package_name_rsyslog}}"
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.cfg
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_cfg}}"
+  notify: reload service monit
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.conf
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_conf}}"
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.d
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_d}}"
+  tags:
+    - rsyslog
