@@ -107,6 +107,6 @@ SUPPORT
 OPERATING SYSTEMS
   OpenBSD
     Version: 7.1
-      Status: Testing
+      Status: Stable
     Version: 7.2
       Status: Stable
