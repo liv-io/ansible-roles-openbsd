@@ -1,0 +1,143 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - squid
+
+- name: create file dst_domain_allowed.acl
+  template:
+    src: "{{file_src_dst_domain_allowed_acl}}"
+    dest: "{{file_dst_dst_domain_allowed_acl}}"
+    mode: "{{file_mode_dst_domain_allowed_acl}}"
+    owner: "{{file_owner_dst_domain_allowed_acl}}"
+    group: "{{file_group_dst_domain_allowed_acl}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: create file dst_domain_blocked.acl
+  template:
+    src: "{{file_src_dst_domain_blocked_acl}}"
+    dest: "{{file_dst_dst_domain_blocked_acl}}"
+    mode: "{{file_mode_dst_domain_blocked_acl}}"
+    owner: "{{file_owner_dst_domain_blocked_acl}}"
+    group: "{{file_group_dst_domain_blocked_acl}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: create file dst_network_allowed.acl
+  template:
+    src: "{{file_src_dst_network_allowed_acl}}"
+    dest: "{{file_dst_dst_network_allowed_acl}}"
+    mode: "{{file_mode_dst_network_allowed_acl}}"
+    owner: "{{file_owner_dst_network_allowed_acl}}"
+    group: "{{file_group_dst_network_allowed_acl}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: create file dst_network_blocked.acl
+  template:
+    src: "{{file_src_dst_network_blocked_acl}}"
+    dest: "{{file_dst_dst_network_blocked_acl}}"
+    mode: "{{file_mode_dst_network_blocked_acl}}"
+    owner: "{{file_owner_dst_network_blocked_acl}}"
+    group: "{{file_group_dst_network_blocked_acl}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: create file src_network_unrestricted.acl
+  template:
+    src: "{{file_src_src_network_unrestricted_acl}}"
+    dest: "{{file_dst_src_network_unrestricted_acl}}"
+    mode: "{{file_mode_src_network_unrestricted_acl}}"
+    owner: "{{file_owner_src_network_unrestricted_acl}}"
+    group: "{{file_group_src_network_unrestricted_acl}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: create file squid.conf
+  template:
+    src: "{{file_src_squid_conf}}"
+    dest: "{{file_dst_squid_conf}}"
+    mode: "{{file_mode_squid_conf}}"
+    owner: "{{file_owner_squid_conf}}"
+    group: "{{file_group_squid_conf}}"
+  notify: parse config
+  tags:
+    - squid
+
+- name: stat file cache.dir
+  stat:
+    path: "{{file_dst_cache_dir}}"
+  register: register_cache_dir
+  tags:
+    - squid
+
+- name: create file squid.cfg
+  template:
+    src: "{{file_src_squid_cfg}}"
+    dest: "{{file_dst_squid_cfg}}"
+    mode: "{{file_mode_squid_cfg}}"
+    owner: "{{file_owner_squid_cfg}}"
+    group: "{{file_group_squid_cfg}}"
+  notify: reload service monit
+  when: (squid_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - squid
+
+- name: create cache.dir
+  shell: "{{command_cmd_create_cache_dir}}"
+  check_mode: 'no'
+  when: (register_cache_dir.stat.exists == False)
+  tags:
+    - squid
+
+- name: status squid
+  command: "{{command_cmd_status_squid}}"
+  register: register_status_squid
+  changed_when: (register_status_squid.rc > 1)
+  failed_when: (register_status_squid.rc > 1)
+  check_mode: 'no'
+  tags:
+    - squid
+
+- name: disable squid
+  command: "{{command_cmd_disable_squid}}"
+  check_mode: 'no'
+  when: register_status_squid.rc == 0
+  tags:
+    - squid
+
+- name: check squid
+  command: "{{command_cmd_check_squid}}"
+  register: register_check_squid
+  changed_when: (register_check_squid.rc > 1)
+  failed_when: (register_check_squid.rc > 1)
+  check_mode: 'no'
+  tags:
+    - squid
+
+- name: stop squid
+  command: "{{command_cmd_stop_squid}}"
+  check_mode: 'no'
+  when: register_check_squid.rc == 0
+  tags:
+    - squid
+
+- name: stop service squid
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_squid}}"
+  tags:
+    - squid

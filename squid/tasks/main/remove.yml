@@ -1,0 +1,72 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - squid
+
+- name: status squid
+  command: "{{command_cmd_status_squid}}"
+  register: register_status_squid
+  changed_when: (register_status_squid.rc > 1)
+  failed_when: (register_status_squid.rc > 1)
+  check_mode: 'no'
+  tags:
+    - squid
+
+- name: disable squid
+  command: "{{command_cmd_disable_squid}}"
+  check_mode: 'no'
+  when: register_status_squid.rc == 0
+  tags:
+    - squid
+
+- name: check squid
+  command: "{{command_cmd_check_squid}}"
+  register: register_check_squid
+  changed_when: (register_check_squid.rc > 1)
+  failed_when: (register_check_squid.rc > 1)
+  check_mode: 'no'
+  tags:
+    - squid
+
+- name: stop squid
+  command: "{{command_cmd_stop_squid}}"
+  check_mode: 'no'
+  when: register_check_squid.rc == 0
+  tags:
+    - squid
+
+- name: remove package squid
+  package:
+    state: 'absent'
+    name: "{{package_name_squid}}"
+  tags:
+    - squid
+
+- name: remove file squid.cfg
+  file:
+    state: 'absent'
+    path: "{{file_dst_squid_cfg}}"
+  notify: reload service monit
+  tags:
+    - squid
+
+- name: remove file squid.conf
+  file:
+    state: 'absent'
+    path: "{{file_dst_squid_conf}}"
+  tags:
+    - squid
+
+- name: remove file acl.dir
+  file:
+    state: 'absent'
+    path: "{{file_dst_acl_dir}}"
+  tags:
+    - squid
