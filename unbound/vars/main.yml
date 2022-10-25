@@ -1,0 +1,60 @@
+---
+
+# unbound
+package_name_unbound: 'unbound'
+
+# root.hints
+file_src_root_hints: 'files/main/root.hints'
+file_dst_root_hints: '/var/unbound/etc/root.hints'
+file_mode_root_hints: '0644'
+file_owner_root_hints: 'root'
+file_group_root_hints: 'wheel'
+file_validate_root_hints: 'unbound-checkconf %s'
+
+# unbound.conf
+file_src_unbound_conf: 'templates/main/unbound.conf'
+file_dst_unbound_conf: '/var/unbound/etc/unbound.conf'
+file_mode_unbound_conf: '0644'
+file_owner_unbound_conf: 'root'
+file_group_unbound_conf: 'wheel'
+file_validate_unbound_conf: 'unbound-checkconf %s'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# unbound.cfg
+file_src_unbound_cfg: 'templates/main/unbound.cfg'
+file_dst_unbound_cfg: '/etc/monit.d/unbound.cfg'
+file_mode_unbound_cfg: '0640'
+file_owner_unbound_cfg: 'root'
+file_group_unbound_cfg: 'wheel'
+
+# check unbound
+command_cmd_check_unbound: 'rcctl check unbound'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
+# disable unbound
+command_cmd_disable_unbound: 'rcctl disable unbound'
+
+# enable unbound
+command_cmd_enable_unbound: 'rcctl enable unbound'
+
+# start unbound
+command_cmd_start_unbound: 'rcctl start unbound'
+
+# status unbound
+command_cmd_status_unbound: 'rcctl get unbound status'
+
+# stop unbound
+command_cmd_stop_unbound: 'rcctl stop unbound'
+
+# monit
+service_name_monit: 'monit'
+
+# unbound
+service_name_unbound: 'unbound'

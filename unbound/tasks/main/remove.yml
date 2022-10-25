@@ -1,0 +1,51 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - unbound
+
+- name: status unbound
+  command: "{{command_cmd_status_unbound}}"
+  register: register_status_unbound
+  changed_when: (register_status_unbound.rc > 1)
+  failed_when: (register_status_unbound.rc > 1)
+  check_mode: 'no'
+  tags:
+    - unbound
+
+- name: disable unbound
+  command: "{{command_cmd_disable_unbound}}"
+  check_mode: 'no'
+  when: register_status_unbound.rc == 0
+  tags:
+    - unbound
+
+- name: check unbound
+  command: "{{command_cmd_check_unbound}}"
+  register: register_check_unbound
+  changed_when: (register_check_unbound.rc > 1)
+  failed_when: (register_check_unbound.rc > 1)
+  check_mode: 'no'
+  tags:
+    - unbound
+
+- name: stop unbound
+  command: "{{command_cmd_stop_unbound}}"
+  check_mode: 'no'
+  when: register_check_unbound.rc == 0
+  tags:
+    - unbound
+
+- name: remove file unbound.cfg
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_cfg}}"
+  notify: reload service monit
+  tags:
+    - unbound
