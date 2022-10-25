@@ -1,0 +1,92 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - nsd
+
+- name: locate unbound
+  command: "{{command_cmd_locate_unbound}}"
+  register: register_locate_unbound
+  changed_when: (register_locate_unbound.rc > 1)
+  failed_when: (register_locate_unbound.rc > 1)
+  check_mode: 'no'
+  tags:
+    - nsd
+
+- name: create file nsd.conf
+  template:
+    src: "{{file_src_nsd_conf}}"
+    dest: "{{file_dst_nsd_conf}}"
+    mode: "{{file_mode_nsd_conf}}"
+    owner: "{{file_owner_nsd_conf}}"
+    group: "{{file_group_nsd_conf}}"
+    validate: "{{file_validate_nsd_conf}}"
+  notify: restart service nsd
+  when: (register_locate_unbound.rc == 1)
+  tags:
+    - nsd
+
+- name: create file nsd.conf
+  template:
+    src: "{{file_src_nsd_conf}}"
+    dest: "{{file_dst_nsd_conf}}"
+    mode: "{{file_mode_nsd_conf}}"
+    owner: "{{file_owner_nsd_conf}}"
+    group: "{{file_group_nsd_conf}}"
+    validate: "{{file_validate_nsd_conf}}"
+  notify:
+    - restart service nsd
+    - restart service unbound
+  when: (register_locate_unbound.rc == 0)
+  tags:
+    - nsd
+
+- name: create file nsd.cfg
+  template:
+    src: "{{file_src_nsd_cfg}}"
+    dest: "{{file_dst_nsd_cfg}}"
+    mode: "{{file_mode_nsd_cfg}}"
+    owner: "{{file_owner_nsd_cfg}}"
+    group: "{{file_group_nsd_cfg}}"
+  notify: reload service monit
+  when: (nsd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - nsd
+
+- name: status nsd
+  command: "{{command_cmd_status_nsd}}"
+  register: register_status_nsd
+  changed_when: (register_status_nsd.rc > 1)
+  failed_when: (register_status_nsd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - nsd
+
+- name: enable nsd
+  command: "{{command_cmd_enable_nsd}}"
+  check_mode: 'no'
+  when: (register_status_nsd.rc == 1)
+  tags:
+    - nsd
+
+- name: check nsd
+  command: "{{command_cmd_check_nsd}}"
+  register: register_check_nsd
+  changed_when: (register_check_nsd.rc > 1)
+  failed_when: (register_check_nsd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - nsd
+
+- name: start nsd
+  command: "{{command_cmd_start_nsd}}"
+  check_mode: 'no'
+  when: (register_check_nsd.rc == 1)
+  tags:
+    - nsd
