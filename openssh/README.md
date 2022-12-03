@@ -341,7 +341,7 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_rsa_authentication`
+`openssh_rsa_authentication`
 
     Description: Control the 'openssh_rsa_authentication' option.
     Implemented: 0.1.0
@@ -353,7 +353,7 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_tcp_keep_alive`
+`openssh_tcp_keep_alive`
 
     Description: Control the 'openssh_tcp_keep_alive' option.
     Implemented: 0.1.0
@@ -365,7 +365,7 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_use_dns`
+`openssh_use_dns`
 
     Description: Control the 'openssh_use_dns' option.
     Implemented: 0.3.0
@@ -377,7 +377,7 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_version_addendum`
+`openssh_version_addendum`
 
     Description: Define the 'openssh_version_addendum' option.
     Implemented: 0.13.0
@@ -388,7 +388,7 @@ consult the following sections.
     Options    :
       Examples: 'hostname' | 'Operating System'
 
-  openssh_x11_display_offset`
+`openssh_x11_display_offset`
 
     Description: Define the 'openssh_x11_display_offset' option.
     Implemented: 0.18.0
@@ -399,7 +399,7 @@ consult the following sections.
     Options    :
       Examples: 10 | 15
 
-  openssh_x11_forwarding`
+`openssh_x11_forwarding`
 
     Description: Control the 'openssh_x11_forwarding' option.
     Implemented: 0.1.0
@@ -411,7 +411,7 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_x11_use_localhost`
+`openssh_x11_use_localhost`
 
     Description: Control the 'openssh_x11_use_localhost' option.
     Implemented: 0.1.0
