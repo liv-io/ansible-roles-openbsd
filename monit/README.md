@@ -8,21 +8,21 @@ maintenance and repair and can execute meaningful causal actions in error
 situations.
 
 monit supports:
- - Daemon mode - poll services at a specified interval
- - Group and manage groups of services, service dependencies
- - Logging - syslog or own logfile
- - Alert, start, stop and restart of services based on it's characteristics
- - MD5 and SHA1 checksums
- - Runtime Unix socket and TCP/IP port checking (tcp and udp)
- - Process status, timeout, memory and cpu usage, etc.
- - Device usage monitoring (inodes and space)
- - File monitoring (timestamp, checksum, permission, owner, etc.)
- - Directory monitoring (timestamp, permission, owner, etc.)
- - Remote network services monitoring (ping, response time, protocol, etc.)
- - System load average monitoring
- - Flexible and customizable email alert messages and notifications
- - Protocol verification such as HTTP, FTP, SMTP, POP, IMAP, NNTP, NTP, etc.
- - A HTTP interface with XML output option
+- Daemon mode - poll services at a specified interval
+- Group and manage groups of services, service dependencies
+- Logging - syslog or own logfile
+- Alert, start, stop and restart of services based on it's characteristics
+- MD5 and SHA1 checksums
+- Runtime Unix socket and TCP/IP port checking (tcp and udp)
+- Process status, timeout, memory and cpu usage, etc.
+- Device usage monitoring (inodes and space)
+- File monitoring (timestamp, checksum, permission, owner, etc.)
+- Directory monitoring (timestamp, permission, owner, etc.)
+- Remote network services monitoring (ping, response time, protocol, etc.)
+- System load average monitoring
+- Flexible and customizable email alert messages and notifications
+- Protocol verification such as HTTP, FTP, SMTP, POP, IMAP, NNTP, NTP, etc.
+- A HTTP interface with XML output option
 
 For more information on the usage and available configuration options,
 consult the following sections.

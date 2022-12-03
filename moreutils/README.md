@@ -5,21 +5,21 @@
 This is a growing collection of the unix tools that nobody thought to write
 thirty years ago.
 So far, it includes the following utilities:
- - isutf8: check if a file or standard input is utf-8
- - sponge: soak up standard input and write to a file
- - ts: timestamp standard input
- - vidir: edit a directory in your text editor
- - vipe: insert a text editor into a pipe
- - combine: combine the lines in two files using boolean operations
- - ifdata: get network interface info without parsing ifconfig output
- - pee: tee standard input to pipes
- - zrun: automatically uncompress arguments to command
- - mispipe: pipe two commands, returning the exit status of the first
- - lckdo: execute a program with a lock held
- - ifne: run a program if the standard input is not empty
- - parallel: run multiple jobs at once (contained in moreutils-parallel sub
-   package)
- - chronic: runs a command quietly, unless it fails
+- isutf8: check if a file or standard input is utf-8
+- sponge: soak up standard input and write to a file
+- ts: timestamp standard input
+- vidir: edit a directory in your text editor
+- vipe: insert a text editor into a pipe
+- combine: combine the lines in two files using boolean operations
+- ifdata: get network interface info without parsing ifconfig output
+- pee: tee standard input to pipes
+- zrun: automatically uncompress arguments to command
+- mispipe: pipe two commands, returning the exit status of the first
+- lckdo: execute a program with a lock held
+- ifne: run a program if the standard input is not empty
+- parallel: run multiple jobs at once (contained in moreutils-parallel sub
+  package)
+- chronic: runs a command quietly, unless it fails
 
 For more information on the usage and available configuration options,
 consult the following sections.
