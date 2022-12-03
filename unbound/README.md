@@ -443,12 +443,6 @@ consult the following sections.
 
 ## Dependencies
 
-### Packages
-
-`unbound`
-
-    Version: >= 1.5
-
 ## Parameters
 
 ## Requirements

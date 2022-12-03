@@ -62,12 +62,6 @@ consult the following sections.
 
 ## Dependencies
 
-### Packages
-
-`tmux`
-
-    Version: >= 1.8
-
 ## Parameters
 
 ## Requirements

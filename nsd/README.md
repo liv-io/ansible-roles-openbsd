@@ -294,12 +294,6 @@ vars:
 
 ## Dependencies
 
-### Packages
-
-`nsd`
-
-    Version: >= 4.0
-
 ## Parameters
 
 ## Requirements

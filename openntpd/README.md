@@ -284,12 +284,6 @@ consult the following sections.
 
 ## Dependencies
 
-### Packages
-
-`openntpd`
-
-    Version: >= 20080406
-
 ## Parameters
 
 ## Requirements
