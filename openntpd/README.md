@@ -289,7 +289,6 @@ consult the following sections.
 `openntpd`
 
     Version: >= 20080406
-    Name   :
 
 ## Parameters
 

@@ -64,11 +64,6 @@ consult the following sections.
 
 `usbutils`
 
-    Version: >= 0.86_2
-    Name   :
-
-`usbutils`
-
     Version: >= 007p0
     Name   :
       OpenBSD 7.1: 'usbutils'

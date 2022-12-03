@@ -448,7 +448,6 @@ consult the following sections.
 `unbound`
 
     Version: >= 1.5
-    Name   :
 
 ## Parameters
 

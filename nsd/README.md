@@ -299,7 +299,6 @@ vars:
 `nsd`
 
     Version: >= 4.0
-    Name   :
 
 ## Parameters
 

@@ -67,7 +67,6 @@ consult the following sections.
 `tmux`
 
     Version: >= 1.8
-    Name   :
 
 ## Parameters
 
