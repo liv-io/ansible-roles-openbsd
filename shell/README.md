@@ -1,0 +1,201 @@
+# shell
+
+## Description
+
+The sh utility is the standard command interpreter for the system.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+## Usage
+
+### Install
+
+```
+- hosts: all
+  roles:
+    - role: shell
+  vars:
+    shell_state: 'install'
+```
+
+### Remove
+
+```
+- hosts: all
+  roles:
+    - role: shell
+  vars:
+    shell_state: 'remove'
+```
+
+### Inactive
+
+```
+- hosts: all
+  roles:
+    - role: shell
+  vars:
+    shell_state: 'inactive'
+```
+
+## Parameters
+
+### Role
+
+`shell_state`
+
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+`shell_color_support`
+
+    Description: Control the state of colored 'shell' commands.
+    Implemented: 0.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`shell_ftp_proxy`
+
+    Description: Define the 'shell_ftp_proxy' option.
+    Implemented: 0.10.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ftp://proxy.domain.tld:3128'
+      None    : ''
+
+`shell_histsize`
+
+    Description: Set the size of the 'shell' history variable.
+    Implemented: 0.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      None    : ''
+
+`shell_http_proxy`
+
+    Description: Define the 'shell_http_proxy' option.
+    Implemented: 0.10.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
+`shell_https_proxy`
+
+    Description: Define the 'shell_https_proxy' option.
+    Implemented: 2.5.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
+`shell_ls_time_style`
+
+    Description: Define the time format of the 'ls' command.
+    Implemented: 0.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '%Y-%m-%d %H:%M:%S'
+    Options    :
+      Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
+      None    : ''
+
+`shell_no_proxy`
+
+    Description: Define the 'shell_no_proxy' option.
+    Implemented: 3.0.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['localhost', '127.0.0.1', '::1']
+    Options    :
+      Examples: ['localhost', '127.0.0.1', '::1', 'example.org', 'example.com']
+      None    : []
+
+`shell_pager`
+
+    Description: Define the default 'PAGER' variable.
+    Implemented: 0.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'less'
+    Options    :
+      Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
+      None    : ''
+
+`shell_safety`
+
+    Description: Control the safety of various shell commands
+                 (chmod, chown, ln, mv, rm...).
+    Implemented: 0.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+## Conflicts
+
+## Dependencies
+
+### Roles
+
+`colorls`
+
+## Parameters
+
+## Requirements
+
+### Control Node
+
+`ansible`
+
+    Version: >= 2.8.0
+
+### Managed Node
+
+`python`
+
+    Version: >= 2.7.0
+
+## Support
+
+### Operating Systems
+
+`openbsd`
+
+    Version: 7.1
+      Status: Stable
+    Version: 7.2
+      Status: Stable
