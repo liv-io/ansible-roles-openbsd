@@ -263,6 +263,4 @@ consult the following sections.
 `openbsd`
 
     Version: 7.1
-      Status: Development
     Version: 7.2
-      Status: Development

@@ -231,6 +231,4 @@ vars:
 `openbsd`
 
     Version: 7.1
-      Status: Stable
     Version: 7.2
-      Status: Stable

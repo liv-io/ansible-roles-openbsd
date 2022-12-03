@@ -125,6 +125,4 @@ consult the following sections.
 `openbsd`
 
     Version: 7.1
-      Status: Testing
     Version: 7.2
-      Status: Testing
