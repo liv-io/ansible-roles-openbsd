@@ -13,7 +13,7 @@ consult the following sections.
 ### Install
 
 ```
-- host: all
+- hosts: all
   roles:
     - role: hostname
   vars:

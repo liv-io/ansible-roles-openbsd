@@ -19,7 +19,7 @@ consult the following sections.
 ### Install
 
 ```
-- sudo: all
+- hosts: all
   roles:
     - role: sudo
   vars:
