@@ -111,7 +111,7 @@ consult the following sections.
                 '$6$Dgjf366H$mpoaFpK8rIaGSpaxhpJIu5AvinfCOLK2WQhnfm3UTwLNBfyCU494fXEYPsrUobsQ7hCcbv8GqwiJjmuhoGqL00' |
                 '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
 
-root_root_dir_group`
+`root_root_dir_group`
 
     Description: Define the 'root_root_dir_group' option.
     Implemented: 0.1.0

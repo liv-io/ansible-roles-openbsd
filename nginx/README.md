@@ -321,7 +321,7 @@ vars:
 
 ### Role
 
-  nginx_state`
+`nginx_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
