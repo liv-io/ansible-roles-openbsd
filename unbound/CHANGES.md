@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2022-12-14)
+
+### Enhancements
+
+- Minor cosmetic templating change
+
 ## 0.1.0 (2022-10-25)
 
 ### Features
