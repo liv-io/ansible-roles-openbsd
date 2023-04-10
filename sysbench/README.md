@@ -81,8 +81,8 @@ consult the following sections.
 
     Version: >= 0.4
     Name   :
-      OpenBSD 7.1: 'sysbench--'
       OpenBSD 7.2: 'sysbench--'
+      OpenBSD 7.3: 'sysbench--'
 
 ## Parameters
 
@@ -106,5 +106,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

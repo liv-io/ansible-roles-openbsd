@@ -67,8 +67,8 @@ consult the following sections.
 
     Version: >= 1.11
     Name   :
-      OpenBSD 7.1: 'icmpinfo'
       OpenBSD 7.2: 'icmpinfo'
+      OpenBSD 7.3: 'icmpinfo'
 
 ## Parameters
 
@@ -92,5 +92,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

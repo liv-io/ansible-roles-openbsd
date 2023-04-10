@@ -359,8 +359,8 @@ consult the following sections.
 
     Version: >= 0.8.3
     Name   :
-      OpenBSD 7.1: 'restic'
       OpenBSD 7.2: 'restic'
+      OpenBSD 7.3: 'restic'
 
 ## Parameters
 
@@ -384,5 +384,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

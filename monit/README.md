@@ -510,8 +510,8 @@ vars:
 
     Version: >= 5.9
     Name   :
-      OpenBSD 7.1: 'monit'
       OpenBSD 7.2: 'monit'
+      OpenBSD 7.3: 'monit'
 
 ## Parameters
 
@@ -535,5 +535,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

@@ -68,8 +68,8 @@ consult the following sections.
 
     Version: >= 3.1
     Name   :
-      OpenBSD 7.1: 'pciutils'
       OpenBSD 7.2: 'pciutils'
+      OpenBSD 7.3: 'pciutils'
 
 ## Parameters
 
@@ -93,5 +93,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

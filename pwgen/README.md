@@ -69,8 +69,8 @@ consult the following sections.
 
     Version: >= 2.06
     Name   :
-      OpenBSD 7.1: 'pwgen'
       OpenBSD 7.2: 'pwgen'
+      OpenBSD 7.3: 'pwgen'
 
 ## Parameters
 
@@ -94,5 +94,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

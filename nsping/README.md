@@ -70,8 +70,8 @@ consult the following sections.
 
     Version: >= 0.8
     Name   :
-      OpenBSD 7.1: 'nsping'
       OpenBSD 7.2: 'nsping'
+      OpenBSD 7.3: 'nsping'
 
 ## Parameters
 
@@ -95,5 +95,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

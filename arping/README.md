@@ -68,8 +68,8 @@ consult the following sections.
 
     Version: >= 2.13
     Name   :
-      OpenBSD 7.1: 'arping'
       OpenBSD 7.2: 'arping'
+      OpenBSD 7.3: 'arping'
 
 ## Parameters
 
@@ -93,5 +93,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

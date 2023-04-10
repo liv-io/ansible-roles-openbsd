@@ -8,7 +8,7 @@ file_owner_banner: 'root'
 file_group_banner: 'wheel'
 
 # moduli
-file_src_moduli: 'files/main/moduli'
+file_src_moduli: "files/{{ansible_distribution_version}}/moduli"
 file_dst_moduli: '/etc/moduli'
 file_mode_moduli: '0600'
 file_owner_moduli: 'root'

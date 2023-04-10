@@ -457,8 +457,8 @@ vars:
 
     Version: >= 1.8
     Name   :
-      OpenBSD 7.1: 'nginx'
       OpenBSD 7.2: 'nginx'
+      OpenBSD 7.3: 'nginx'
 
 ## Parameters
 
@@ -482,5 +482,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

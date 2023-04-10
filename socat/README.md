@@ -70,8 +70,8 @@ consult the following sections.
 
     Version: >= 1.7.2.3
     Name   :
-      OpenBSD 7.1: 'socat'
       OpenBSD 7.2: 'socat'
+      OpenBSD 7.3: 'socat'
 
 ## Parameters
 
@@ -95,5 +95,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

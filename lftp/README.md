@@ -69,8 +69,8 @@ consult the following sections.
 
     Version: >= 4.0
     Name   :
-      OpenBSD 7.1: 'lftp'
       OpenBSD 7.2: 'lftp'
+      OpenBSD 7.3: 'lftp'
 
 ## Parameters
 
@@ -94,5 +94,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

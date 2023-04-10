@@ -71,8 +71,8 @@ consult the following sections.
 
     Version: >= 3.0
     Name   :
-      OpenBSD 7.1: 'rsync--'
       OpenBSD 7.2: 'rsync--'
+      OpenBSD 7.3: 'rsync--'
 
 ## Parameters
 
@@ -96,5 +96,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

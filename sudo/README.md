@@ -258,8 +258,8 @@ vars:
 
     Version: >= 1.8
     Name   :
-      OpenBSD 7.1: 'sudo'
       OpenBSD 7.2: 'sudo'
+      OpenBSD 7.3: 'sudo'
 
 ## Parameters
 
@@ -283,5 +283,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

@@ -181,5 +181,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

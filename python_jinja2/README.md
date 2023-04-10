@@ -70,10 +70,10 @@ consult the following sections.
 
 `python-jinja2`
 
-    Version: >= 2.2
+    Version: >= 3.1
     Name   :
-      OpenBSD 7.1: 'py-jinja2'
-      OpenBSD 7.2: 'py-jinja2'
+      OpenBSD 7.2: 'py3-jinja2'
+      OpenBSD 7.3: 'py3-jinja2'
 
 ## Parameters
 
@@ -97,5 +97,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

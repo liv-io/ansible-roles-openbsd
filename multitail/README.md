@@ -78,8 +78,8 @@ consult the following sections.
 
     Version: >= 5.2
     Name   :
-      OpenBSD 7.1: 'multitail'
       OpenBSD 7.2: 'multitail'
+      OpenBSD 7.3: 'multitail'
 
 ## Parameters
 
@@ -103,5 +103,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

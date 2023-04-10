@@ -72,10 +72,10 @@ consult the following sections.
 
 `python-yaml`
 
-    Version: >= 3.10
+    Version: >= 5.4
     Name   :
-      OpenBSD 7.1: 'py-yaml'
-      OpenBSD 7.2: 'py-yaml'
+      OpenBSD 7.2: 'py3-yaml'
+      OpenBSD 7.3: 'py3-yaml'
 
 ## Parameters
 
@@ -99,5 +99,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

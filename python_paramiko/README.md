@@ -71,10 +71,10 @@ consult the following sections.
 
 `python-paramiko`
 
-    Version: >= 1.7
+    Version: >= 2.11
     Name   :
-      OpenBSD 7.1: 'py-paramiko'
-      OpenBSD 7.2: 'py-paramiko'
+      OpenBSD 7.2: 'py3-paramiko'
+      OpenBSD 7.3: 'py3-paramiko'
 
 ## Parameters
 
@@ -98,5 +98,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

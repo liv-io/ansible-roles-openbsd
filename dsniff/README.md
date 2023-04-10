@@ -72,8 +72,8 @@ consult the following sections.
 
     Version: >= 2.4
     Name   :
-      OpenBSD 7.1: 'dsniff--no_x11'
       OpenBSD 7.2: 'dsniff--no_x11'
+      OpenBSD 7.3: 'dsniff--no_x11'
 
 ## Parameters
 
@@ -97,5 +97,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

@@ -75,8 +75,8 @@ consult the following sections.
 
     Version: >= 5.51
     Name   :
-      OpenBSD 7.1: 'nmap'
       OpenBSD 7.2: 'nmap'
+      OpenBSD 7.3: 'nmap'
 
 ## Parameters
 
@@ -100,5 +100,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

@@ -66,8 +66,8 @@ consult the following sections.
 
     Version: >= 5.7
     Name   :
-      OpenBSD 7.1: 'colorls'
       OpenBSD 7.2: 'colorls'
+      OpenBSD 7.3: 'colorls'
 
 ## Parameters
 
@@ -91,5 +91,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

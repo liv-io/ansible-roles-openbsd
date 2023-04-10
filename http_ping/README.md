@@ -67,8 +67,8 @@ consult the following sections.
 
     Version: >= 20050629
     Name   :
-      OpenBSD 7.1: 'http_ping'
       OpenBSD 7.2: 'http_ping'
+      OpenBSD 7.3: 'http_ping'
 
 ## Parameters
 
@@ -92,5 +92,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

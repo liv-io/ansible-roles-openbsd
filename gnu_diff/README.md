@@ -71,8 +71,8 @@ consult the following sections.
 
     Version: >= 3.3
     Name   :
-      OpenBSD 7.1: 'gdiff'
       OpenBSD 7.2: 'gdiff'
+      OpenBSD 7.3: 'gdiff'
 
 ## Parameters
 
@@ -96,5 +96,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3

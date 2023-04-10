@@ -69,8 +69,8 @@ consult the following sections.
 
     Version: >= 2.4
     Name   :
-      OpenBSD 7.1: 'fping'
       OpenBSD 7.2: 'fping'
+      OpenBSD 7.3: 'fping'
 
 ## Parameters
 
@@ -94,5 +94,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.1
     Version: 7.2
+    Version: 7.3
