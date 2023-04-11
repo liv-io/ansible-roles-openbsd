@@ -20,15 +20,15 @@ file_owner_monit_exporter_etc_dir: 'root'
 file_group_monit_exporter_etc_dir: 'wheel'
 
 # monit_exporter.tar.gz
-file_src_monit_exporter_tar_gz: "https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
-file_dst_monit_exporter_tar_gz: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
+file_src_monit_exporter_tar_gz: "https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/monit_exporter_{{monit_exporter_version}}_openbsd_amd64.tar.gz"
+file_dst_monit_exporter_tar_gz: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_openbsd_amd64.tar.gz"
 file_mode_monit_exporter_tar_gz: '0644'
 file_owner_monit_exporter_tar_gz: 'root'
 file_group_monit_exporter_tar_gz: 'wheel'
 file_checksum_monit_exporter_tar_gz: "sha256:https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/sha256sums.txt"
 
 # monit_exporter
-file_src_monit_exporter: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
+file_src_monit_exporter: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_openbsd_amd64.tar.gz"
 file_dst_monit_exporter: '/usr/local/bin'
 file_owner_monit_exporter: 'root'
 file_group_monit_exporter: 'wheel'

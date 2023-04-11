@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.0 (2023-04-11)
+
+### Changes
+
+- Add support for OpenBSD 7.3
+- Drop support for OpenBSD 7.1
+
+### Enhancements
+
+- Update monit_exporter to version 0.2.0
+
 ## 0.1.0 (2022-10-22)
 
 ### Features
