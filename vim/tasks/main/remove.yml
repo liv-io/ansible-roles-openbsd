@@ -17,6 +17,13 @@
   tags:
     - vim
 
+- name: remove file defaults.vim
+  file:
+    state: 'absent'
+    path: "{{file_dst_defaults_vim}}"
+  tags:
+    - vim
+
 - name: remove file vimrc
   file:
     state: 'absent'

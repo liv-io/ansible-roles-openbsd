@@ -17,12 +17,19 @@
   tags:
     - vim
 
-- name: create file vimrc
+- name: create file defaults.vim
   template:
-    src: "{{file_src_vimrc}}"
-    dest: "{{file_dst_vimrc}}"
-    mode: "{{file_mode_vimrc}}"
-    owner: "{{file_owner_vimrc}}"
-    group: "{{file_group_vimrc}}"
+    src: "{{file_src_defaults_vim}}"
+    dest: "{{file_dst_defaults_vim}}"
+    mode: "{{file_mode_defaults_vim}}"
+    owner: "{{file_owner_defaults_vim}}"
+    group: "{{file_group_defaults_vim}}"
+  tags:
+    - vim
+
+- name: remove file vimrc
+  file:
+    state: 'absent'
+    path: "{{file_dst_vimrc}}"
   tags:
     - vim

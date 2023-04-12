@@ -4,8 +4,11 @@
 package_name_vim: 'vim--no_x11'
 
 # vimrc
-file_src_vimrc: 'templates/main/vimrc'
 file_dst_vimrc: '/usr/local/share/vim/vimrc'
-file_mode_vimrc: '0644'
-file_owner_vimrc: 'root'
-file_group_vimrc: 'wheel'
+
+# defaults.vim
+file_src_defaults_vim: 'templates/main/defaults.vim'
+file_dst_defaults_vim: '/usr/local/share/vim/vim90/defaults.vim'
+file_mode_defaults_vim: '0644'
+file_owner_defaults_vim: 'root'
+file_group_defaults_vim: 'wheel'

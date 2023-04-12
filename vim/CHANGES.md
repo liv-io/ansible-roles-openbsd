@@ -10,6 +10,14 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.1 (2023-04-11)
+
+### Bugs
+
+- Manage `defaults.vim` instead of `vimrc` \
+  `/usr/local/share/vim/vim90/defaults.vim` \
+  `/usr/local/share/vim/vimrc`
+
 ## 0.2.0 (2023-04-10)
 
 ### Changes
