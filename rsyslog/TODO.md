@@ -1,18 +1,14 @@
-INFORMATION
+# TODO
 
-Name   : rsyslog
-Type   : Ansible role
-
-Authors: liv community
-License: Simplified BSD License
-
-BUGS
+## Bugs
 
 - Rsyslog module 'imfile' is not included OpenBSD package
 
-ENHANCEMENTS
+## Changes
 
-FEATURES
+## Enhancements
+
+## Features
 
 - Add support for rsyslog global section
 - Add support for rsyslog template section
