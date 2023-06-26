@@ -118,13 +118,18 @@ consult the following sections.
 
 ## Dependencies
 
-### Packages
+### Archives
 
 `rest-server`
 
-### Roles
+### Packages
 
-`gnu_tar`
+`gnu-tar`
+
+    Version: >= 1.28
+    Name   :
+      OpenBSD 7.2: 'gtar--'
+      OpenBSD 7.3: 'gtar--'
 
 ## Parameters
 

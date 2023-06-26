@@ -1,5 +1,8 @@
 ---
 
+# gtar--
+package_name_gnu_tar: 'gtar--'
+
 # src.dir
 file_dst_src_dir: '/usr/local/src'
 file_mode_src_dir: '0755'

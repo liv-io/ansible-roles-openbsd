@@ -10,6 +10,13 @@
   tags:
     - rest_server
 
+- name: install package gnu-tar
+  package:
+    state: 'present'
+    name: "{{package_name_gnu_tar}}"
+  tags:
+    - rest_server
+
 - name: create group rest-server
   group:
     state: 'present'
