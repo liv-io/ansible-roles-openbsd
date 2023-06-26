@@ -10,6 +10,13 @@
   tags:
     - unbound_adblock
 
+- name: install package curl
+  package:
+    state: 'present'
+    name: "{{package_name_curl}}"
+  tags:
+    - unbound_adblock
+
 - name: create group unbound-adblock
   group:
     state: 'present'

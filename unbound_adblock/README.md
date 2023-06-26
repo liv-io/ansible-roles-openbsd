@@ -232,9 +232,16 @@ consult the following sections.
 
 ## Dependencies
 
-### Roles
+### Packages
 
 `curl`
+
+    Version: >= 7.19
+    Name   :
+      OpenBSD 7.2: 'curl'
+      OpenBSD 7.3: 'curl'
+
+### Roles
 
 `sudo`
 

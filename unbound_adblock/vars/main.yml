@@ -1,5 +1,8 @@
 ---
 
+# curl
+package_name_curl: 'curl'
+
 # adblock.conf
 file_dst_adblock_conf: '/data/unbound-adblock/adblock.conf'
 
