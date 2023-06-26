@@ -1,5 +1,8 @@
 ---
 
+# colorls
+package_name_colorls: 'colorls'
+
 # profile
 file_src_profile: 'templates/main/profile'
 file_dst_profile: '/etc/profile'

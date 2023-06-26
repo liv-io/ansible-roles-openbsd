@@ -169,9 +169,14 @@ consult the following sections.
 
 ## Dependencies
 
-### Roles
+### Packages
 
 `colorls`
+
+    Version: >= 5.7
+    Name   :
+      OpenBSD 7.2: 'colorls'
+      OpenBSD 7.3: 'colorls'
 
 ## Parameters
 
