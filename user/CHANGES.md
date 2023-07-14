@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2023-07-14)
+
+### Changes
+
+- Redesign `authorized_keys` management
+
+### Enhancements
+
+- Add task to manage primary group
+- Remove dependency on Ansible role `group`
+
 ## 0.2.0 (2023-04-10)
 
 ### Changes
