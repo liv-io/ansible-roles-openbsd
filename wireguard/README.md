@@ -54,11 +54,13 @@ vars:
       listen_port: 51820
       private_key: 'yF0WEk5FcCquHWbYSt3wwuv6Bu6RBHWw+pfq21avd24='
       peers:
-        - public_key: 'RJquVUwxWCBBbM0puXnujeR3+X6L9Ttnm6e0LJ1Fgw4='
+        - endpoint: '1.2.3.4:51820'
+          public_key: 'RJquVUwxWCBBbM0puXnujeR3+X6L9Ttnm6e0LJ1Fgw4='
           description: 'site02.example.com'
           allowed_ips: ['10.0.0.12/32']
           persistent_keepalive: 25
-        - public_key: 'fmtMwFBFHz1i5KRk+uozBCSBtZzqy+NTRSjCGMd4exs='
+        - endpoint: '5.6.7.8:51820'
+          public_key: 'fmtMwFBFHz1i5KRk+uozBCSBtZzqy+NTRSjCGMd4exs='
           description: 'site03.example.com'
           allowed_ips: ['10.0.0.13/32']
           persistent_keepalive: 25
