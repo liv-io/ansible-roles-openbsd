@@ -1,0 +1,67 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - wireguard
+
+- name: create file wireguard.config
+  template:
+    src: "{{file_src_wireguard_config}}"
+    dest: "/etc/wireguard/{{item.device}}.conf"
+    mode: "{{file_mode_wireguard_config}}"
+    owner: "{{file_owner_wireguard_config}}"
+    group: "{{file_group_wireguard_config}}"
+  loop: "{{wireguard_config}}"
+  notify: run netstart
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - wireguard
+
+- name: create file hostname.config
+  template:
+    src: "{{file_src_hostname_config}}"
+    dest: "/etc/hostname.{{item.device}}"
+    mode: "{{file_mode_hostname_config}}"
+    owner: "{{file_owner_hostname_config}}"
+    group: "{{file_group_hostname_config}}"
+  loop: "{{wireguard_config}}"
+  notify: run netstart
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - wireguard
+
+- name: remove file hostname.config
+  file:
+    state: 'absent'
+    path: "/etc/hostname.{{item.device}}"
+  loop: "{{wireguard_config}}"
+  notify: run netstart
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - wireguard
+
+- name: remove file wireguard.config
+  file:
+    state: 'absent'
+    path: "/etc/wireguard/{{item.interface}}.conf"
+  loop: "{{wireguard_config}}"
+  notify: run netstart
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - wireguard
+
+- name: destroy ifconfig
+  shell: "ifconfig {{item.device}} destroy"
+  register: "register_check_ifconfig"
+  changed_when: (register_check_ifconfig.rc > 1)
+  failed_when: (register_check_ifconfig.rc > 1)
+  loop: "{{wireguard_config}}"
+  when: (item.state|default('true') is match('false|no|remove')) and (item.device in ansible_devices)
+  tags:
+    - wireguard

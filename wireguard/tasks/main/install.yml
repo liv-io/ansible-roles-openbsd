@@ -1,0 +1,28 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - wireguard
+
+- name: install package wireguard-tools
+  package:
+    state: 'present'
+    name: "{{package_name_wireguard_tools}}"
+  tags:
+    - wireguard
+
+- name: create file wireguard.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_wireguard_dir}}"
+    mode: "{{file_mode_wireguard_dir}}"
+    owner: "{{file_owner_wireguard_dir}}"
+    group: "{{file_group_wireguard_dir}}"
+  tags:
+    - wireguard

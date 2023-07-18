@@ -1,0 +1,25 @@
+---
+
+# wireguard-tools
+package_name_wireguard_tools: 'wireguard-tools'
+
+# hostname.config
+file_src_hostname_config: 'templates/main/hostname.config'
+file_mode_hostname_config: '0640'
+file_owner_hostname_config: 'root'
+file_group_hostname_config: 'wheel'
+
+# wireguard.config
+file_src_wireguard_config: 'templates/main/wireguard.config'
+file_mode_wireguard_config: '0600'
+file_owner_wireguard_config: 'root'
+file_group_wireguard_config: 'wheel'
+
+# wireguard.dir
+file_dst_wireguard_dir: '/etc/wireguard'
+file_mode_wireguard_dir: '0700'
+file_owner_wireguard_dir: 'root'
+file_group_wireguard_dir: 'wheel'
+
+# run netstart
+command_cmd_run_netstart: 'sh /etc/netstart'
