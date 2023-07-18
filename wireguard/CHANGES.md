@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2023-07-18)
+
+### Bugs
+
+- Add missing command statement in `hostname_if` template
+
 ## 0.1.0 (2023-07-18)
 
 ### Features
