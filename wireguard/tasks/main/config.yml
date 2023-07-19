@@ -65,3 +65,26 @@
   when: (item.state|default('true') is match('false|no|remove')) and (item.device in ansible_devices)
   tags:
     - wireguard
+
+- name: create file wireguard.cfg
+  template:
+    src: "{{file_src_wireguard_cfg}}"
+    dest: "/etc/monit.d/wireguard-{{item.device}}.cfg"
+    mode: "{{file_mode_wireguard_cfg}}"
+    owner: "{{file_owner_wireguard_cfg}}"
+    group: "{{file_group_wireguard_cfg}}"
+  notify: reload service monit
+  loop: "{{wireguard_config}}"
+  when: (wireguard_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - wireguard
+
+- name: remove file wireguard.cfg
+  file:
+    state: 'absent'
+    path: "/etc/monit.d/wireguard-{{item.device}}.cfg"
+  notify: reload service monit
+  loop: "{{wireguard_config}}"
+  when: not (wireguard_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - wireguard

@@ -8,5 +8,11 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
 
+- name: reload service monit
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
 - name: run netstart
   command: "{{command_cmd_run_netstart}}"

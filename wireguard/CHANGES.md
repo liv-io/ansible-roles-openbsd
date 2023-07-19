@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.0 (2023-07-19)
+
+### Features
+
+- Add parameter `wireguard_monitor_monit_state`
+
 ## 0.1.1 (2023-07-18)
 
 ### Bugs

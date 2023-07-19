@@ -21,5 +21,23 @@ file_mode_wireguard_dir: '0700'
 file_owner_wireguard_dir: 'root'
 file_group_wireguard_dir: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# wireguard.cfg
+file_src_wireguard_cfg: 'templates/main/wireguard.cfg'
+file_mode_wireguard_cfg: '0640'
+file_owner_wireguard_cfg: 'root'
+file_group_wireguard_cfg: 'wheel'
+
 # run netstart
 command_cmd_run_netstart: 'sh /etc/netstart'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
+# monit
+service_name_monit: 'monit'
