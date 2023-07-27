@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.0 (2023-07-27)
+
+### Enhancements
+
+- Update monit_exporter to version 0.2.1
+
 ## 0.2.0 (2023-04-11)
 
 ### Changes
