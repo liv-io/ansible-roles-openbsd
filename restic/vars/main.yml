@@ -36,6 +36,13 @@ file_mode_password_conf: '0600'
 file_owner_password_conf: 'root'
 file_group_password_conf: 'wheel'
 
+# repository.conf
+file_src_repository_conf: 'templates/main/repository.conf'
+file_dst_repository_conf: '/etc/restic/repository.conf'
+file_mode_repository_conf: '0600'
+file_owner_repository_conf: 'root'
+file_group_repository_conf: 'wheel'
+
 # restic.log
 file_dst_restic_log: '/var/log/restic/restic.log'
 file_mode_restic_log: '0600'

@@ -68,6 +68,17 @@
   tags:
     - restic
 
+- name: create file repository.conf
+  template:
+    src: "{{file_src_repository_conf}}"
+    dest: "{{file_dst_repository_conf}}"
+    mode: "{{file_mode_repository_conf}}"
+    owner: "{{file_owner_repository_conf}}"
+    group: "{{file_group_repository_conf}}"
+  no_log: 'true'
+  tags:
+    - restic
+
 - name: create file restic.log
   copy:
     content: ''

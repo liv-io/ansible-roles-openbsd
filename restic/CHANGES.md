@@ -10,6 +10,25 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.0 (2023-08-04)
+
+### Changes
+
+- Remove default value for parameter `restic_password`
+- Remove default value for parameter `restic_server_address`
+- Remove default value for parameter `restic_server_password`
+- Remove default value for parameter `restic_server_username`
+
+### Enhancements
+
+- Overhaul script
+
+### Features
+
+- Add parameter `restic_http_proxy`
+- Add parameter `restic_https_proxy`
+- Add parameter `restic_repository_name`
+
 ## 0.2.2 (2023-05-03)
 
 ### Enhancements

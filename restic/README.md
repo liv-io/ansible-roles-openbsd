@@ -82,7 +82,7 @@ consult the following sections.
 `restic_cacert`
 
     Description: Define the 'restic_cacert' option.
-    Implemented: 1.1.0
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -102,6 +102,30 @@ consult the following sections.
     Options    :
       Examples: ['/tmp', '/data/example/*.tmp']
       None    : []
+
+`restic_http_proxy`
+
+    Description: Define the 'restic_http_proxy' option.
+    Implemented: 0.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
+`restic_https_proxy`
+
+    Description: Define the 'restic_https_proxy' option.
+    Implemented: 0.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
 
 `restic_include`
 
@@ -243,12 +267,23 @@ consult the following sections.
 
     Description: Define the 'restic_password' option.
     Implemented: 0.1.0
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+
+`restic_repository_name`
+
+    Description: Define the 'restic_repository_name' option.
+    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+    Default    : "{{ansible_hostname}}"
     Options    :
-      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+      Examples: 'hostname' | 'pretty-name'
 
 `restic_run_backup_day`
 
@@ -308,29 +343,29 @@ consult the following sections.
 `restic_server_address`
 
     Description: Define the 'restic_server_address' option.
-    Implemented: 1.0.0
-    Required   : False
+    Implemented: 0.1.0
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : "backup.{{ansible_domain}}"
+    Default    : ''
     Options    :
       Examples: 'backup.domain.tld' | 'restic.domain.tld'
 
 `restic_server_password`
 
     Description: Define the 'restic_server_password' option.
-    Implemented: 1.0.0
-    Required   : False
+    Implemented: 0.1.0
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : 'GV4ajws_aG4nKR.7bgn3'
+    Default    : ''
     Options    :
       Examples: 'vHK.kQ9bsWrL4ePaDn_5' | 'm2wL.E57MdnrSgFSP_AC'
 
 `restic_server_port`
 
     Description: Define the 'restic_server_port' option.
-    Implemented: 1.0.0
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -341,11 +376,11 @@ consult the following sections.
 `restic_server_username`
 
     Description: Define the 'restic_server_username' option.
-    Implemented: 1.0.0
-    Required   : False
+    Implemented: 0.1.0
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : 'restic'
+    Default    : ''
     Options    :
       Examples: 'restic' | 'backup'
 
