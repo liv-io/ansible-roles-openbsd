@@ -27,13 +27,13 @@
   register: register_status_tinc
   changed_when: (register_status_tinc.rc > 1)
   failed_when: (register_status_tinc.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - tinc
 
 - name: enable tinc
   command: "{{command_cmd_enable_tinc}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_tinc.rc == 1)
   tags:
     - tinc
@@ -43,13 +43,13 @@
   register: register_check_tinc
   changed_when: (register_check_tinc.rc > 1)
   failed_when: (register_check_tinc.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - tinc
 
 - name: start tinc
   command: "{{command_cmd_start_tinc}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_tinc.rc == 1)
   tags:
     - tinc

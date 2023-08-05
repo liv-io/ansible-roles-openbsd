@@ -12,14 +12,14 @@
 
 - name: install package wireguard-tools
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_wireguard_tools}}"
   tags:
     - wireguard
 
 - name: create file wireguard.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_wireguard_dir}}"
     mode: "{{file_mode_wireguard_dir}}"
     owner: "{{file_owner_wireguard_dir}}"
@@ -37,7 +37,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -51,7 +51,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   when: (wireguard_monitor_monit_state is match('true|yes|enable'))
   tags:
     - wireguard

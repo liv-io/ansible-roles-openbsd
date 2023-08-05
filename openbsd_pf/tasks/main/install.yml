@@ -12,7 +12,7 @@
 
 - name: create file pf.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_pf_dir}}"
     mode: "{{file_mode_pf_dir}}"
     owner: "{{file_owner_pf_dir}}"

@@ -38,13 +38,13 @@
   register: register_status_rsyslogd
   changed_when: (register_status_rsyslogd.rc > 1)
   failed_when: (register_status_rsyslogd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rsyslog
 
 - name: enable rsyslogd
   command: "{{command_cmd_enable_rsyslogd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_rsyslogd.rc == 1)
   tags:
     - rsyslog
@@ -54,13 +54,13 @@
   register: register_check_rsyslogd
   changed_when: (register_check_rsyslogd.rc > 1)
   failed_when: (register_check_rsyslogd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rsyslog
 
 - name: start rsyslogd
   command: "{{command_cmd_start_rsyslogd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_rsyslogd.rc == 1)
   tags:
     - rsyslog

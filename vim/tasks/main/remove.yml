@@ -12,21 +12,21 @@
 
 - name: remove package vim
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_vim}}"
   tags:
     - vim
 
 - name: remove file defaults.vim
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_defaults_vim}}"
   tags:
     - vim
 
 - name: remove file vimrc
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_vimrc}}"
   tags:
     - vim

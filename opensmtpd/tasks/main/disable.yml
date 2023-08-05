@@ -27,7 +27,7 @@
     mode: "{{file_mode_secrets}}"
     owner: "{{file_owner_secrets}}"
     group: "{{file_group_secrets}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - opensmtpd
 
@@ -58,13 +58,13 @@
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
   failed_when: (register_status_opensmtpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - opensmtpd
 
 - name: disable opensmtpd
   command: "{{command_cmd_disable_opensmtpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_opensmtpd.rc == 0
   tags:
     - opensmtpd
@@ -74,13 +74,13 @@
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
   failed_when: (register_check_opensmtpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - opensmtpd
 
 - name: stop opensmtpd
   command: "{{command_cmd_stop_opensmtpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_opensmtpd.rc == 0
   tags:
     - opensmtpd

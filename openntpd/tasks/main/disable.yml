@@ -22,15 +22,15 @@
 
 - name: remove file openntpd_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openntpd_check_time}}"
   tags:
     - openntpd
 
 - name: create cron openntpd_check-time
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
     hour: "{{cron_hour_openntpd_check_time}}"
@@ -59,13 +59,13 @@
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
   failed_when: (register_status_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_openntpd.rc == 0
   tags:
     - openntpd
@@ -75,13 +75,13 @@
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
   failed_when: (register_check_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_openntpd.rc == 0
   tags:
     - openntpd

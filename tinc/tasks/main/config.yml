@@ -12,7 +12,7 @@
 
 - name: create file config.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
     mode: "{{file_mode_config_dir}}"
     owner: "{{file_owner_config_dir}}"
@@ -25,7 +25,7 @@
 
 - name: create file hosts.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_tinc_dir}}/{{item.name}}/hosts"
     mode: "{{file_mode_hosts_dir}}"
     owner: "{{file_owner_hosts_dir}}"
@@ -60,7 +60,7 @@
     mode: "{{file_mode_rsa_key_priv}}"
     owner: "{{file_owner_rsa_key_priv}}"
     group: "{{file_group_rsa_key_priv}}"
-  no_log: 'true'
+  no_log: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
@@ -108,11 +108,11 @@
 
 - name: config line tincd_flags
   lineinfile:
-    state: 'present'
+    state: present
     line: "{{file_line_tincd_flags}} --net={{item.name}} # Ansible: Configure tinc"
     regexp: "^{{file_line_tincd_flags}}"
     dest: "{{file_dst_tincd_flags}}"
-    create: 'yes'
+    create: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
@@ -121,7 +121,7 @@
 
 - name: remove file config.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
@@ -131,10 +131,10 @@
 
 - name: line disable tincd_flags
   lineinfile:
-    state: 'absent'
+    state: absent
     regexp: "^{{file_line_tincd_flags}}.*"
     dest: "{{file_dst_tincd_flags}}"
-    create: 'yes'
+    create: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
   when: (item.state|default('true') is match('false|no|remove'))

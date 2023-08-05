@@ -37,13 +37,13 @@
   register: register_status_rest_server
   changed_when: (register_status_rest_server.rc > 1)
   failed_when: (register_status_rest_server.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rest_server
 
 - name: disable rest_server
   command: "{{command_cmd_disable_rest_server}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_rest_server.rc == 0
   tags:
     - rest_server
@@ -53,21 +53,21 @@
   register: register_check_rest_server
   changed_when: (register_check_rest_server.rc > 1)
   failed_when: (register_check_rest_server.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rest_server
 
 - name: stop rest_server
   command: "{{command_cmd_stop_rest_server}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_rest_server.rc == 0
   tags:
     - rest_server
 
 - name: stop service rest_server
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_rest_server}}"
   tags:
     - rest_server

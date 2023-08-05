@@ -12,10 +12,10 @@
 
 - name: line enable motd-patch
   lineinfile:
-    state: 'present'
+    state: present
     line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
     regexp: "{{file_regexp_motd_patch}}"
     dest: "{{file_dst_motd_patch}}"
-    create: 'yes'
+    create: True
   tags:
     - motd

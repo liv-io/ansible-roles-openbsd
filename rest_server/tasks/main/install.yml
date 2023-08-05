@@ -12,14 +12,14 @@
 
 - name: install package gnu-tar
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_gnu_tar}}"
   tags:
     - rest_server
 
 - name: create group rest-server
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_rest_server}}"
     system: "{{group_system_rest_server}}"
   tags:
@@ -27,7 +27,7 @@
 
 - name: create user rest-server
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_rest_server}}"
     comment: "{{user_comment_rest_server}}"
     group: "{{user_group_rest_server}}"
@@ -46,7 +46,7 @@
 
 - name: create file src.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_src_dir}}"
     mode: "{{file_mode_src_dir}}"
     owner: "{{file_owner_src_dir}}"
@@ -56,7 +56,7 @@
 
 - name: create file data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_data_dir}}"
     mode: "{{file_mode_data_dir}}"
     owner: "{{file_owner_data_dir}}"
@@ -66,7 +66,7 @@
 
 - name: create file rest-server_data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_rest_server_data_dir}}"
     mode: "{{file_mode_rest_server_data_dir}}"
     owner: "{{file_owner_rest_server_data_dir}}"
@@ -93,7 +93,7 @@
     group: "{{file_group_rest_server}}"
     exclude: "{{file_exclude_rest_server}}"
     extra_opts: "{{file_extra_opts_rest_server}}"
-    remote_src: 'yes'
+    remote_src: True
   tags:
     - rest_server
 
@@ -107,7 +107,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -121,7 +121,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
     - rest_server

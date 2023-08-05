@@ -49,13 +49,13 @@
   register: register_status_unbound
   changed_when: (register_status_unbound.rc > 1)
   failed_when: (register_status_unbound.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - unbound
 
 - name: disable unbound
   command: "{{command_cmd_disable_unbound}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_unbound.rc == 0
   tags:
     - unbound
@@ -65,13 +65,13 @@
   register: register_check_unbound
   changed_when: (register_check_unbound.rc > 1)
   failed_when: (register_check_unbound.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - unbound
 
 - name: stop unbound
   command: "{{command_cmd_stop_unbound}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_unbound.rc == 0
   tags:
     - unbound

@@ -79,13 +79,13 @@
   register: register_status_openssh
   changed_when: (register_status_openssh.rc > 1)
   failed_when: (register_status_openssh.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openssh
 
 - name: enable openssh
   command: "{{command_cmd_enable_openssh}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_openssh.rc == 1)
   tags:
     - openssh
@@ -95,13 +95,13 @@
   register: register_check_openssh
   changed_when: (register_check_openssh.rc > 1)
   failed_when: (register_check_openssh.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openssh
 
 - name: start openssh
   command: "{{command_cmd_start_openssh}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_openssh.rc == 1)
   tags:
     - openssh

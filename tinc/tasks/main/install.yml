@@ -12,7 +12,7 @@
 
 - name: install package tinc
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_tinc}}"
   tags:
     - tinc
@@ -27,7 +27,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -41,7 +41,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   when: (tinc_monitor_monit_state is match('true|yes|enable'))
   tags:
     - tinc

@@ -12,14 +12,14 @@
 
 - name: install package rsyslog
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_rsyslog}}"
   tags:
     - rsyslog
 
 - name: create file rsyslog.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_rsyslog_d}}"
     mode: "{{file_mode_rsyslog_d}}"
     owner: "{{file_owner_rsyslog_d}}"
@@ -37,7 +37,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -51,7 +51,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
     - rsyslog

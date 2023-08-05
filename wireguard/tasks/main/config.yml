@@ -38,7 +38,7 @@
 
 - name: remove file hostname.config
   file:
-    state: 'absent'
+    state: absent
     path: "/etc/hostname.{{item.device}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
@@ -48,7 +48,7 @@
 
 - name: remove file wireguard.config
   file:
-    state: 'absent'
+    state: absent
     path: "/etc/wireguard/{{item.interface}}.conf"
   loop: "{{wireguard_config}}"
   notify: run netstart
@@ -81,7 +81,7 @@
 
 - name: remove file wireguard.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "/etc/monit.d/wireguard-{{item.device}}.cfg"
   notify: reload service monit
   loop: "{{wireguard_config}}"

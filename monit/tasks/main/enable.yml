@@ -28,13 +28,13 @@
   register: register_status_monit
   changed_when: (register_status_monit.rc > 1)
   failed_when: (register_status_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit
 
 - name: enable monit
   command: "{{command_cmd_enable_monit}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_monit.rc == 1)
   tags:
     - monit
@@ -44,13 +44,13 @@
   register: register_check_monit
   changed_when: (register_check_monit.rc > 1)
   failed_when: (register_check_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit
 
 - name: start monit
   command: "{{command_cmd_start_monit}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_monit.rc == 1)
   tags:
     - monit

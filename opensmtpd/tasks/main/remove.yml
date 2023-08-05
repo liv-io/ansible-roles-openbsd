@@ -15,13 +15,13 @@
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
   failed_when: (register_status_opensmtpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - opensmtpd
 
 - name: disable opensmtpd
   command: "{{command_cmd_disable_opensmtpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_opensmtpd.rc == 0
   tags:
     - opensmtpd
@@ -31,20 +31,20 @@
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
   failed_when: (register_check_opensmtpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - opensmtpd
 
 - name: stop opensmtpd
   command: "{{command_cmd_stop_opensmtpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_opensmtpd.rc == 0
   tags:
     - opensmtpd
 
 - name: remove file opensmtpd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
   notify: reload service monit
   tags:
@@ -52,7 +52,7 @@
 
 - name: remove file secrets
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_secrets}}"
   tags:
     - opensmtpd

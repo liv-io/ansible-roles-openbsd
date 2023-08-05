@@ -15,13 +15,13 @@
   register: register_status_rest_server
   changed_when: (register_status_rest_server.rc > 1)
   failed_when: (register_status_rest_server.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rest_server
 
 - name: disable rest_server
   command: "{{command_cmd_disable_rest_server}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_rest_server.rc == 0
   tags:
     - rest_server
@@ -31,20 +31,20 @@
   register: register_check_rest_server
   changed_when: (register_check_rest_server.rc > 1)
   failed_when: (register_check_rest_server.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - rest_server
 
 - name: stop rest_server
   command: "{{command_cmd_stop_rest_server}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_rest_server.rc == 0
   tags:
     - rest_server
 
 - name: remove user rest-server
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_rest_server}}"
     remove: "{{user_home_remove_rest_server}}"
     force: "{{user_home_force_rest_server}}"
@@ -53,14 +53,14 @@
 
 - name: remove group rest-server
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_rest_server}}"
   tags:
     - rest_server
 
 - name: remove file rest_server.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_rest_server_cfg}}"
   notify: reload service monit
   tags:
@@ -68,21 +68,21 @@
 
 - name: remove file rest_server.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_rest_server_service}}"
   tags:
     - rest_server
 
 - name: remove file rest-server
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_rest_server}}"
   tags:
     - rest_server
 
 - name: remove file rest-server.tar.gz
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_rest_server_tar_gz}}"
   tags:
     - rest_server

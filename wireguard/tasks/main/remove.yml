@@ -12,14 +12,14 @@
 
 - name: remove package wireguard-tools
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_wireguard_tools}}"
   tags:
     - wireguard
 
 - name: remove file wireguard.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_wireguard_dir}}"
   tags:
     - wireguard

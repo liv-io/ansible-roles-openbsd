@@ -33,7 +33,7 @@
 
 - name: create cron openntpd_check-time
   cron:
-    state: 'present'
+    state: present
     disabled: "{{'yes' if (openntpd_check_time_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
@@ -63,13 +63,13 @@
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
   failed_when: (register_status_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: enable openntpd
   command: "{{command_cmd_enable_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_openntpd.rc == 1)
   tags:
     - openntpd
@@ -79,13 +79,13 @@
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
   failed_when: (register_check_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: start openntpd
   command: "{{command_cmd_start_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_openntpd.rc == 1)
   tags:
     - openntpd

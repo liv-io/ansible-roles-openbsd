@@ -15,13 +15,13 @@
   register: register_status_nsd
   changed_when: (register_status_nsd.rc > 1)
   failed_when: (register_status_nsd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
 - name: disable nsd
   command: "{{command_cmd_disable_nsd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_nsd.rc == 0
   tags:
     - nsd
@@ -31,20 +31,20 @@
   register: register_check_nsd
   changed_when: (register_check_nsd.rc > 1)
   failed_when: (register_check_nsd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
 - name: stop nsd
   command: "{{command_cmd_stop_nsd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_nsd.rc == 0
   tags:
     - nsd
 
 - name: remove file nsd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_nsd_cfg}}"
   notify: reload service monit
   tags:

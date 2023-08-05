@@ -95,14 +95,14 @@
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
   failed_when: (register_status_openbsd_pf.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openbsd_pf
 
 - name: disable openbsd_pf
   command: "{{command_cmd_disable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 0)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openbsd_pf
 
@@ -111,13 +111,13 @@
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
   failed_when: (register_check_openbsd_pf.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openbsd_pf
 
 - name: stop openbsd_pf
   command: "{{command_cmd_stop_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 0)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openbsd_pf

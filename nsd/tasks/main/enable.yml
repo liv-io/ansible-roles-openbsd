@@ -15,7 +15,7 @@
   register: register_locate_unbound
   changed_when: (register_locate_unbound.rc > 1)
   failed_when: (register_locate_unbound.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
@@ -64,13 +64,13 @@
   register: register_status_nsd
   changed_when: (register_status_nsd.rc > 1)
   failed_when: (register_status_nsd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
 - name: enable nsd
   command: "{{command_cmd_enable_nsd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_nsd.rc == 1)
   tags:
     - nsd
@@ -80,13 +80,13 @@
   register: register_check_nsd
   changed_when: (register_check_nsd.rc > 1)
   failed_when: (register_check_nsd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
 - name: start nsd
   command: "{{command_cmd_start_nsd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_nsd.rc == 1)
   tags:
     - nsd

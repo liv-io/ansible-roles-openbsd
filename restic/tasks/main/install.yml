@@ -12,14 +12,14 @@
 
 - name: install package restic
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_restic}}"
   tags:
     - restic
 
 - name: create file restic_etc.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_restic_etc_dir}}"
     mode: "{{file_mode_restic_etc_dir}}"
     owner: "{{file_owner_restic_etc_dir}}"
@@ -29,7 +29,7 @@
 
 - name: create file restic_log.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_restic_log_dir}}"
     mode: "{{file_mode_restic_log_dir}}"
     owner: "{{file_owner_restic_log_dir}}"
@@ -64,7 +64,7 @@
     mode: "{{file_mode_password_conf}}"
     owner: "{{file_owner_password_conf}}"
     group: "{{file_group_password_conf}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic
 
@@ -75,14 +75,14 @@
     mode: "{{file_mode_repository_conf}}"
     owner: "{{file_owner_repository_conf}}"
     group: "{{file_group_repository_conf}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic
 
 - name: create file restic.log
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_restic_log}}"
     mode: "{{file_mode_restic_log}}"
     owner: "{{file_owner_restic_log}}"
@@ -97,6 +97,6 @@
     mode: "{{file_mode_restic_run_backup}}"
     owner: "{{file_owner_restic_run_backup}}"
     group: "{{file_group_restic_run_backup}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic

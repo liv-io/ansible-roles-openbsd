@@ -12,14 +12,14 @@
 
 - name: install package monit
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_monit}}"
   tags:
     - monit
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"

@@ -12,7 +12,7 @@
 
 - name: create group monit_exporter
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_monit_exporter}}"
     system: "{{group_system_monit_exporter}}"
   tags:
@@ -20,7 +20,7 @@
 
 - name: create user monit_exporter
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_monit_exporter}}"
     comment: "{{user_comment_monit_exporter}}"
     group: "{{user_group_monit_exporter}}"
@@ -38,7 +38,7 @@
 
 - name: create file src.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_src_dir}}"
     mode: "{{file_mode_src_dir}}"
     owner: "{{file_owner_src_dir}}"
@@ -48,7 +48,7 @@
 
 - name: create file monit_exporter_etc.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_exporter_etc_dir}}"
     mode: "{{file_mode_monit_exporter_etc_dir}}"
     owner: "{{file_owner_monit_exporter_etc_dir}}"
@@ -74,17 +74,17 @@
     owner: "{{file_owner_monit_exporter}}"
     group: "{{file_group_monit_exporter}}"
     exclude: "{{file_exclude_monit_exporter}}"
-    remote_src: 'yes'
+    remote_src: True
   tags:
     - monit_exporter
 
 - name: config line monit_exporter_flags
   lineinfile:
-    state: 'present'
+    state: present
     line: "{{file_line_monit_exporter_flags}}"
     regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
     dest: "{{file_dest_monit_exporter_flags}}"
-    create: 'yes'
+    create: True
   tags:
     - monit_exporter
 
@@ -108,7 +108,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -122,7 +122,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - monit_exporter

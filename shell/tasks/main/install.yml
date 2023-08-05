@@ -12,14 +12,14 @@
 
 - name: install package colorls
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_colorls}}"
   tags:
     - shell
 
 - name: create file profile.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_profile_d}}"
     mode: "{{file_mode_profile_d}}"
     owner: "{{file_owner_profile_d}}"

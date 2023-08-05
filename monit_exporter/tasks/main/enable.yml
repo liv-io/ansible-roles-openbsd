@@ -12,11 +12,11 @@
 
 - name: config line monit_exporter_flags
   lineinfile:
-    state: 'present'
+    state: present
     line: "{{file_line_monit_exporter_flags}}"
     regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
     dest: "{{file_dest_monit_exporter_flags}}"
-    create: 'yes'
+    create: True
   notify: restart service monit_exporter
   tags:
     - monit_exporter
@@ -49,13 +49,13 @@
   register: register_status_monit_exporter
   changed_when: (register_status_monit_exporter.rc > 1)
   failed_when: (register_status_monit_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit_exporter
 
 - name: enable monit_exporter
   command: "{{command_cmd_enable_monit_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_monit_exporter.rc == 1)
   tags:
     - monit_exporter
@@ -65,13 +65,13 @@
   register: register_check_monit_exporter
   changed_when: (register_check_monit_exporter.rc > 1)
   failed_when: (register_check_monit_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit_exporter
 
 - name: start monit_exporter
   command: "{{command_cmd_start_monit_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_monit_exporter.rc == 1)
   tags:
     - monit_exporter

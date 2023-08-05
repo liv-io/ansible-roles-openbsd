@@ -40,13 +40,13 @@
   register: register_status_nginx
   changed_when: (register_status_nginx.rc > 1)
   failed_when: (register_status_nginx.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nginx
 
 - name: enable nginx
   command: "{{command_cmd_enable_nginx}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_nginx.rc == 1)
   tags:
     - nginx
@@ -56,13 +56,13 @@
   register: register_check_nginx
   changed_when: (register_check_nginx.rc > 1)
   failed_when: (register_check_nginx.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nginx
 
 - name: start nginx
   command: "{{command_cmd_start_nginx}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_nginx.rc == 1)
   tags:
     - nginx

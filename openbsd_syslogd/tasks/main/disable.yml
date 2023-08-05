@@ -12,11 +12,11 @@
 
 - name: config line syslogd_flags
   lineinfile:
-    state: 'present'
+    state: present
     line: "{{file_line_syslogd_flags}}=-h # Ansible: Configure syslogd"
     regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
-    create: 'yes'
+    create: True
   tags:
     - openbsd_syslogd
 
@@ -52,7 +52,7 @@
 
 - name: disable syslogd
   command: "{{command_cmd_disable_syslogd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_syslogd.rc == 0
   tags:
     - openbsd_syslogd
@@ -62,13 +62,13 @@
   register: register_check_syslogd
   changed_when: (register_check_syslogd.rc > 1)
   failed_when: (register_check_syslogd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openbsd_syslogd
 
 - name: stop syslogd
   command: "{{command_cmd_stop_syslogd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_syslogd.rc == 0
   tags:
     - openbsd_syslogd

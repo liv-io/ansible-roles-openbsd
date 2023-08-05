@@ -82,7 +82,7 @@
     mode: "{{file_mode_squid_conf}}"
     owner: "{{file_owner_squid_conf}}"
     group: "{{file_group_squid_conf}}"
-  no_log: 'true'
+  no_log: True
   notify:
     - parse config
     - restart service squid
@@ -110,7 +110,7 @@
 
 - name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_cache_dir.stat.exists == False)
   tags:
     - squid
@@ -120,13 +120,13 @@
   register: register_status_squid
   changed_when: (register_status_squid.rc > 1)
   failed_when: (register_status_squid.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - squid
 
 - name: enable squid
   command: "{{command_cmd_enable_squid}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_squid.rc == 1)
   tags:
     - squid
@@ -136,21 +136,21 @@
   register: register_check_squid
   changed_when: (register_check_squid.rc > 1)
   failed_when: (register_check_squid.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - squid
 
 - name: start squid
   command: "{{command_cmd_start_squid}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_check_squid.rc == 1)
   tags:
     - squid
 
 - name: start service squid
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_squid}}"
   tags:
     - squid

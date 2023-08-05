@@ -15,7 +15,7 @@
   register: register_locate_unbound
   changed_when: (register_locate_unbound.rc > 1)
   failed_when: (register_locate_unbound.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - nsd
 
@@ -49,7 +49,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_config}}/{{item.name}}.zone"
   loop: "{{nsd_zone}}"
   notify: restart service nsd
@@ -59,7 +59,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_config}}/{{item.name}}.zone"
   loop: "{{nsd_zone}}"
   notify:

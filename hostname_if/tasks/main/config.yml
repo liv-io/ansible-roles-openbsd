@@ -25,7 +25,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "/etc/hostname.{{(item.device|default(ansible_default_ipv4.device))}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
   notify: run netstart

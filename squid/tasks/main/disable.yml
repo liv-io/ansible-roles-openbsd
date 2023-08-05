@@ -97,7 +97,7 @@
 
 - name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_cache_dir.stat.exists == False)
   tags:
     - squid
@@ -107,13 +107,13 @@
   register: register_status_squid
   changed_when: (register_status_squid.rc > 1)
   failed_when: (register_status_squid.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - squid
 
 - name: disable squid
   command: "{{command_cmd_disable_squid}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_squid.rc == 0
   tags:
     - squid
@@ -123,21 +123,21 @@
   register: register_check_squid
   changed_when: (register_check_squid.rc > 1)
   failed_when: (register_check_squid.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - squid
 
 - name: stop squid
   command: "{{command_cmd_stop_squid}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_squid.rc == 0
   tags:
     - squid
 
 - name: stop service squid
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_squid}}"
   tags:
     - squid

@@ -15,13 +15,13 @@
   register: register_status_node_exporter
   changed_when: (register_status_node_exporter.rc > 1)
   failed_when: (register_status_node_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - node_exporter
 
 - name: disable node_exporter
   command: "{{command_cmd_disable_node_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_node_exporter.rc == 0
   tags:
     - node_exporter
@@ -31,20 +31,20 @@
   register: register_check_node_exporter
   changed_when: (register_check_node_exporter.rc > 1)
   failed_when: (register_check_node_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - node_exporter
 
 - name: stop node_exporter
   command: "{{command_cmd_stop_node_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_node_exporter.rc == 0
   tags:
     - node_exporter
 
 - name: remove file node_exporter.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_cfg}}"
   notify: reload service monit
   tags:
@@ -52,17 +52,17 @@
 
 - name: config line node_exporter_flags
   lineinfile:
-    state: 'absent'
+    state: absent
     line: "{{file_line_node_exporter_flags}}"
     regexp: "^{{file_regexp_node_exporter_flags}}=.*"
     dest: "{{file_dest_node_exporter_flags}}"
-    create: 'yes'
+    create: True
   tags:
     - node_exporter
 
 - name: remove file node_exporter_var.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_var_dir}}"
   tags:
     - node_exporter

@@ -15,13 +15,13 @@
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
   failed_when: (register_status_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_openntpd.rc == 0
   tags:
     - openntpd
@@ -31,20 +31,20 @@
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
   failed_when: (register_check_openntpd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - openntpd
 
 - name: stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_openntpd.rc == 0
   tags:
     - openntpd
 
 - name: remove file openntpd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openntpd_cfg}}"
   notify: reload service monit
   tags:
@@ -52,7 +52,7 @@
 
 - name: remove cron openntpd_check-time
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_openntpd_check_time}}"
     user: "{{cron_user_openntpd_check_time}}"
   tags:
@@ -60,7 +60,7 @@
 
 - name: remove file openntpd_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openntpd_check_time}}"
   tags:
     - openntpd

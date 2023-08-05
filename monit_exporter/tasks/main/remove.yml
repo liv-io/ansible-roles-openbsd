@@ -15,13 +15,13 @@
   register: register_status_monit_exporter
   changed_when: (register_status_monit_exporter.rc > 2)
   failed_when: (register_status_monit_exporter.rc > 2)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit_exporter
 
 - name: disable monit_exporter
   command: "{{command_cmd_disable_monit_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_status_monit_exporter.rc == 0
   tags:
     - monit_exporter
@@ -31,20 +31,20 @@
   register: register_check_monit_exporter
   changed_when: (register_check_monit_exporter.rc > 1)
   failed_when: (register_check_monit_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - monit_exporter
 
 - name: stop monit_exporter
   command: "{{command_cmd_stop_monit_exporter}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_check_monit_exporter.rc == 0
   tags:
     - monit_exporter
 
 - name: remove user monit_exporter
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_monit_exporter}}"
     remove: "{{user_home_remove_monit_exporter}}"
     force: "{{user_home_force_monit_exporter}}"
@@ -53,14 +53,14 @@
 
 - name: remove group monit_exporter
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_monit_exporter}}"
   tags:
     - monit_exporter
 
 - name: remove file monit_exporter.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_monit_exporter_cfg}}"
   notify: reload service monit
   tags:
@@ -68,38 +68,38 @@
 
 - name: config line monit_exporter_flags
   lineinfile:
-    state: 'absent'
+    state: absent
     line: "{{file_line_monit_exporter_flags}}"
     regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
     dest: "{{file_dest_monit_exporter_flags}}"
-    create: 'yes'
+    create: True
   tags:
     - monit_exporter
 
 - name: remove file monit_exporter_etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_monit_exporter_etc_dir}}"
   tags:
     - monit_exporter
 
 - name: remove file monit_exporter.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_monit_exporter_service}}"
   tags:
     - monit_exporter
 
 - name: remove file monit_exporter
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_monit_exporter}}"
   tags:
     - monit_exporter
 
 - name: remove file monit_exporter.tar.gz
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_monit_exporter_tar_gz}}"
   tags:
     - monit_exporter

@@ -1,6 +1,6 @@
 ---
 
-allow_duplicates: 'yes'
+allow_duplicates: True
 
 dependencies:
   - role: sysctl
