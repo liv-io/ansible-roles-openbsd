@@ -48,21 +48,21 @@ consult the following sections.
 vars:
   sysctl_config_all:
     - key: 'net.inet.carp.preempt'
-      state: 'true'
+      state: True
       value: '1'
 
     - key: 'net.inet.carp.allow'
-      state: 'true'
+      state: True
       value: '1'
 
   sysctl_config_group:
     - key: 'net.inet.ip.ttl'
-      state: 'false'
+      state: False
       value: '64'
 
   sysctl_config_host:
     - key: 'kern.hostname'
-      state: 'true'
+      state: True
       value: 'host.domain.tld'
 ```
 

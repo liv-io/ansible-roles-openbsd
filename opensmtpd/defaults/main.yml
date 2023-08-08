@@ -25,7 +25,7 @@ opensmtpd_match_group: []
 
 opensmtpd_match_host: []
 
-opensmtpd_monitor_monit_state: 'false'
+opensmtpd_monitor_monit_state: False
 
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 

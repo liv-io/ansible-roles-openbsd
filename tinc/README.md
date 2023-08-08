@@ -34,7 +34,7 @@ consult the following sections.
     tinc_state: 'enable'
     tinc_config:
       - name: 'dc_to_dc'
-        state: 'enable'
+        state: True
         device: '/dev/tap0'
         process_priority: 'high'
         replay_window: '64'
@@ -119,7 +119,7 @@ consult the following sections.
     tinc_state: 'disable'
     tinc_config:
       - name: 'dc_to_dc'
-        state: 'enable'
+        state: True
         device: '/dev/tap0'
         process_priority: 'high'
         replay_window: '64'
@@ -242,7 +242,7 @@ consult the following sections.
     Type       : Array
     Default    : []
     Options    :
-      Examples: [{name: 'dc_to_dc', state: 'enable', address: '10.0.0.1', netmask: '255.255.255.0',
+      Examples: [{name: 'dc_to_dc', state: True, address: '10.0.0.1', netmask: '255.255.255.0',
                   routes: [{subnet: '10.20.0.0/24', gateway: '10.0.0.1'}, subnet: '10.20.1.0/24', gateway: '10.0.0.1'},
                             subnet: '10.20.2.0/24', gateway: '10.0.0.1'}, subnet: '10.30.0.0/24', gateway: '10.0.0.1'},
                             subnet: '10.30.1.0/24', gateway: '10.0.0.1'}, subnet: '10.30.2.0/24', gateway: '10.0.0.1'}],
@@ -258,11 +258,11 @@ consult the following sections.
     Implemented: 0.11.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

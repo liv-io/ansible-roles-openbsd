@@ -12,7 +12,7 @@ alias ll='ls -lFT'  # long listing
 alias lr='ls -lRFT' # long listing, list subdirectories recursively
 alias lt='ls -ltFT' # long listing, sort by modification time
 
-{% if not (shell_safety is match('false|no|disable')) %}
+{% if (shell_safety == True) %}
 # Shell safety
 alias cp='cp -i'
 alias mv='mv -i'

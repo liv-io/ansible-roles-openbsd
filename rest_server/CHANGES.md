@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2023-08-08)
+
+### Changes
+
+- Turn string state parameters into boolean
+
 ## 0.3.1 (2023-06-26)
 
 ### Enhancements

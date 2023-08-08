@@ -17,9 +17,9 @@ consult the following sections.
     - role: openbsd_periodic
   vars:
     openbsd_periodic_state: 'install'
-    openbsd_periodic_daily_state: 'true'
-    openbsd_periodic_monthly_state: 'true'
-    openbsd_periodic_weekly_state: 'true'
+    openbsd_periodic_daily_state: True
+    openbsd_periodic_monthly_state: True
+    openbsd_periodic_weekly_state: True
 ```
 
 ### Remove
@@ -30,9 +30,9 @@ consult the following sections.
     - role: openbsd_periodic
   vars:
     openbsd_periodic_state: 'remove'
-    openbsd_periodic_daily_state: 'true'
-    openbsd_periodic_monthly_state: 'true'
-    openbsd_periodic_weekly_state: 'true'
+    openbsd_periodic_daily_state: True
+    openbsd_periodic_monthly_state: True
+    openbsd_periodic_weekly_state: True
 ```
 
 ### Inactive
@@ -68,11 +68,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openbsd_periodic_monthly_state`
 
@@ -80,11 +80,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openbsd_periodic_weekly_state`
 
@@ -92,11 +92,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

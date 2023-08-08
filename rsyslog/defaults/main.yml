@@ -8,7 +8,7 @@ rsyslog_config_group: []
 
 rsyslog_config_host: []
 
-rsyslog_monitor_monit_state: 'false'
+rsyslog_monitor_monit_state: False
 
 rsyslog_role: 'client'
 

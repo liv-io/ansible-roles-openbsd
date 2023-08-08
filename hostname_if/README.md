@@ -20,8 +20,8 @@ consult the following sections.
     - role: hostname
   vars:
     hostname_state: 'install'
-    hostname_if_carp_allow: 'true'
-    hostname_if_carp_preempt: 'true'
+    hostname_if_carp_allow: True
+    hostname_if_carp_preempt: True
 ```
 
 ### Inactive
@@ -103,11 +103,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `hostname_if_carp_preempt`
 
@@ -115,11 +115,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `hostname_if_config_all`
 

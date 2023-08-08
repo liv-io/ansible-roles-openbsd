@@ -40,7 +40,7 @@
     owner: "{{file_owner_syslogd_cfg}}"
     group: "{{file_group_syslogd_cfg}}"
   notify: reload service monit
-  when: (openbsd_syslogd_monitor_monit_state is match('true|yes|enable'))
+  when: (openbsd_syslogd_monitor_monit_state == True)
   tags:
     - openbsd_syslogd
 

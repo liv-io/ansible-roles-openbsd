@@ -34,7 +34,7 @@ consult the following sections.
   vars:
     openssh_state: 'enable'
     openssh_allow_users: ['user01', 'user02', 'user03']
-    openssh_password_authentication: 'no'
+    openssh_password_authentication: False
     openssh_listen_address: ['0.0.0.0']
 ```
 
@@ -47,7 +47,7 @@ consult the following sections.
   vars:
     openssh_state: 'disable'
     openssh_allow_users: ['user01', 'user02', 'user03']
-    openssh_password_authentication: 'no'
+    openssh_password_authentication: False
     openssh_listen_address: ['0.0.0.0']
 ```
 
@@ -135,11 +135,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_ciphers`
 
@@ -158,12 +158,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'delayed'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-      Delayed: 'delayed'
+      True : True
+      False: False
 
 `openssh_deny_groups`
 
@@ -264,11 +263,11 @@ consult the following sections.
     Implemented: 2.14.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_password_authentication`
 
@@ -276,11 +275,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_permit_root_login`
 
@@ -288,11 +287,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'no'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_port`
 
@@ -311,11 +310,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_print_last_log`
 
@@ -323,11 +322,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_pubkey_authentication`
 
@@ -335,11 +334,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_rsa_authentication`
 
@@ -347,11 +346,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_tcp_keep_alive`
 
@@ -359,11 +358,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_use_dns`
 
@@ -371,11 +370,11 @@ consult the following sections.
     Implemented: 0.3.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'no'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_version_addendum`
 
@@ -405,11 +404,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'no'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openssh_x11_use_localhost`
 
@@ -417,11 +416,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'yes'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

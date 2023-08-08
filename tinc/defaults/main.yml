@@ -4,4 +4,4 @@ tinc_state: 'enable'
 
 tinc_config: []
 
-tinc_monitor_monit_state: 'false'
+tinc_monitor_monit_state: False

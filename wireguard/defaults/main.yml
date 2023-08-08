@@ -4,4 +4,4 @@ wireguard_state: 'install'
 
 wireguard_config: []
 
-wireguard_monitor_monit_state: 'false'
+wireguard_monitor_monit_state: False

@@ -67,13 +67,13 @@ consult the following sections.
 ```
 vars:
   openbsd_pf_filters_all:
-    - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
-    - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
-    - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
+    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
+    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
+    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
     - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
-    - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
-    - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
-    - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
+    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
+    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
+    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To dns servers'}
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To dns servers'}
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
@@ -92,7 +92,7 @@ vars:
     - {name: 'root_data', interface: 'vio0', bandwidth: '1G'}
     - {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'}
     - {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'}
-    - {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}
+    - {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}
 ```
 
 ## Parameters
@@ -180,11 +180,11 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'},
-                  {action: 'block', direction: 'out', log: 'false', comment: 'Default outgoing policy'}]
+    Default    : [{action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'},
+                  {action: 'block', direction: 'out', log: False, comment: 'Default outgoing policy'}]
     Options    :
-      Examples: [{action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'},
-                 {action: 'pass', direction: 'out', log: 'true', comment: 'Default outgoing policy'}]
+      Examples: [{action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'},
+                 {action: 'pass', direction: 'out', log: True, comment: 'Default outgoing policy'}]
       None    : []
 
 `openbsd_pf_macros_all`
@@ -343,10 +343,10 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'false'
+    Default    : ''
     Options    :
       Examples: '1' | '2' | '3'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `openbsd_pf_options_limits`
 
@@ -371,10 +371,10 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'false'
+    Default    : ''
     Options    :
       Examples: 'em0' | 'ed1' | 'wlan2'
-      None    : 'false' | 'no' | 'disable'
+      None    : ''
 
 `openbsd_pf_options_optimization`
 
@@ -397,11 +397,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `openbsd_pf_options_ruleset_optimization`
 
@@ -414,7 +414,7 @@ vars:
     Options    :
       Basic  : 'basic'
       Profile: 'profile'
-      None   : 'false' | 'no' | 'disable'
+      None   : ''
 
 `openbsd_pf_options_skip`
 
@@ -490,7 +490,7 @@ vars:
       Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
                  {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
                  {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
 `openbsd_pf_queues_group`
@@ -505,7 +505,7 @@ vars:
       Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
                  {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
                  {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
 `openbsd_pf_queues_host`
@@ -520,7 +520,7 @@ vars:
       Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
                  {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
                  {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
 `openbsd_pf_tables_all`

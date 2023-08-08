@@ -8,31 +8,31 @@ unbound_access_control:
   - {address: '::1', action: 'allow', comment: 'IP6 localhost'}
   - {address: '::0/0', action: 'refuse', comment: 'IP6 any'}
 
-unbound_control_enable: 'false'
+unbound_control_enable: False
 
 unbound_default_port: 53
 
-unbound_do_not_query_localhost: 'true'
+unbound_do_not_query_localhost: True
 
-unbound_harden_algo_downgrade: 'false'
+unbound_harden_algo_downgrade: False
 
-unbound_harden_below_nxdomain: 'false'
+unbound_harden_below_nxdomain: False
 
-unbound_harden_dnssec_stripped: 'true'
+unbound_harden_dnssec_stripped: True
 
-unbound_harden_glue: 'true'
+unbound_harden_glue: True
 
-unbound_harden_large_queries: 'false'
+unbound_harden_large_queries: False
 
-unbound_harden_referral_path: 'false'
+unbound_harden_referral_path: False
 
-unbound_harden_short_bufsize: 'false'
+unbound_harden_short_bufsize: False
 
-unbound_hide_identity: 'true'
+unbound_hide_identity: True
 
-unbound_hide_trustanchor: 'true'
+unbound_hide_trustanchor: True
 
-unbound_hide_version: 'true'
+unbound_hide_version: True
 
 unbound_identity: ''
 
@@ -40,9 +40,9 @@ unbound_include: []
 
 unbound_interface: []
 
-unbound_ip4_state: 'true'
+unbound_ip4_state: True
 
-unbound_ip6_state: 'false'
+unbound_ip6_state: False
 
 unbound_local_data: []
 
@@ -50,14 +50,14 @@ unbound_local_data_ptr: []
 
 unbound_local_zone: []
 
-unbound_monitor_monit_state: 'false'
+unbound_monitor_monit_state: False
 
-unbound_prefer_ip6: 'false'
+unbound_prefer_ip6: False
 
 unbound_stub_zone: []
 
-unbound_tcp_state: 'true'
+unbound_tcp_state: True
 
-unbound_udp_state: 'true'
+unbound_udp_state: True
 
 unbound_version: ''

@@ -37,19 +37,19 @@ vars:
   openbsd_rc_config_all:
     - name: 'dhcpd_flags'
       value: 'NO'
-      state: 'true'
+      state: True
       comment: "Disable service 'dhcpd'"
 
   openbsd_rc_config_group:
     - name: 'nfs_server'
       value: 'YES'
-      state: 'true'
+      state: True
       comment: 'Enable the NFS server'
 
   openbsd_rc_config_host:
     - name: 'nfsd_flags'
       value: '-tun 8'
-      state: 'true'
+      state: True
       comment: 'Start 4 copies of the NFS server'
 ```
 
@@ -63,11 +63,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `comment`
 
@@ -137,8 +137,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
+      Examples: [{name: 'nfs_server', value: 'YES', state: True, comment: 'Enable the NFS server'},
+                 {name: 'nfsd_flags', value: '-tun 8', state: True, comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
 `openbsd_rc_config_group`
@@ -150,8 +150,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
+      Examples: [{name: 'nfs_server', value: 'YES', state: True, comment: 'Enable the NFS server'},
+                 {name: 'nfsd_flags', value: '-tun 8', state: True, comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
 `openbsd_rc_config_host`
@@ -163,8 +163,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
+      Examples: [{name: 'nfs_server', value: 'YES', state: True, comment: 'Enable the NFS server'},
+                 {name: 'nfsd_flags', value: '-tun 8', state: True, comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
 ## Conflicts

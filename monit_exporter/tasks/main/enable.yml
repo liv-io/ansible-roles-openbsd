@@ -40,7 +40,7 @@
     owner: "{{file_owner_monit_exporter_cfg}}"
     group: "{{file_group_monit_exporter_cfg}}"
   notify: reload service monit
-  when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
+  when: (monit_exporter_monitor_monit_state == True)
   tags:
     - monit_exporter
 

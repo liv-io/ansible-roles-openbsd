@@ -18,7 +18,7 @@
     owner: "{{file_owner_tinc_cfg}}"
     group: "{{file_group_tinc_cfg}}"
   notify: reload service monit
-  when: (tinc_monitor_monit_state is match('true|yes|enable'))
+  when: (tinc_monitor_monit_state == True)
   tags:
     - tinc
 

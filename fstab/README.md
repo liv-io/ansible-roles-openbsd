@@ -41,7 +41,7 @@ consult the following sections.
 vars:
   fstab_config_all:
     - filesystem: '/dev/mapper/system-root'
-      state: 'true'
+      state: True
       mountpoint: '/'
       type: 'xfs'
       dump: 1
@@ -49,7 +49,7 @@ vars:
       comment: 'Root File System'
 
     - filesystem: '192.168.1.10:/nfs'
-      state: 'true'
+      state: True
       mountpoint: '/nfs'
       type: 'nfs'
       dump: 0
@@ -58,7 +58,7 @@ vars:
 
   fstab_config_group:
     - filesystem: '/dev/mapper/data-opt'
-      state: 'true'
+      state: True
       mountpoint: '/opt'
       type: 'xfs'
       dump: 1
@@ -67,7 +67,7 @@ vars:
 
   fstab_config_host:
     - filesystem: '/dev/mapper/data-remove'
-      state: 'false'
+      state: False
       mountpoint: '/remove'
       type: 'ext4'
       dump: 0
@@ -85,11 +85,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `comment`
 
@@ -196,8 +196,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: True, mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: True, mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
 `fstab_config_group`
@@ -209,8 +209,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: True, mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: True, mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
 `fstab_config_host`
@@ -222,8 +222,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: True, mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: True, mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
 ## Conflicts

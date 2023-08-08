@@ -3,14 +3,14 @@
 # SHELL OPTIONS
 
 # checkwinsize
-{% if (bash_checkwinsize is match('false|no|disable')) %}
+{% if (bash_checkwinsize == False) %}
 shopt -d checkwinsize
 {% else %}
 shopt -s checkwinsize
 {% endif %}
 
 # histappend
-{% if (bash_histappend is match('false|no|disable')) %}
+{% if (bash_histappend == False) %}
 shopt -d histappend
 {% else %}
 shopt -s histappend
@@ -18,66 +18,66 @@ shopt -s histappend
 
 # SHELL VARIABLES
 
-{% if not (bash_histcontrol is match('false|no|disable')) %}
+{% if not (bash_histcontrol == '') %}
 # HISTCONTROL
 HISTCONTROL='{{bash_histcontrol}}'
-{% if not (bash_history_readonly is match('false|no|disable')) %}
+{% if (bash_history_readonly == True) %}
 readonly HISTCONTROL
 {% endif %}
 export HISTCONTROL
 {% endif %}
 
-{% if not (bash_histfilesize is match('false|no|disable')) %}
+{% if not (bash_histfilesize == '') %}
 # HISTFILESIZE
 HISTFILESIZE={{(bash_histfilesize|int)}}
-{% if not (bash_history_readonly is match('false|no|disable')) %}
+{% if (bash_history_readonly == True) %}
 readonly HISTFILESIZE
 {% endif %}
 export HISTFILESIZE
 {% endif %}
 
-{% if not (bash_histignore is match('false|no|disable')) %}
+{% if not (bash_histignore == '') %}
 # HISTIGNORE
 HISTIGNORE='{{bash_histignore}}'
-{% if not (bash_history_readonly is match('false|no|disable')) %}
+{% if (bash_history_readonly == True) %}
 readonly HISTIGNORE
 {% endif %}
 export HISTIGNORE
 {% endif %}
 
-{% if not (bash_histsize is match('false|no|disable')) %}
+{% if not (bash_histsize == '') %}
 # HISTSIZE
 HISTSIZE={{(bash_histsize|int)}}
-{% if not (bash_history_readonly is match('false|no|disable')) %}
+{% if (bash_history_readonly == True) %}
 readonly HISTSIZE
 {% endif %}
 export HISTSIZE
 {% endif %}
 
-{% if not (bash_histtimeformat is match('false|no|disable')) %}
+{% if not (bash_histtimeformat == '') %}
 # HISTTIMEFORMAT
 HISTTIMEFORMAT='{{bash_histtimeformat}}'
 {% endif %}
 
-{% if not (bash_prompt_command is match('false|no|disable')) %}
+{% if not (bash_prompt_command == '') %}
 # PROMPT_COMMAND
 PROMPT_COMMAND='{{bash_prompt_command}}'
-{% if not (bash_history_readonly is match('false|no|disable')) %}
+{% if (bash_history_readonly == True) %}
 readonly PROMPT_COMMAND
 {% endif %}
 export PROMPT_COMMAND
 {% endif %}
 
-{% if not (bash_tmout is match('false|no|disable')) %}
+{% if not (bash_tmout == '') %}
 # TMOUT
 TMOUT={{(bash_tmout|int)}}
-{% if not (bash_tmout_readonly is match('false|no|disable')) %}
+{% if (bash_tmout_readonly == True) %}
 readonly TMOUT
 {% endif %}
 export TMOUT
 {% endif %}
 
-{% if not (bash_color_prompt is match('false|no|disable')) %}
+{% if (bash_color_prompt == True) %}
 # COLOR PROMPT
 
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'

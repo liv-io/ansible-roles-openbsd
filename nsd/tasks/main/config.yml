@@ -28,7 +28,7 @@
     group: "{{file_group_config}}"
   loop: "{{nsd_zone}}"
   notify: restart service nsd
-  when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
+  when: (item.state|default(True) == True) and (register_locate_unbound.rc == 1)
   tags:
     - nsd
 
@@ -43,7 +43,7 @@
   notify:
     - restart service nsd
     - restart service unbound
-  when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
+  when: (item.state|default(True) == True) and (register_locate_unbound.rc == 0)
   tags:
     - nsd
 
@@ -53,7 +53,7 @@
     path: "{{file_dst_config}}/{{item.name}}.zone"
   loop: "{{nsd_zone}}"
   notify: restart service nsd
-  when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
+  when: (item.state|default(True) == False) and (register_locate_unbound.rc == 1)
   tags:
     - nsd
 
@@ -65,6 +65,6 @@
   notify:
     - restart service nsd
     - restart service unbound
-  when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
+  when: (item.state|default(True) == False) and (register_locate_unbound.rc == 0)
   tags:
     - nsd

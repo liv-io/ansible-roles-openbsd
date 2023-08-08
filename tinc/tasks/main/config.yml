@@ -19,7 +19,7 @@
     group: "{{file_group_config_dir}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -32,7 +32,7 @@
     group: "{{file_group_hosts_dir}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -49,7 +49,7 @@
     - flags:
       skip_missing: true
   notify: restart service tinc
-  when: not (item.0.state|default('true') is match('false|no|remove'))
+  when: (item.0.state|default(True) == True))
   tags:
     - tinc
 
@@ -63,7 +63,7 @@
   no_log: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -76,7 +76,7 @@
     group: "{{file_group_tinc_conf}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -89,7 +89,7 @@
     group: "{{file_group_tinc_down}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -102,7 +102,7 @@
     group: "{{file_group_tinc_up}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -115,7 +115,7 @@
     create: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True))
   tags:
     - tinc
 
@@ -125,7 +125,7 @@
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False))
   tags:
     - tinc
 
@@ -137,6 +137,6 @@
     create: True
   loop: "{{tinc_config}}"
   notify: restart service tinc
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False))
   tags:
     - tinc

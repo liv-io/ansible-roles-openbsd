@@ -15,7 +15,7 @@
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_enable_daily_output}}"
     replace: "{{file_replace_enable_daily_output}}"
-  when: not (openbsd_periodic_daily_state is match('false|no|disable'))
+  when: (openbsd_periodic_daily_state == True)
   tags:
     - openbsd_periodic
 
@@ -24,7 +24,7 @@
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_enable_daily_insecurity_output}}"
     replace: "{{file_replace_enable_daily_insecurity_output}}"
-  when: not (openbsd_periodic_daily_state is match('false|no|disable'))
+  when: (openbsd_periodic_daily_state == True)
   tags:
     - openbsd_periodic
 
@@ -33,7 +33,7 @@
     path: "{{file_dst_monthly}}"
     regexp: "{{file_regexp_enable_monthly_output}}"
     replace: "{{file_replace_enable_monthly_output}}"
-  when: not (openbsd_periodic_monthly_state is match('false|no|disable'))
+  when: (openbsd_periodic_monthly_state == True)
   tags:
     - openbsd_periodic
 
@@ -42,7 +42,7 @@
     path: "{{file_dst_weekly}}"
     regexp: "{{file_regexp_enable_weekly_output}}"
     replace: "{{file_replace_enable_weekly_output}}"
-  when: not (openbsd_periodic_weekly_state is match('false|no|disable'))
+  when: (openbsd_periodic_weekly_state == True)
   tags:
     - openbsd_periodic
 
@@ -51,7 +51,7 @@
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_disable_daily_output}}"
     replace: "{{file_replace_disable_daily_output}}"
-  when: (openbsd_periodic_daily_state is match('false|no|disable'))
+  when: (openbsd_periodic_daily_state == False)
   tags:
     - openbsd_periodic
 
@@ -60,7 +60,7 @@
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_disable_daily_insecurity_output}}"
     replace: "{{file_replace_disable_daily_insecurity_output}}"
-  when: (openbsd_periodic_daily_state is match('false|no|disable'))
+  when: (openbsd_periodic_daily_state == False)
   tags:
     - openbsd_periodic
 
@@ -69,7 +69,7 @@
     path: "{{file_dst_monthly}}"
     regexp: "{{file_regexp_disable_monthly_output}}"
     replace: "{{file_replace_disable_monthly_output}}"
-  when: (openbsd_periodic_monthly_state is match('false|no|disable'))
+  when: (openbsd_periodic_monthly_state == False)
   tags:
     - openbsd_periodic
 
@@ -78,6 +78,6 @@
     path: "{{file_dst_weekly}}"
     regexp: "{{file_regexp_disable_weekly_output}}"
     replace: "{{file_replace_disable_weekly_output}}"
-  when: (openbsd_periodic_weekly_state is match('false|no|disable'))
+  when: (openbsd_periodic_weekly_state == False)
   tags:
     - openbsd_periodic

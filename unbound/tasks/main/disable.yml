@@ -40,7 +40,7 @@
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
   notify: reload service monit
-  when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  when: (unbound_monitor_monit_state == True)
   tags:
     - unbound
 

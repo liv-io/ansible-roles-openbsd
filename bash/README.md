@@ -65,11 +65,11 @@ consult the following sections.
     Implemented: 0.5.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `bash_color_prompt`
 
@@ -77,11 +77,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `bash_histappend`
 
@@ -89,11 +89,11 @@ consult the following sections.
     Implemented: 0.5.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `bash_histcontrol`
 
@@ -103,10 +103,10 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'false'
+    Default    : ''
     Options    :
       Examples: 'ignoreboth' | 'ignoredups' | 'ignorespace'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_histfilesize`
 
@@ -118,7 +118,7 @@ consult the following sections.
     Default    : 262144
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_histignore`
 
@@ -128,10 +128,10 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'false'
+    Default    : ''
     Options    :
       Examples: 'fg:bg'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_history_readonly`
 
@@ -139,11 +139,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `bash_histsize`
 
@@ -155,7 +155,7 @@ consult the following sections.
     Default    : 262144
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_histtimeformat`
 
@@ -167,7 +167,7 @@ consult the following sections.
     Default    : '%F %T  '
     Options    :
       Examples: '%F %T  '
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_prompt_command`
 
@@ -191,7 +191,7 @@ consult the following sections.
     Default    : 1800
     Options    :
       Examples: '300' | '600' | '1200' | '1800'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
 `bash_tmout_readonly`
 
@@ -199,11 +199,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

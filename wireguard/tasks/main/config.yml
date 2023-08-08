@@ -19,7 +19,7 @@
     group: "{{file_group_wireguard_config}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True)
   tags:
     - wireguard
 
@@ -32,7 +32,7 @@
     group: "{{file_group_hostname_config}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == True)
   tags:
     - wireguard
 
@@ -42,7 +42,7 @@
     path: "/etc/hostname.{{item.device}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False)
   tags:
     - wireguard
 
@@ -52,7 +52,7 @@
     path: "/etc/wireguard/{{item.interface}}.conf"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False)
   tags:
     - wireguard
 
@@ -62,7 +62,7 @@
   changed_when: (register_check_ifconfig.rc > 1)
   failed_when: (register_check_ifconfig.rc > 1)
   loop: "{{wireguard_config}}"
-  when: (item.state|default('true') is match('false|no|remove')) and (item.device in ansible_devices)
+  when: (item.state|default(True) == False) and (item.device in ansible_devices)
   tags:
     - wireguard
 
@@ -75,7 +75,7 @@
     group: "{{file_group_wireguard_cfg}}"
   notify: reload service monit
   loop: "{{wireguard_config}}"
-  when: (wireguard_monitor_monit_state is match('true|yes|enable'))
+  when: (wireguard_monitor_monit_state == True)
   tags:
     - wireguard
 
@@ -85,6 +85,6 @@
     path: "/etc/monit.d/wireguard-{{item.device}}.cfg"
   notify: reload service monit
   loop: "{{wireguard_config}}"
-  when: not (wireguard_monitor_monit_state is match('true|yes|enable'))
+  when: (wireguard_monitor_monit_state == True)
   tags:
     - wireguard

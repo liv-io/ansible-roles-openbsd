@@ -20,8 +20,8 @@ openbsd_pf_filters_group: []
 openbsd_pf_filters_host: []
 
 openbsd_pf_filters_policies:
-  - {action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'}
-  - {action: 'block', direction: 'out', log: 'false', comment: 'Default outgoing policy'}
+  - {action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'}
+  - {action: 'block', direction: 'out', log: False, comment: 'Default outgoing policy'}
 
 openbsd_pf_macros_all: []
 
@@ -47,15 +47,15 @@ openbsd_pf_options_debug: 'crit'
 
 openbsd_pf_options_fingerprints: '/etc/pf.os'
 
-openbsd_pf_options_hostid: 'false'
+openbsd_pf_options_hostid: ''
 
 openbsd_pf_options_limits: []
 
-openbsd_pf_options_loginterface: 'false'
+openbsd_pf_options_loginterface: ''
 
 openbsd_pf_options_optimization: 'normal'
 
-openbsd_pf_options_reassemble: 'true'
+openbsd_pf_options_reassemble: True
 
 openbsd_pf_options_ruleset_optimization: 'basic'
 

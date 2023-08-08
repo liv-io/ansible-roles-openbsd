@@ -67,7 +67,7 @@ consult the following sections.
 vars:
   nginx_config:
     - name: 'host.domain.tld'
-      state: 'true'
+      state: True
       listen: '*'
       port: 80
       config: |
@@ -80,15 +80,15 @@ vars:
         }
 
     - name: 'host.domain.tld'
-      state: 'true'
+      state: True
       listen: '*'
       port: 443
-      hsts_state: 'true'
-      ssl_state: 'true'
+      hsts_state: True
+      ssl_state: True
       ssl_certificate: '/etc/ssl/example/host.domain.tld.crt'
       ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key'
       ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
-      ssl_verify_client: 'true'
+      ssl_verify_client: True
       ssl_verify_depth: 1
       config: |
         location / {
@@ -152,11 +152,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `listen`
 
@@ -255,11 +255,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_protocols`
 
@@ -278,11 +278,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_verify_client`
 
@@ -290,11 +290,11 @@ vars:
     Implemented: 1.0.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_verify_depth`
 
@@ -313,11 +313,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ### Role
 
@@ -345,13 +345,13 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'host.domain.tld', state: 'true', listen: '*', port: 80}] |
-                [{name: 'host.domain.tld', state: 'true', listen: '*', port: 443,
-                 hsts_state: 'true', ssl_state: 'true',
+      Examples: [{name: 'host.domain.tld', state: True, listen: '*', port: 80}] |
+                [{name: 'host.domain.tld', state: True, listen: '*', port: 443,
+                 hsts_state: True, ssl_state: True,
                  ssl_certificate: '/etc/ssl/example/host.domain.tld.crt',
                  ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key',
                  ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt',
-                 ssl_verify_client: 'true',
+                 ssl_verify_client: True,
                  ssl_verify_depth: 1}]
       None    : []
 
@@ -408,11 +408,11 @@ vars:
     Implemented: 3.8.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `nginx_vhosts_d`
 

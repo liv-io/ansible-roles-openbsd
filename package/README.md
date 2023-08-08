@@ -24,78 +24,78 @@ consult the following sections.
 ```
 vars:
   package_config_all:
-    - {name: 'apachetop', state: 'true'}
-    - {name: 'arping', state: 'true'}
-    - {name: 'colordiff', state: 'true'}
-    - {name: 'colorls', state: 'true'}
-    - {name: 'coreutils', state: 'true'}
-    - {name: 'curl', state: 'true'}
-    - {name: 'diffstat', state: 'true'}
-    - {name: 'drill', state: 'true'}
-    - {name: 'dsniff--no_x11', state: 'true'}
-    - {name: 'echoping', state: 'true'}
-    - {name: 'findutils', state: 'true'}
-    - {name: 'fping', state: 'true'}
-    - {name: 'git', state: 'true'}
-    - {name: 'gawk', state: 'true'}
-    - {name: 'gdiff', state: 'true'}
-    - {name: 'ggrep', state: 'true'}
-    - {name: 'gpatch', state: 'true'}
-    - {name: 'gsed', state: 'true'}
-    - {name: 'gtar--', state: 'true'}
-    - {name: 'gnuwatch', state: 'true'}
-    - {name: 'hping', state: 'true'}
-    - {name: 'htop', state: 'true'}
-    - {name: 'http_load', state: 'true'}
-    - {name: 'http_ping', state: 'true'}
-    - {name: 'icmpinfo', state: 'true'}
-    - {name: 'ifstat--', state: 'true'}
-    - {name: 'iftop', state: 'true'}
-    - {name: 'iperf', state: 'true'}
-    - {name: 'iperf3', state: 'true'}
-    - {name: 'jq', state: 'true'}
-    - {name: 'ldns-utils', state: 'true'}
-    - {name: 'lftp', state: 'true'}
-    - {name: 'lowdown', state: 'true'}
-    - {name: 'moreutils', state: 'true'}
-    - {name: 'mtr--', state: 'true'}
-    - {name: 'multitail', state: 'true'}
-    - {name: 'nano', state: 'true'}
-    - {name: 'ncdu', state: 'true'}
-    - {name: 'ngrep', state: 'true'}
-    - {name: 'nload', state: 'true'}
-    - {name: 'nmap', state: 'true'}
-    - {name: 'nsping', state: 'true'}
-    - {name: 'openssl', state: 'true'}
-    - {name: 'patchutils', state: 'true'}
-    - {name: 'pciutils', state: 'true'}
-    - {name: 'pftop', state: 'true'}
-    - {name: 'poink', state: 'true'}
-    - {name: 'pv', state: 'true'}
-    - {name: 'pwgen', state: 'true'}
-    - {name: 'py3-jinja2', state: 'true'}
-    - {name: 'py3-paramiko', state: 'true'}
-    - {name: 'py3-yaml', state: 'true'}
-    - {name: 'rsync--', state: 'true'}
-    - {name: 'siege', state: 'true'}
-    - {name: 'socat', state: 'true'}
-    - {name: 'splint', state: 'true'}
-    - {name: 'sshpass', state: 'true'}
-    - {name: 'ssldump', state: 'true'}
-    - {name: 'stress', state: 'true'}
-    - {name: 'sysbench--', state: 'true'}
-    - {name: 'tcpreplay', state: 'true'}
-    - {name: 'unzip--', state: 'true'}
-    - {name: 'usbutils', state: 'true'}
-    - {name: 'wget', state: 'true'}
-    - {name: 'zip', state: 'true'}
+    - {name: 'apachetop', state: True}
+    - {name: 'arping', state: True}
+    - {name: 'colordiff', state: True}
+    - {name: 'colorls', state: True}
+    - {name: 'coreutils', state: True}
+    - {name: 'curl', state: True}
+    - {name: 'diffstat', state: True}
+    - {name: 'drill', state: True}
+    - {name: 'dsniff--no_x11', state: True}
+    - {name: 'echoping', state: True}
+    - {name: 'findutils', state: True}
+    - {name: 'fping', state: True}
+    - {name: 'git', state: True}
+    - {name: 'gawk', state: True}
+    - {name: 'gdiff', state: True}
+    - {name: 'ggrep', state: True}
+    - {name: 'gpatch', state: True}
+    - {name: 'gsed', state: True}
+    - {name: 'gtar--', state: True}
+    - {name: 'gnuwatch', state: True}
+    - {name: 'hping', state: True}
+    - {name: 'htop', state: True}
+    - {name: 'http_load', state: True}
+    - {name: 'http_ping', state: True}
+    - {name: 'icmpinfo', state: True}
+    - {name: 'ifstat--', state: True}
+    - {name: 'iftop', state: True}
+    - {name: 'iperf', state: True}
+    - {name: 'iperf3', state: True}
+    - {name: 'jq', state: True}
+    - {name: 'ldns-utils', state: True}
+    - {name: 'lftp', state: True}
+    - {name: 'lowdown', state: True}
+    - {name: 'moreutils', state: True}
+    - {name: 'mtr--', state: True}
+    - {name: 'multitail', state: True}
+    - {name: 'nano', state: True}
+    - {name: 'ncdu', state: True}
+    - {name: 'ngrep', state: True}
+    - {name: 'nload', state: True}
+    - {name: 'nmap', state: True}
+    - {name: 'nsping', state: True}
+    - {name: 'openssl', state: True}
+    - {name: 'patchutils', state: True}
+    - {name: 'pciutils', state: True}
+    - {name: 'pftop', state: True}
+    - {name: 'poink', state: True}
+    - {name: 'pv', state: True}
+    - {name: 'pwgen', state: True}
+    - {name: 'py3-jinja2', state: True}
+    - {name: 'py3-paramiko', state: True}
+    - {name: 'py3-yaml', state: True}
+    - {name: 'rsync--', state: True}
+    - {name: 'siege', state: True}
+    - {name: 'socat', state: True}
+    - {name: 'splint', state: True}
+    - {name: 'sshpass', state: True}
+    - {name: 'ssldump', state: True}
+    - {name: 'stress', state: True}
+    - {name: 'sysbench--', state: True}
+    - {name: 'tcpreplay', state: True}
+    - {name: 'unzip--', state: True}
+    - {name: 'usbutils', state: True}
+    - {name: 'wget', state: True}
+    - {name: 'zip', state: True}
 
   package_config_group:
-    - {name: 'minicom', state: 'true'}
-    - {name: 'picocom', state: 'true'}
+    - {name: 'minicom', state: True}
+    - {name: 'picocom', state: True}
 
   package_config_host:
-    - {name: 'nyancat', state: 'false'}
+    - {name: 'nyancat', state: False}
 ```
 
 ## Parameters
@@ -108,11 +108,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -148,7 +148,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'colordiff', state: 'true'}, {name: 'curl', state: 'true'}, {name: 'ldns-utils', state: 'true'}, {name: 'htop', state: 'true'}, {name: 'jq', state: 'true'}, {name: 'wget', state: 'true'}]
+      Examples: [{name: 'colordiff', state: True}, {name: 'curl', state: True}, {name: 'ldns-utils', state: True}, {name: 'htop', state: True}, {name: 'jq', state: True}, {name: 'wget', state: True}]
       None    : []
 
 `package_config_group`
@@ -160,7 +160,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'colordiff', state: 'true'}, {name: 'curl', state: 'true'}, {name: 'ldns-utils', state: 'true'}, {name: 'htop', state: 'true'}, {name: 'jq', state: 'true'}, {name: 'wget', state: 'true'}]
+      Examples: [{name: 'colordiff', state: True}, {name: 'curl', state: True}, {name: 'ldns-utils', state: True}, {name: 'htop', state: True}, {name: 'jq', state: True}, {name: 'wget', state: True}]
       None    : []
 
 `package_config_host`
@@ -172,7 +172,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'colordiff', state: 'true'}, {name: 'curl', state: 'true'}, {name: 'ldns-utils', state: 'true'}, {name: 'htop', state: 'true'}, {name: 'jq', state: 'true'}, {name: 'wget', state: 'true'}]
+      Examples: [{name: 'colordiff', state: True}, {name: 'curl', state: True}, {name: 'ldns-utils', state: True}, {name: 'htop', state: True}, {name: 'jq', state: True}, {name: 'wget', state: True}]
       None    : []
 
 ## Conflicts

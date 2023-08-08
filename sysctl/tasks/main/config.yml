@@ -12,7 +12,7 @@
 
 - name: config line sysctl.conf
   lineinfile:
-    state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     mode: "{{file_mode_sysctl_conf}}"
     owner: "{{file_owner_sysctl_conf}}"
     group: "{{file_group_sysctl_conf}}"
