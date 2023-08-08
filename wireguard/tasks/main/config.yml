@@ -85,6 +85,6 @@
     path: "/etc/monit.d/wireguard-{{item.device}}.cfg"
   notify: reload service monit
   loop: "{{wireguard_config}}"
-  when: (wireguard_monitor_monit_state == True)
+  when: (wireguard_monitor_monit_state == False)
   tags:
     - wireguard

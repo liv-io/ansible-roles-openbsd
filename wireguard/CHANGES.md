@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.1 (2023-08-08)
+
+### Bugs
+
+- Fix parentheses in `hostname.config` template
+- Fix `wireguard_monitor_monit_state` in `config.yml`
+
 ## 1.0.0 (2023-08-08)
 
 ### Changes
