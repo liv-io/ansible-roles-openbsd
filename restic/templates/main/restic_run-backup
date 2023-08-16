@@ -16,26 +16,27 @@ ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
 EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (restic_monitor_mail_state == True) %}
-MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
-{% endif %}
 RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
 RESTIC=$(${WHICH} restic) || { echo "Error: Command 'restic' not found."; exit 127; }
+TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
+
+{% if (restic_monitor_mail_state == True) %}
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+{% endif %}
 
 # Environment variables
 
 HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
 SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute."; exit 126; }
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_restic_run_backup}}'
 LOCKFILE='/var/tmp/restic_run-backup.lock'
 EXCLUDE='{{file_dst_exclude_conf}}'
 INCLUDE='{{file_dst_include_conf}}'
-LOG_FILE='{{file_dst_restic_log}}'
 PASSWORD='{{file_dst_password_conf}}'
 REPOSITORY='{{file_dst_repository_conf}}'
 {% if not (restic_cacert == '') %}
@@ -48,6 +49,8 @@ KEEP_MONTHLY='{{restic_keep_monthly}}'
 LIMIT_DOWNLOAD='{{restic_limit_download}}'
 LIMIT_UPLOAD='{{restic_limit_upload}}'
 TEXTFILE_COLLECTOR='{{restic_monitor_prom_textfile_collector}}'
+
+LOG_FILE='{{file_dst_restic_log}}'
 
 {% if not (restic_http_proxy == '') %}
 export HTTP_PROXY='{{restic_http_proxy}}'
@@ -76,7 +79,7 @@ Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
-Name        : restic_run-backup
+Name        : ${SCRIPT_NAME}
 Type        : Shell script
 PID         : ${$}
 
@@ -150,7 +153,8 @@ remove_lockfile() {
 log_and_exit_on_error() {
     local exit_code=${1}
     local message=${2}
-    if [ ${exit_code} -ne 0 ]; then
+
+    if [ "${exit_code}" -ne 0 ]; then
         ${RM} -f ${LOCKFILE}
 
         if [ -t 1 ]; then
@@ -177,8 +181,8 @@ log_and_exit() {
     local time_end=$(${DATE} '+%s')
     local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
     local time_hr=$(${DATE} -u -r "${time_exec}" '+%H:%M:%S')
-    local exit_code=0
-    local message='Backup created successfully.'
+    local exit_code=${1}
+    local message=${2}
 
     if [ -t 1 ]; then
         ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
@@ -205,7 +209,7 @@ create_backup_repository() {
     ${RESTIC} stats --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
         >>${LOG_FILE} 2>&1
-    if [ ${?} -ne 0 ]; then
+    if [ "${?}" -ne 0 ]; then
         # Initialize backup repository if inexistent
         ${RESTIC} init --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
             {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
@@ -253,7 +257,7 @@ main() {
     check_backup_repository
     add_log_header 'backup successful'
     remove_lockfile
-    log_and_exit
+    log_and_exit '0' 'Backup created successfully.'
 }
 
 main
