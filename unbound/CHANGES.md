@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.1 (2023-08-16)
+
+### Bugs
+
+- Update monit tasks according to different states
+
 ## 1.0.0 (2023-08-08)
 
 ### Changes

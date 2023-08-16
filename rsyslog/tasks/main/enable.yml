@@ -33,6 +33,15 @@
   tags:
     - rsyslog
 
+- name: remove file rsyslog.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_cfg}}"
+  notify: reload service monit
+  when: (rsyslog_monitor_monit_state == False)
+  tags:
+    - rsyslog
+
 - name: status rsyslogd
   command: "{{command_cmd_status_rsyslogd}}"
   register: register_status_rsyslogd

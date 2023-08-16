@@ -59,6 +59,15 @@
   tags:
     - nsd
 
+- name: remove file nsd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_nsd_cfg}}"
+  notify: reload service monit
+  when: (nsd_monitor_monit_state == False)
+  tags:
+    - nsd
+
 - name: status nsd
   command: "{{command_cmd_status_nsd}}"
   register: register_status_nsd

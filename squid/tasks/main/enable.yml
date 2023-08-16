@@ -108,6 +108,15 @@
   tags:
     - squid
 
+- name: remove file squid.cfg
+  file:
+    state: absent
+    path: "{{file_dst_squid_cfg}}"
+  notify: reload service monit
+  when: (squid_monitor_monit_state == False)
+  tags:
+    - squid
+
 - name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
   check_mode: False

@@ -33,6 +33,15 @@
   tags:
     - rest_server
 
+- name: remove file rest_server.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rest_server_cfg}}"
+  notify: reload service monit
+  when: (rest_server_monitor_monit_state == False)
+  tags:
+    - rest_server
+
 - name: status rest_server
   command: "{{command_cmd_status_rest_server}}"
   register: register_status_rest_server

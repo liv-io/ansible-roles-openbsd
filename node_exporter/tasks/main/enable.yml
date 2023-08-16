@@ -33,6 +33,15 @@
   tags:
     - node_exporter
 
+- name: remove file node_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_node_exporter_cfg}}"
+  notify: reload service monit
+  when: (node_exporter_monitor_monit_state == False)
+  tags:
+    - node_exporter
+
 - name: status node_exporter
   command: "{{command_cmd_status_node_exporter}}"
   register: register_status_node_exporter

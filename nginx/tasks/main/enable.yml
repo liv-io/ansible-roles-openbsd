@@ -35,6 +35,15 @@
   tags:
     - nginx
 
+- name: remove file nginx.cfg
+  file:
+    state: absent
+    path: "{{file_dst_nginx_cfg}}"
+  notify: reload service monit
+  when: (nginx_monitor_monit_state == False)
+  tags:
+    - nginx
+
 - name: status nginx
   command: "{{command_cmd_status_nginx}}"
   register: register_status_nginx

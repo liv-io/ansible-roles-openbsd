@@ -22,6 +22,15 @@
   tags:
     - tinc
 
+- name: remove file tinc.cfg
+  file:
+    state: absent
+    path: "{{file_dst_tinc_cfg}}"
+  notify: reload service monit
+  when: (tinc_monitor_monit_state == False)
+  tags:
+    - tinc
+
 - name: status tinc
   command: "{{command_cmd_status_tinc}}"
   register: register_status_tinc

@@ -59,6 +59,15 @@
   tags:
     - opensmtpd
 
+- name: remove file opensmtpd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_opensmtpd_cfg}}"
+  notify: reload service monit
+  when: (opensmtpd_monitor_monit_state == False)
+  tags:
+    - opensmtpd
+
 - name: status opensmtpd
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd

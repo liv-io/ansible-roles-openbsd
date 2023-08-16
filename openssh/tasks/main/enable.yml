@@ -74,6 +74,15 @@
   tags:
     - openssh
 
+- name: remove file openssh.cfg
+  file:
+    state: absent
+    path: "{{file_dst_openssh_cfg}}"
+  notify: reload service monit
+  when: (openssh_monitor_monit_state == False)
+  tags:
+    - openssh
+
 - name: status openssh
   command: "{{command_cmd_status_openssh}}"
   register: register_status_openssh
