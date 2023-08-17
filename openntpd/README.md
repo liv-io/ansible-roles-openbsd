@@ -159,9 +159,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openntpd_listen`
 
@@ -209,9 +207,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openntpd_monitor_monit_state`
 
@@ -221,9 +217,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openntpd_monitor_prom_state`
 
@@ -233,9 +227,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openntpd_monitor_prom_textfile_collector`
 

@@ -105,9 +105,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `hostname_if_carp_preempt`
 
@@ -117,9 +115,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `hostname_if_config_all`
 

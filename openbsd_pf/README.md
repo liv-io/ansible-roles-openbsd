@@ -399,9 +399,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openbsd_pf_options_ruleset_optimization`
 

@@ -157,9 +157,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nsd_default_port`
 
@@ -180,9 +178,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nsd_identity`
 
@@ -217,9 +213,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nsd_ip6_state`
 
@@ -229,9 +223,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nsd_monitor_monit_state`
 
@@ -241,9 +233,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nsd_version`
 

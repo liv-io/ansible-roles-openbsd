@@ -90,9 +90,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openbsd_syslogd_role`
 

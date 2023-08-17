@@ -122,9 +122,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_default_port`
 
@@ -145,9 +143,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_algo_downgrade`
 
@@ -157,9 +153,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_below_nxdomain`
 
@@ -169,9 +163,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_dnssec_stripped`
 
@@ -181,9 +173,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_glue`
 
@@ -193,9 +183,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_large_queries`
 
@@ -205,9 +193,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_referral_path`
 
@@ -217,9 +203,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_harden_short_bufsize`
 
@@ -229,9 +213,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_hide_identity`
 
@@ -241,9 +223,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_hide_trustanchor`
 
@@ -253,9 +233,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_hide_version`
 
@@ -265,9 +243,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_identity`
 
@@ -314,9 +290,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_ip6_state`
 
@@ -326,9 +300,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_local_data`
 
@@ -375,9 +347,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_prefer_ip6`
 
@@ -387,9 +357,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_stub_zone`
 
@@ -411,9 +379,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_udp_state`
 
@@ -423,9 +389,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `unbound_version`
 

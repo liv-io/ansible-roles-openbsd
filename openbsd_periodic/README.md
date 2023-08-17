@@ -70,9 +70,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openbsd_periodic_monthly_state`
 
@@ -82,9 +80,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `openbsd_periodic_weekly_state`
 
@@ -94,9 +90,7 @@ consult the following sections.
     Value      : Arbitrary
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 ## Conflicts
 

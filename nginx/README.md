@@ -154,9 +154,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `listen`
 
@@ -257,9 +255,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `ssl_protocols`
 
@@ -280,9 +276,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `ssl_verify_client`
 
@@ -292,9 +286,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `ssl_verify_depth`
 
@@ -315,9 +307,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 ### Role
 
@@ -410,9 +400,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `nginx_vhosts_d`
 

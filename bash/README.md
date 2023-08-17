@@ -67,9 +67,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `bash_color_prompt`
 
@@ -79,9 +77,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `bash_histappend`
 
@@ -91,9 +87,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `bash_histcontrol`
 
@@ -141,9 +135,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `bash_histsize`
 
@@ -201,9 +193,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 ## Conflicts
 
