@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.2 (2023-08-21)
+
+### Bugs
+
+- Only reload WireGuard network interfaces
+
 ## 1.0.1 (2023-08-08)
 
 ### Bugs

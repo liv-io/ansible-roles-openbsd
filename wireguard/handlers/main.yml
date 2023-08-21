@@ -15,4 +15,5 @@
   when: (register_check_service_monit.rc == 0)
 
 - name: run netstart
-  command: "{{command_cmd_run_netstart}}"
+  command: "{{command_cmd_run_netstart}} {{item.device}}"
+  loop: "{{wireguard_config}}"
