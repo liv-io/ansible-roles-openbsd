@@ -2,9 +2,12 @@
 
 ## Description
 
-Nginx is a web server and a reverse proxy server for HTTP, SMTP, POP3 and IMAP
-protocols, with a strong focus on high concurrency, performance and low memory
-usage.
+WireGuard is a novel VPN that runs inside the Linux Kernel and uses
+state-of-the-art cryptography (the "Noise" protocol). It aims to be faster,
+simpler, leaner, and more useful than IPSec, while avoiding the massive
+headache. It intends to be considerably more performant than OpenVPN. WireGuard
+is designed as a general purpose VPN for running on embedded interfaces and
+super computers alike, fit for many different circumstances. It runs over UDP.
 
 For more information on the usage and available configuration options,
 consult the following sections.
