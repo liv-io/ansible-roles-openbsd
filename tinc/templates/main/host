@@ -4,7 +4,7 @@
 Address = {{item.1.address}}
 
 # Portnumber for incoming connections. Default is 655.
-Port = {{(item.1.port|default('655'))}}
+Port = {{item.1.port|default('655')}}
 
 # Subnet on the virtual private network that is local for this host.
 {% for subnet in (item.1.subnets|default([])) %}

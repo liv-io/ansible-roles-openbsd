@@ -13,9 +13,9 @@
 - name: config line rc
   lineinfile:
     state: "{{'absent' if ((item.state|default(True) == False) else 'present'}}"
-    line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{(item.comment|default(''))}}"
+    line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{item.comment|default('')}}"
     regexp: "^{{item.name}}="
-    dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_rc_conf}}"
+    dest: "{{item.path if not (item.path|default('') == '') else file_dst_rc_conf}}"
     create: True
   loop: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
   tags:

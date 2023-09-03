@@ -47,7 +47,7 @@ export no_proxy
 
 {% if not (shell_histsize == '') %}
 # HISTSIZE
-HISTSIZE={{(shell_histsize|int)}}
+HISTSIZE={{shell_histsize|int}}
 export HISTSIZE
 {% endif %}
 

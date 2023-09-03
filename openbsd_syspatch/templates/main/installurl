@@ -1,7 +1,7 @@
 {{ansible_managed|comment(decoration='#')}}
 
 {% for item in openbsd_syspatch_installurl %}
-{% if not ((item.comment|default('')) == '') %}
+{% if not (item.comment|default('') == '') %}
 # {{item.comment}}
 {% endif %}
 {{item.url}}
