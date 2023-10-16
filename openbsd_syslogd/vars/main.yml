@@ -1,7 +1,7 @@
 ---
 
 # syslog.conf
-file_src_syslog_conf: 'templates/main/syslog.conf'
+file_src_syslog_conf: 'syslog.conf'
 file_dst_syslog_conf: '/etc/syslog.conf'
 file_mode_syslog_conf: '0644'
 file_owner_syslog_conf: 'root'
@@ -18,7 +18,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
 # syslogd.cfg
-file_src_syslogd_cfg: 'templates/main/syslogd.cfg'
+file_src_syslogd_cfg: 'syslogd.cfg'
 file_dst_syslogd_cfg: '/etc/monit.d/syslogd.cfg'
 file_mode_syslogd_cfg: '0640'
 file_owner_syslogd_cfg: 'root'

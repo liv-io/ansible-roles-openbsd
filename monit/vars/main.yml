@@ -4,14 +4,14 @@
 package_name_monit: 'monit'
 
 # monitrc
-file_src_monitrc: 'templates/main/monitrc'
+file_src_monitrc: 'monitrc'
 file_dst_monitrc: '/etc/monitrc'
 file_mode_monitrc: '0600'
 file_owner_monitrc: 'root'
 file_group_monitrc: 'wheel'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0640'
 file_owner_config: 'root'
 file_group_config: 'wheel'

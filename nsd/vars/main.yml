@@ -4,14 +4,14 @@
 package_name_nsd: 'nsd'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_dst_config: '/var/nsd/zones/master'
 file_mode_config: '0640'
 file_owner_config: 'root'
 file_group_config: '_nsd'
 
 # nsd.conf
-file_src_nsd_conf: 'templates/main/nsd.conf'
+file_src_nsd_conf: 'nsd.conf'
 file_dst_nsd_conf: '/var/nsd/etc/nsd.conf'
 file_mode_nsd_conf: '0640'
 file_owner_nsd_conf: 'root'
@@ -25,7 +25,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
 # nsd.cfg
-file_src_nsd_cfg: 'templates/main/nsd.cfg'
+file_src_nsd_cfg: 'nsd.cfg'
 file_dst_nsd_cfg: '/etc/monit.d/nsd.cfg'
 file_mode_nsd_cfg: '0640'
 file_owner_nsd_cfg: 'root'

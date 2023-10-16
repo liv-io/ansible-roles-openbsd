@@ -7,7 +7,7 @@ package_name_vim: 'vim--no_x11'
 file_dst_vimrc: '/usr/local/share/vim/vimrc'
 
 # defaults.vim
-file_src_defaults_vim: 'templates/main/defaults.vim'
+file_src_defaults_vim: 'defaults.vim'
 file_dst_defaults_vim: '/usr/local/share/vim/vim90/defaults.vim'
 file_mode_defaults_vim: '0644'
 file_owner_defaults_vim: 'root'

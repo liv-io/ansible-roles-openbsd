@@ -4,7 +4,7 @@
 package_name_nginx: 'nginx'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'wheel'
@@ -13,7 +13,7 @@ file_group_config: 'wheel'
 file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # nginx.conf
-file_src_nginx_conf: 'templates/main/nginx.conf'
+file_src_nginx_conf: 'nginx.conf'
 file_dst_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'
@@ -32,7 +32,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
 # nginx.cfg
-file_src_nginx_cfg: 'templates/main/nginx.cfg'
+file_src_nginx_cfg: 'nginx.cfg'
 file_dst_nginx_cfg: '/etc/monit.d/nginx.cfg'
 file_mode_nginx_cfg: '0640'
 file_owner_nginx_cfg: 'root'

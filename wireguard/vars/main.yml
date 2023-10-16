@@ -4,13 +4,13 @@
 package_name_wireguard_tools: 'wireguard-tools'
 
 # hostname.config
-file_src_hostname_config: 'templates/main/hostname.config'
+file_src_hostname_config: 'hostname.config'
 file_mode_hostname_config: '0640'
 file_owner_hostname_config: 'root'
 file_group_hostname_config: 'wheel'
 
 # wireguard.config
-file_src_wireguard_config: 'templates/main/wireguard.config'
+file_src_wireguard_config: 'wireguard.config'
 file_mode_wireguard_config: '0600'
 file_owner_wireguard_config: 'root'
 file_group_wireguard_config: 'wheel'
@@ -28,7 +28,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
 # wireguard.cfg
-file_src_wireguard_cfg: 'templates/main/wireguard.cfg'
+file_src_wireguard_cfg: 'wireguard.cfg'
 file_mode_wireguard_cfg: '0640'
 file_owner_wireguard_cfg: 'root'
 file_group_wireguard_cfg: 'wheel'

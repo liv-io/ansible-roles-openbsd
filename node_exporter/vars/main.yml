@@ -22,7 +22,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
 # node_exporter.cfg
-file_src_node_exporter_cfg: 'templates/main/node_exporter.cfg'
+file_src_node_exporter_cfg: 'node_exporter.cfg'
 file_dst_node_exporter_cfg: '/etc/monit.d/node_exporter.cfg'
 file_mode_node_exporter_cfg: '0640'
 file_owner_node_exporter_cfg: 'root'
