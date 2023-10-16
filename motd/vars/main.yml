@@ -9,7 +9,7 @@ file_regexp_motd_patch: '.*cmp.*/etc/motd.*cp.*/etc/motd'
 file_dst_motd_patch: '/etc/rc'
 
 # motd
-file_src_motd: "templates/{{motd_motd_template}}/motd"
+file_src_motd: "{{motd_motd_template}}"
 file_dst_motd: '/etc/motd'
 file_mode_motd: '0644'
 file_owner_motd: 'root'

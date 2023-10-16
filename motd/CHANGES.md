@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2023-10-16)
+
+### Changes
+
+- Redesign `motd_motd_template` variable
+
+### Enhancements
+
+- Minor Ansible style improvements
+
 ## 0.2.0 (2023-04-10)
 
 ### Changes
