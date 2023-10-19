@@ -1,8 +1,5 @@
 ---
 
-# openntpd
-package_name_openntpd: 'openntpd'
-
 # ntpd.conf
 file_src_ntpd_conf: 'ntpd.conf'
 file_dst_ntpd_conf: '/etc/ntpd.conf'

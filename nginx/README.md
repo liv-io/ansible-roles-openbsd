@@ -445,8 +445,8 @@ vars:
 
     Version: >= 1.8
     Name   :
-      OpenBSD 7.2: 'nginx'
       OpenBSD 7.3: 'nginx'
+      OpenBSD 7.4: 'nginx'
 
 ## Parameters
 
@@ -456,13 +456,13 @@ vars:
 
 `ansible`
 
-    Version: >= 2.8.0
+    Version: >= 2.15.0
 
 ### Managed Node
 
 `python`
 
-    Version: >= 2.7.0
+    Version: >= 3.10.0
 
 ## Support
 
@@ -470,5 +470,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.2
     Version: 7.3
+    Version: 7.4

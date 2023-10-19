@@ -1,8 +1,5 @@
 ---
 
-# nsd
-package_name_nsd: 'nsd'
-
 # config
 file_src_config: 'config'
 file_dst_config: '/var/nsd/zones/master'

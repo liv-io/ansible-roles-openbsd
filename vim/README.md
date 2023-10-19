@@ -71,8 +71,8 @@ consult the following sections.
 
     Version: >= 7.2
     Name   :
-      OpenBSD 7.2: 'vim--no_x11'
       OpenBSD 7.3: 'vim--no_x11'
+      OpenBSD 7.4: 'vim--no_x11'
 
 ## Parameters
 
@@ -82,13 +82,13 @@ consult the following sections.
 
 `ansible`
 
-    Version: >= 2.8.0
+    Version: >= 2.15.0
 
 ### Managed Node
 
 `python`
 
-    Version: >= 2.7.0
+    Version: >= 3.10.0
 
 ## Support
 
@@ -96,5 +96,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.2
     Version: 7.3
+    Version: 7.4

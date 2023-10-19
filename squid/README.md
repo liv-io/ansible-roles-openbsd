@@ -439,8 +439,8 @@ consult the following sections.
 
     Version: >= 3.5
     Name   :
-      OpenBSD 7.2: 'squid'
       OpenBSD 7.3: 'squid'
+      OpenBSD 7.4: 'squid'
 
 ## Parameters
 
@@ -450,13 +450,13 @@ consult the following sections.
 
 `ansible`
 
-    Version: >= 2.8.0
+    Version: >= 2.15.0
 
 ### Managed Node
 
 `python`
 
-    Version: >= 2.7.0
+    Version: >= 3.10.0
 
 ## Support
 
@@ -464,5 +464,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.2
     Version: 7.3
+    Version: 7.4

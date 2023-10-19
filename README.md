@@ -53,16 +53,16 @@
 ### Support
 
 The following operating systems are supported:
-* OpenBSD 7.2
 * OpenBSD 7.3
+* OpenBSD 7.4
 
 ### Dependencies
 
 The Ansible control machine depends on:
-* [Ansible](https://github.com/ansible/ansible) >= 2.8.0
+* [Ansible](https://github.com/ansible/ansible) >= 2.15.0
 
 The Ansible managed node depends on:
-* [Python](https://github.com/python/cpython) >= 2.7.0
+* [Python](https://github.com/python/cpython) >= 3.10.0
 
 ## Setup
 

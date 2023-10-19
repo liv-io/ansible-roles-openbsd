@@ -1,8 +1,5 @@
 ---
 
-# unbound
-package_name_unbound: 'unbound'
-
 # root.hints
 file_src_root_hints: 'root.hints'
 file_dst_root_hints: '/var/unbound/etc/root.hints'
