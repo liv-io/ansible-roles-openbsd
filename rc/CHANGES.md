@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2023-12-28)
+
+### Changes
+
+- Rename Ansible role from `openbsd_rc` to `rc`
+
 ## 1.1.0 (2023-10-19)
 
 ### Changes

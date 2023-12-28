@@ -8,7 +8,7 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - openbsd_rc
+    - rc
 
 - name: config line rc
   lineinfile:
@@ -17,6 +17,6 @@
     regexp: "^{{item.name}}="
     dest: "{{item.path if not (item.path|default('') == '') else file_dst_rc_conf}}"
     create: True
-  loop: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
+  loop: "{{rc_config_all + rc_config_group + rc_config_host}}"
   tags:
-    - openbsd_rc
+    - rc

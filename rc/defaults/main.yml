@@ -1,0 +1,9 @@
+---
+
+rc_state: 'install'
+
+rc_config_all: []
+
+rc_config_group: []
+
+rc_config_host: []

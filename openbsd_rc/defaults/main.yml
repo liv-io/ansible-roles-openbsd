@@ -1,9 +1,0 @@
----
-
-openbsd_rc_state: 'install'
-
-openbsd_rc_config_all: []
-
-openbsd_rc_config_group: []
-
-openbsd_rc_config_host: []

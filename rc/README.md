@@ -1,4 +1,4 @@
-# openbsd_rc
+# rc
 
 ## Description
 
@@ -15,9 +15,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_rc
+    - role: rc
   vars:
-    openbsd_rc_state: 'install'
+    rc_state: 'install'
 ```
 
 ### Inactive
@@ -25,28 +25,28 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_rc
+    - role: rc
   vars:
-    openbsd_rc_state: 'inactive'
+    rc_state: 'inactive'
 ```
 
 ### Config
 
 ```
 vars:
-  openbsd_rc_config_all:
+  rc_config_all:
     - name: 'dhcpd_flags'
       value: 'NO'
       state: True
       comment: "Disable service 'dhcpd'"
 
-  openbsd_rc_config_group:
+  rc_config_group:
     - name: 'nfs_server'
       value: 'YES'
       state: True
       comment: 'Enable the NFS server'
 
-  openbsd_rc_config_host:
+  rc_config_host:
     - name: 'nfsd_flags'
       value: '-tun 8'
       state: True
@@ -114,7 +114,7 @@ vars:
 
 ### Role
 
-`openbsd_rc_state`
+`rc_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
@@ -126,9 +126,9 @@ vars:
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-`openbsd_rc_config_all`
+`rc_config_all`
 
-    Description: Define the 'openbsd_rc_config_all' option.
+    Description: Define the 'rc_config_all' option.
     Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
@@ -139,9 +139,9 @@ vars:
                  {name: 'nfsd_flags', value: '-tun 8', state: True, comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
-`openbsd_rc_config_group`
+`rc_config_group`
 
-    Description: Define the 'openbsd_rc_config_group' option.
+    Description: Define the 'rc_config_group' option.
     Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
@@ -152,9 +152,9 @@ vars:
                  {name: 'nfsd_flags', value: '-tun 8', state: True, comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
-`openbsd_rc_config_host`
+`rc_config_host`
 
-    Description: Define the 'openbsd_rc_config_host' option.
+    Description: Define the 'rc_config_host' option.
     Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
