@@ -74,7 +74,7 @@ The Ansible managed node depends on:
 
 ## Roadmap
 
-* Add IPv6 support (openbsd_pf...)
+* Add IPv6 support
 * Support monitoring via Coremon
 * Add OpenBSD support (cron)
 
