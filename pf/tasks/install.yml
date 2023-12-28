@@ -8,7 +8,7 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file pf.dir
   file:
@@ -18,4 +18,4 @@
     owner: "{{file_owner_pf_dir}}"
     group: "{{file_group_pf_dir}}"
   tags:
-    - openbsd_pf
+    - pf

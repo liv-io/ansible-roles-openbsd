@@ -1,4 +1,4 @@
-# openbsd_pf
+# pf
 
 ## Description
 
@@ -17,9 +17,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_pf
+    - role: pf
   vars:
-    openbsd_pf_state: 'install'
+    pf_state: 'install'
 ```
 
 ### Enable
@@ -27,9 +27,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_pf
+    - role: pf
   vars:
-    openbsd_pf_state: 'enable'
+    pf_state: 'enable'
 ```
 
 ### Disable
@@ -37,9 +37,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_pf
+    - role: pf
   vars:
-   openbsd_pf_state: 'disable'
+   pf_state: 'disable'
 ```
 
 ### Remove
@@ -47,9 +47,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_pf
+    - role: pf
   vars:
-    openbsd_pf_state: 'remove'
+    pf_state: 'remove'
 ```
 
 ### Inactive
@@ -57,16 +57,16 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_pf
+    - role: pf
   vars:
-    openbsd_pf_state: 'inactive'
+    pf_state: 'inactive'
 ```
 
 ### Config
 
 ```
 vars:
-  openbsd_pf_filters_all:
+  pf_filters_all:
     - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
     - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
     - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
@@ -79,16 +79,16 @@ vars:
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.2.1.15'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To package repository'}
 
-  openbsd_pf_filters_group:
+  pf_filters_group:
     - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
     - {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
 
-  openbsd_pf_filters_host:
+  pf_filters_host:
     - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'}
     - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
     - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
 
-  openbsd_pf_queues_all:
+  pf_queues_all:
     - {name: 'root_data', interface: 'vio0', bandwidth: '1G'}
     - {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'}
     - {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'}
@@ -99,7 +99,7 @@ vars:
 
 ### Role
 
-`openbsd_pf_state`
+`pf_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
@@ -114,9 +114,9 @@ vars:
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`openbsd_pf_filters_all`
+`pf_filters_all`
 
-    Description: Define the 'openbsd_pf_filters_all' option.
+    Description: Define the 'pf_filters_all' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -146,9 +146,9 @@ vars:
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
       None    : []
 
-`openbsd_pf_filters_group`
+`pf_filters_group`
 
-    Description: Define the 'openbsd_pf_filters_group' option.
+    Description: Define the 'pf_filters_group' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -159,9 +159,9 @@ vars:
                  {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}]
       None    : []
 
-`openbsd_pf_filters_host`
+`pf_filters_host`
 
-    Description: Define the 'openbsd_pf_filters_host' option.
+    Description: Define the 'pf_filters_host' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -173,9 +173,9 @@ vars:
                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
       None    : []
 
-`openbsd_pf_filters_policies`
+`pf_filters_policies`
 
-    Description: Define the 'openbsd_pf_filters_policies' option.
+    Description: Define the 'pf_filters_policies' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -187,9 +187,9 @@ vars:
                  {action: 'pass', direction: 'out', log: True, comment: 'Default outgoing policy'}]
       None    : []
 
-`openbsd_pf_macros_all`
+`pf_macros_all`
 
-    Description: Define the 'openbsd_pf_macros_all' option.
+    Description: Define the 'pf_macros_all' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -206,9 +206,9 @@ vars:
                  {name: 'g_ntp', value: '{ $h_ntp01, $h_ntp02, $h_ntp03, $h_ntp04 }', comment: 'ntp servers'}]
       None    : []
 
-`openbsd_pf_macros_group`
+`pf_macros_group`
 
-    Description: Define the 'openbsd_pf_macros_group' option.
+    Description: Define the 'pf_macros_group' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -220,9 +220,9 @@ vars:
                  {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
       None    : []
 
-`openbsd_pf_macros_host`
+`pf_macros_host`
 
-    Description: Define the 'openbsd_pf_macros_host' option.
+    Description: Define the 'pf_macros_host' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -234,9 +234,9 @@ vars:
                  {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
       None    : []
 
-`openbsd_pf_macros_state_all`
+`pf_macros_state_all`
 
-    Description: Define the 'openbsd_pf_macros_state_all' option.
+    Description: Define the 'pf_macros_state_all' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
     Implemented: 0.1.0
@@ -250,9 +250,9 @@ vars:
                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
       None    : []
 
-`openbsd_pf_macros_state_group`
+`pf_macros_state_group`
 
-    Description: Define the 'openbsd_pf_macros_state_group' option.
+    Description: Define the 'pf_macros_state_group' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
     Implemented: 0.1.0
@@ -265,9 +265,9 @@ vars:
                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
       None    : []
 
-`openbsd_pf_macros_state_host`
+`pf_macros_state_host`
 
-    Description: Define the 'openbsd_pf_macros_state_host' option.
+    Description: Define the 'pf_macros_state_host' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
     Implemented: 0.1.0
@@ -280,9 +280,9 @@ vars:
                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
       None    : []
 
-`openbsd_pf_normalization_scrub`
+`pf_normalization_scrub`
 
-    Description: Define the 'openbsd_pf_normalization_scrub' option.
+    Description: Define the 'pf_normalization_scrub' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -294,9 +294,9 @@ vars:
                  {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'reassemble tcp'}, comment: 'Scrub: Outgoing traffic normalization'}]
       None    : []
 
-`openbsd_pf_options_block_policy`
+`pf_options_block_policy`
 
-    Description: Control the 'openbsd_pf_options_block_policy' option.
+    Description: Control the 'pf_options_block_policy' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -307,9 +307,9 @@ vars:
       Block : 'block'
       Drop  : 'drop'
 
-`openbsd_pf_options_debug`
+`pf_options_debug`
 
-    Description: Control the 'openbsd_pf_options_debug' option.
+    Description: Control the 'pf_options_debug' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -325,9 +325,9 @@ vars:
       Informational: 'info'
       Debug        : 'debug'
 
-`openbsd_pf_options_fingerprints`
+`pf_options_fingerprints`
 
-    Description: Define the 'openbsd_pf_options_fingerprints' option.
+    Description: Define the 'pf_options_fingerprints' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -336,9 +336,9 @@ vars:
     Options    :
       Examples: '/etc/pf.os' | '/etc/pf.os-fingerprints'
 
-`openbsd_pf_options_hostid`
+`pf_options_hostid`
 
-    Description: Define the 'openbsd_pf_options_hostid' option.
+    Description: Define the 'pf_options_hostid' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -348,9 +348,9 @@ vars:
       Examples: '1' | '2' | '3'
       None    : ''
 
-`openbsd_pf_options_limits`
+`pf_options_limits`
 
-    Description: Define the 'openbsd_pf_options_limits' option.
+    Description: Define the 'pf_options_limits' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -364,9 +364,9 @@ vars:
                  {name: 'table-entries', value: '100000', comment: 'Limit: Overall maximum of addresses'}]
       None    : []
 
-`openbsd_pf_options_loginterface`
+`pf_options_loginterface`
 
-    Description: Define the 'openbsd_pf_options_loginterface' option.
+    Description: Define the 'pf_options_loginterface' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -376,9 +376,9 @@ vars:
       Examples: 'em0' | 'ed1' | 'wlan2'
       None    : ''
 
-`openbsd_pf_options_optimization`
+`pf_options_optimization`
 
-    Description: Control the 'openbsd_pf_options_optimization' option.
+    Description: Control the 'pf_options_optimization' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -391,9 +391,9 @@ vars:
       Aggressive  : 'aggressive'
       Conservative: 'conservative'
 
-`openbsd_pf_options_reassemble`
+`pf_options_reassemble`
 
-    Description: Control the 'openbsd_pf_options_reassemble' option.
+    Description: Control the 'pf_options_reassemble' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -401,9 +401,9 @@ vars:
     Default    : True
     Options    : True | False
 
-`openbsd_pf_options_ruleset_optimization`
+`pf_options_ruleset_optimization`
 
-    Description: Control the 'openbsd_pf_options_ruleset_optimization' option.
+    Description: Control the 'pf_options_ruleset_optimization' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -414,9 +414,9 @@ vars:
       Profile: 'profile'
       None   : ''
 
-`openbsd_pf_options_skip`
+`pf_options_skip`
 
-    Description: Define the 'openbsd_pf_options_skip' option.
+    Description: Define the 'pf_options_skip' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -426,9 +426,9 @@ vars:
       Examples: ['lo'] | ['lo', 'em0']
       None    : []
 
-`openbsd_pf_options_state_defaults`
+`pf_options_state_defaults`
 
-    Description: Define the 'openbsd_pf_options_state_defaults' option.
+    Description: Define the 'pf_options_state_defaults' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -438,9 +438,9 @@ vars:
       Examples: ['pflow', 'no-sync']
       None    : []
 
-`openbsd_pf_options_state_policy`
+`pf_options_state_policy`
 
-    Description: Control the 'openbsd_pf_options_state_policy' option.
+    Description: Control the 'pf_options_state_policy' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -450,9 +450,9 @@ vars:
       Floating: 'floating'
       If-Bound: 'if-bound'
 
-`openbsd_pf_options_timeouts`
+`pf_options_timeouts`
 
-    Description: Define the 'openbsd_pf_options_timeouts' option.
+    Description: Define the 'pf_options_timeouts' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -465,9 +465,9 @@ vars:
                  {name: 'adaptive.end', value: '12000', comment: 'Adaptive scaling end'}]
       None    : []
 
-`openbsd_pf_pf_dir_name`
+`pf_pf_dir_name`
 
-    Description: Define the 'openbsd_pf_pf_dir_name' option.
+    Description: Define the 'pf_pf_dir_name' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -476,9 +476,9 @@ vars:
     Options    :
       Examples: 'pf' | 'pf.d' | 'pf.conf.d'
 
-`openbsd_pf_queues_all`
+`pf_queues_all`
 
-    Description: Define the 'openbsd_pf_queues_all' option.
+    Description: Define the 'pf_queues_all' option.
     Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
@@ -491,9 +491,9 @@ vars:
                  {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
-`openbsd_pf_queues_group`
+`pf_queues_group`
 
-    Description: Define the 'openbsd_pf_queues_group' option.
+    Description: Define the 'pf_queues_group' option.
     Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
@@ -506,9 +506,9 @@ vars:
                  {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
-`openbsd_pf_queues_host`
+`pf_queues_host`
 
-    Description: Define the 'openbsd_pf_queues_host' option.
+    Description: Define the 'pf_queues_host' option.
     Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
@@ -521,9 +521,9 @@ vars:
                  {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
       None    : []
 
-`openbsd_pf_tables_all`
+`pf_tables_all`
 
-    Description: Define the 'openbsd_pf_tables_all' option.
+    Description: Define the 'pf_tables_all' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -533,9 +533,9 @@ vars:
       Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
       None    : []
 
-`openbsd_pf_tables_group`
+`pf_tables_group`
 
-    Description: Define the 'openbsd_pf_tables_group' option.
+    Description: Define the 'pf_tables_group' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
@@ -545,9 +545,9 @@ vars:
       Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
       None    : []
 
-`openbsd_pf_tables_host`
+`pf_tables_host`
 
-    Description: Define the 'openbsd_pf_tables_host' option.
+    Description: Define the 'pf_tables_host' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary

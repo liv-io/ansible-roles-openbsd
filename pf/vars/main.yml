@@ -1,7 +1,7 @@
 ---
 
 # pf.dir
-file_dst_pf_dir: "/etc/{{openbsd_pf_pf_dir_name}}"
+file_dst_pf_dir: "/etc/{{pf_pf_dir_name}}"
 file_mode_pf_dir: '0755'
 file_owner_pf_dir: 'root'
 file_group_pf_dir: 'wheel'
@@ -62,26 +62,26 @@ file_mode_tables_conf: '0600'
 file_owner_tables_conf: 'root'
 file_group_tables_conf: 'wheel'
 
-# check openbsd_pf
-command_cmd_check_openbsd_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
+# check pf
+command_cmd_check_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
 
-# disable openbsd_pf
-command_cmd_disable_openbsd_pf: 'rcctl disable pf'
+# disable pf
+command_cmd_disable_pf: 'rcctl disable pf'
 
-# enable openbsd_pf
-command_cmd_enable_openbsd_pf: 'rcctl enable pf'
+# enable pf
+command_cmd_enable_pf: 'rcctl enable pf'
 
-# reload openbsd_pf
-command_cmd_reload_openbsd_pf: "pfctl -f {{file_dst_pf_conf}}"
+# reload pf
+command_cmd_reload_pf: "pfctl -f {{file_dst_pf_conf}}"
 
-# start openbsd_pf
-command_cmd_start_openbsd_pf: 'pfctl -e'
+# start pf
+command_cmd_start_pf: 'pfctl -e'
 
-# status openbsd_pf
-command_cmd_status_openbsd_pf: 'rcctl get pf status'
+# status pf
+command_cmd_status_pf: 'rcctl get pf status'
 
-# stop openbsd_pf
-command_cmd_stop_openbsd_pf: 'pfctl -d'
+# stop pf
+command_cmd_stop_pf: 'pfctl -d'
 
-# validate openbsd_pf
-command_cmd_validate_openbsd_pf: "pfctl -nf {{file_dst_pf_conf}}"
+# validate pf
+command_cmd_validate_pf: "pfctl -nf {{file_dst_pf_conf}}"

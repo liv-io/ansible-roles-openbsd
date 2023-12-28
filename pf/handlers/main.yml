@@ -8,8 +8,8 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
 
-- name: validate openbsd_pf
-  command: "{{command_cmd_validate_openbsd_pf}}"
+- name: validate pf
+  command: "{{command_cmd_validate_pf}}"
 
-- name: reload openbsd_pf
-  command: "{{command_cmd_reload_openbsd_pf}}"
+- name: reload pf
+  command: "{{command_cmd_reload_pf}}"

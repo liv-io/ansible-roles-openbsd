@@ -8,7 +8,7 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file anchors.conf
   template:
@@ -18,10 +18,10 @@
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file filters.conf
   template:
@@ -31,10 +31,10 @@
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file macros.conf
   template:
@@ -44,10 +44,10 @@
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file normalization.conf
   template:
@@ -57,10 +57,10 @@
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file options.conf
   template:
@@ -70,10 +70,10 @@
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file queues.conf
   template:
@@ -83,10 +83,10 @@
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file tables.conf
   template:
@@ -96,10 +96,10 @@
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
 - name: create file pf.conf
   template:
@@ -109,39 +109,39 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   notify:
-    - validate openbsd_pf
-    - reload openbsd_pf
+    - validate pf
+    - reload pf
   tags:
-    - openbsd_pf
+    - pf
 
-- name: status openbsd_pf
-  command: "{{command_cmd_status_openbsd_pf}}"
-  register: register_status_openbsd_pf
-  changed_when: (register_status_openbsd_pf.rc > 1)
-  failed_when: (register_status_openbsd_pf.rc > 1)
+- name: status pf
+  command: "{{command_cmd_status_pf}}"
+  register: register_status_pf
+  changed_when: (register_status_pf.rc > 1)
+  failed_when: (register_status_pf.rc > 1)
   check_mode: False
   tags:
-    - openbsd_pf
+    - pf
 
-- name: enable openbsd_pf
-  command: "{{command_cmd_enable_openbsd_pf}}"
-  when: (register_status_openbsd_pf.rc == 1)
+- name: enable pf
+  command: "{{command_cmd_enable_pf}}"
+  when: (register_status_pf.rc == 1)
   check_mode: False
   tags:
-    - openbsd_pf
+    - pf
 
-- name: check openbsd_pf
-  shell: "{{command_cmd_check_openbsd_pf}}"
-  register: register_check_openbsd_pf
-  changed_when: (register_check_openbsd_pf.rc > 1)
-  failed_when: (register_check_openbsd_pf.rc > 1)
+- name: check pf
+  shell: "{{command_cmd_check_pf}}"
+  register: register_check_pf
+  changed_when: (register_check_pf.rc > 1)
+  failed_when: (register_check_pf.rc > 1)
   check_mode: False
   tags:
-    - openbsd_pf
+    - pf
 
-- name: start openbsd_pf
-  command: "{{command_cmd_start_openbsd_pf}}"
-  when: (register_check_openbsd_pf.rc == 1)
+- name: start pf
+  command: "{{command_cmd_start_pf}}"
+  when: (register_check_pf.rc == 1)
   check_mode: False
   tags:
-    - openbsd_pf
+    - pf
