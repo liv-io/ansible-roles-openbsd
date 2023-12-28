@@ -1,0 +1,9 @@
+---
+
+periodic_state: 'install'
+
+periodic_daily_state: False
+
+periodic_monthly_state: False
+
+periodic_weekly_state: False

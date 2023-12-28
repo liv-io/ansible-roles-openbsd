@@ -1,4 +1,4 @@
-# openbsd_periodic
+# periodic
 
 ## Description
 
@@ -14,12 +14,12 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_periodic
+    - role: periodic
   vars:
-    openbsd_periodic_state: 'install'
-    openbsd_periodic_daily_state: True
-    openbsd_periodic_monthly_state: True
-    openbsd_periodic_weekly_state: True
+    periodic_state: 'install'
+    periodic_daily_state: True
+    periodic_monthly_state: True
+    periodic_weekly_state: True
 ```
 
 ### Remove
@@ -27,12 +27,12 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_periodic
+    - role: periodic
   vars:
-    openbsd_periodic_state: 'remove'
-    openbsd_periodic_daily_state: True
-    openbsd_periodic_monthly_state: True
-    openbsd_periodic_weekly_state: True
+    periodic_state: 'remove'
+    periodic_daily_state: True
+    periodic_monthly_state: True
+    periodic_weekly_state: True
 ```
 
 ### Inactive
@@ -40,16 +40,16 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_periodic
+    - role: periodic
   vars:
-    openbsd_periodic_state: 'inactive'
+    periodic_state: 'inactive'
 ```
 
 ## Parameters
 
 ### Role
 
-`openbsd_periodic_state`
+`periodic_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
@@ -62,9 +62,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`openbsd_periodic_daily_state`
+`periodic_daily_state`
 
-    Description: Control the 'openbsd_periodic_daily_state' option.
+    Description: Control the 'periodic_daily_state' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -72,9 +72,9 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
-`openbsd_periodic_monthly_state`
+`periodic_monthly_state`
 
-    Description: Control the 'openbsd_periodic_monthly_state' option.
+    Description: Control the 'periodic_monthly_state' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -82,9 +82,9 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
-`openbsd_periodic_weekly_state`
+`periodic_weekly_state`
 
-    Description: Control the 'openbsd_periodic_weekly_state' option.
+    Description: Control the 'periodic_weekly_state' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
