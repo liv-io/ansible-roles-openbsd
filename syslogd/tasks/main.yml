@@ -5,20 +5,20 @@
 
     - name: import tasks install
       import_tasks: install.yml
-      when: not (openbsd_syslogd_state is match('false|no|remove|quiesce|inactive'))
+      when: not (syslogd_state is match('false|no|remove|quiesce|inactive'))
 
     - name: import tasks enable
       import_tasks: enable.yml
-      when: (openbsd_syslogd_state is match('start|on|enable'))
+      when: (syslogd_state is match('start|on|enable'))
 
     - name: import tasks disable
       import_tasks: disable.yml
-      when: (openbsd_syslogd_state is match('stop|off|disable'))
+      when: (syslogd_state is match('stop|off|disable'))
 
     - name: import tasks remove
       import_tasks: remove.yml
-      when: (openbsd_syslogd_state is match('false|no|remove'))
+      when: (syslogd_state is match('false|no|remove'))
 
   when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.3|7\.4')))
   tags:
-    - openbsd_syslogd
+    - syslogd

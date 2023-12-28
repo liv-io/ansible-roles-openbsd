@@ -8,7 +8,7 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - openbsd_syslogd
+    - syslogd
 
 - name: config line syslogd_flags
   lineinfile:
@@ -17,8 +17,9 @@
     regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
     create: True
+  notify: reload service syslogd
   tags:
-    - openbsd_syslogd
+    - syslogd
 
 - name: create file syslog.conf
   template:
@@ -27,31 +28,46 @@
     mode: "{{file_mode_syslog_conf}}"
     owner: "{{file_owner_syslog_conf}}"
     group: "{{file_group_syslog_conf}}"
+  notify: reload service syslogd
   tags:
-    - openbsd_syslogd
+    - syslogd
+
+- name: create file syslogd.cfg
+  template:
+    src: "{{file_src_syslogd_cfg}}"
+    dest: "{{file_dst_syslogd_cfg}}"
+    mode: "{{file_mode_syslogd_cfg}}"
+    owner: "{{file_owner_syslogd_cfg}}"
+    group: "{{file_group_syslogd_cfg}}"
+  notify: reload service monit
+  when: (syslogd_monitor_monit_state == True)
+  tags:
+    - syslogd
 
 - name: remove file syslogd.cfg
   file:
     state: absent
     path: "{{file_dst_syslogd_cfg}}"
   notify: reload service monit
+  when: (syslogd_monitor_monit_state == False)
   tags:
-    - openbsd_syslogd
+    - syslogd
 
 - name: status syslogd
   command: "{{command_cmd_status_syslogd}}"
   register: register_status_syslogd
   changed_when: (register_status_syslogd.rc > 1)
   failed_when: (register_status_syslogd.rc > 1)
-  tags:
-    - openbsd_syslogd
-
-- name: disable syslogd
-  command: "{{command_cmd_disable_syslogd}}"
   check_mode: False
-  when: register_status_syslogd.rc == 0
   tags:
-    - openbsd_syslogd
+    - syslogd
+
+- name: enable syslogd
+  command: "{{command_cmd_enable_syslogd}}"
+  check_mode: False
+  when: (register_status_syslogd.rc == 1)
+  tags:
+    - syslogd
 
 - name: check syslogd
   command: "{{command_cmd_check_syslogd}}"
@@ -60,11 +76,11 @@
   failed_when: (register_check_syslogd.rc > 1)
   check_mode: False
   tags:
-    - openbsd_syslogd
+    - syslogd
 
-- name: stop syslogd
-  command: "{{command_cmd_stop_syslogd}}"
+- name: start syslogd
+  command: "{{command_cmd_start_syslogd}}"
   check_mode: False
-  when: register_check_syslogd.rc == 0
+  when: (register_check_syslogd.rc == 1)
   tags:
-    - openbsd_syslogd
+    - syslogd

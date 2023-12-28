@@ -1,4 +1,4 @@
-# openbsd_syslogd
+# syslogd
 
 ## Description
 
@@ -16,9 +16,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syslogd
+    - role: syslogd
   vars:
-    openbsd_syslogd_state: 'install'
+    syslogd_state: 'install'
 ```
 
 ### Enable
@@ -26,10 +26,10 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syslogd
+    - role: syslogd
   vars:
-    openbsd_syslogd_state: 'enable'
-    openbsd_syslogd_server: 'tcp4://log.example.com:514'
+    syslogd_state: 'enable'
+    syslogd_server: 'tcp4://log.example.com:514'
 ```
 
 ### Disable
@@ -37,10 +37,10 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syslogd
+    - role: syslogd
   vars:
-    openbsd_syslogd_state: 'disable'
-    openbsd_syslogd_server: 'tcp4://log.example.com:514'
+    syslogd_state: 'disable'
+    syslogd_server: 'tcp4://log.example.com:514'
 ```
 
 ### Remove
@@ -48,9 +48,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syslogd
+    - role: syslogd
   vars:
-    openbsd_syslogd_state: 'remove'
+    syslogd_state: 'remove'
 ```
 
 ### Inactive
@@ -58,16 +58,16 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syslogd
+    - role: syslogd
   vars:
-    openbsd_syslogd_state: 'inactive'
+    syslogd_state: 'inactive'
 ```
 
 ## Parameters
 
 ### Role
 
-`openbsd_syslogd_state`
+`syslogd_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
@@ -82,9 +82,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`openbsd_syslogd_monitor_monit_state`
+`syslogd_monitor_monit_state`
 
-    Description: Control the 'openbsd_syslogd_monitor_monit_state' option.
+    Description: Control the 'syslogd_monitor_monit_state' option.
     Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
@@ -92,9 +92,9 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
-`openbsd_syslogd_role`
+`syslogd_role`
 
-    Description: Set the 'openbsd_syslogd_role' option.
+    Description: Set the 'syslogd_role' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
@@ -103,9 +103,9 @@ consult the following sections.
     Options    :
       Client: 'client'
 
-`openbsd_syslogd_server`
+`syslogd_server`
 
-    Description: Define the 'openbsd_syslogd_server' option.
+    Description: Define the 'syslogd_server' option.
     Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary

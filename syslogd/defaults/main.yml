@@ -1,0 +1,9 @@
+---
+
+syslogd_state: 'enable'
+
+syslogd_monitor_monit_state: False
+
+syslogd_role: 'client'
+
+syslogd_server: 'tcp4://log.{{ansible_domain}}:514'

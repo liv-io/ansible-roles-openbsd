@@ -8,7 +8,7 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - openbsd_syslogd
+    - syslogd
 
 - name: remove file syslogd.cfg
   file:
@@ -16,4 +16,4 @@
     path: "{{file_dst_syslogd_cfg}}"
   notify: reload service monit
   tags:
-    - openbsd_syslogd
+    - syslogd
