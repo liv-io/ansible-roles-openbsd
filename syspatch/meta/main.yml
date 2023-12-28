@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: signify, when: not (syspatch_state is match('false|no|remove|quiesce|inactive'))}

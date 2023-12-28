@@ -1,4 +1,4 @@
-# openbsd_syspatch
+# syspatch
 
 ## Description
 
@@ -14,10 +14,10 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syspatch
+    - role: syspatch
   vars:
-    openbsd_syspatch_state: 'install'
-    openbsd_syspatch_installurl:
+    syspatch_state: 'install'
+    syspatch_installurl:
       - {url: 'https://ftp.eu.openbsd.org/pub/OpenBSD', comment: 'OpenBSD Packages'}
 ```
 
@@ -26,9 +26,9 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syspatch
+    - role: syspatch
   vars:
-    openbsd_syspatch_state: 'remove'
+    syspatch_state: 'remove'
 ```
 
 ### Inactive
@@ -36,16 +36,16 @@ consult the following sections.
 ```
 - hosts: all
   roles:
-    - role: openbsd_syspatch
+    - role: syspatch
   vars:
-    openbsd_syspatch_state: 'inactive'
+    syspatch_state: 'inactive'
 ```
 
 ## Parameters
 
 ### Role
 
-`openbsd_syspatch_state`
+`syspatch_state`
 
     Description: Control the state of the role.
     Implemented: 0.1.0
@@ -58,9 +58,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`openbsd_syspatch_installurl`
+`syspatch_installurl`
 
-    Description: Define the 'openbsd_syspatch_installurl' option.
+    Description: Define the 'syspatch_installurl' option.
     Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2023-12-28)
+
+### Changes
+
+- Rename Ansible role from `openbsd_syspatch` to `syspatch`
+
 ## 0.3.0 (2023-10-19)
 
 ### Changes
