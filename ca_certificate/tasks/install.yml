@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ca_certificate
+
+- name: create file certs.dir
+  file:
+    state: directory
+    path: "{{file_dst_certs_dir}}"
+    mode: "{{file_mode_certs_dir}}"
+    owner: "{{file_owner_certs_dir}}"
+    group: "{{file_group_certs_dir}}"
+  tags:
+    - ca_certificate

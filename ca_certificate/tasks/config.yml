@@ -1,0 +1,32 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ca_certificate
+
+- name: copy file certificate.pem
+  copy:
+    content: "{{item.content}}"
+    dest: "{{file_dst_certs_dir}}/{{item.name}}"
+    mode: "{{file_mode_certificate_pem}}"
+    owner: "{{file_owner_certificate_pem}}"
+    group: "{{file_group_certificate_pem}}"
+  loop: "{{ca_certificate_config}}"
+  when: (item.state|default(True) == True)
+  tags:
+    - ca_certificate
+
+- name: remove file certificate.pem
+  file:
+    state: absent
+    path: "{{file_dst_certs_dir}}/{{item.name}}"
+  loop: "{{ca_certificate_config}}"
+  when: (item.state|default(True) == False)
+  tags:
+    - ca_certificate

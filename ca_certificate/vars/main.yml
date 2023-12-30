@@ -1,0 +1,12 @@
+---
+
+# certs.dir
+file_dst_certs_dir: '/etc/ssl/certs'
+file_mode_certs_dir: '0755'
+file_owner_certs_dir: 'root'
+file_group_certs_dir: 'wheel'
+
+# certificate.pem
+file_mode_certificate_pem: '0444'
+file_owner_certificate_pem: 'root'
+file_group_certificate_pem: 'wheel'
