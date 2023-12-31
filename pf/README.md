@@ -102,7 +102,6 @@ vars:
 `pf_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -117,7 +116,6 @@ vars:
 `pf_filters_all`
 
     Description: Define the 'pf_filters_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -149,7 +147,6 @@ vars:
 `pf_filters_group`
 
     Description: Define the 'pf_filters_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -162,7 +159,6 @@ vars:
 `pf_filters_host`
 
     Description: Define the 'pf_filters_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -176,7 +172,6 @@ vars:
 `pf_filters_policies`
 
     Description: Define the 'pf_filters_policies' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -190,7 +185,6 @@ vars:
 `pf_macros_all`
 
     Description: Define the 'pf_macros_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -209,7 +203,6 @@ vars:
 `pf_macros_group`
 
     Description: Define the 'pf_macros_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -223,7 +216,6 @@ vars:
 `pf_macros_host`
 
     Description: Define the 'pf_macros_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -239,7 +231,6 @@ vars:
     Description: Define the 'pf_macros_state_all' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -255,7 +246,6 @@ vars:
     Description: Define the 'pf_macros_state_group' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -270,7 +260,6 @@ vars:
     Description: Define the 'pf_macros_state_host' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -283,7 +272,6 @@ vars:
 `pf_normalization_scrub`
 
     Description: Define the 'pf_normalization_scrub' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -297,7 +285,6 @@ vars:
 `pf_options_block_policy`
 
     Description: Control the 'pf_options_block_policy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -310,7 +297,6 @@ vars:
 `pf_options_debug`
 
     Description: Control the 'pf_options_debug' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -328,7 +314,6 @@ vars:
 `pf_options_fingerprints`
 
     Description: Define the 'pf_options_fingerprints' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -339,7 +324,6 @@ vars:
 `pf_options_hostid`
 
     Description: Define the 'pf_options_hostid' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -351,7 +335,6 @@ vars:
 `pf_options_limits`
 
     Description: Define the 'pf_options_limits' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -367,7 +350,6 @@ vars:
 `pf_options_loginterface`
 
     Description: Define the 'pf_options_loginterface' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -379,7 +361,6 @@ vars:
 `pf_options_optimization`
 
     Description: Control the 'pf_options_optimization' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -394,7 +375,6 @@ vars:
 `pf_options_reassemble`
 
     Description: Control the 'pf_options_reassemble' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -404,7 +384,6 @@ vars:
 `pf_options_ruleset_optimization`
 
     Description: Control the 'pf_options_ruleset_optimization' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -417,7 +396,6 @@ vars:
 `pf_options_skip`
 
     Description: Define the 'pf_options_skip' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -429,7 +407,6 @@ vars:
 `pf_options_state_defaults`
 
     Description: Define the 'pf_options_state_defaults' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -441,7 +418,6 @@ vars:
 `pf_options_state_policy`
 
     Description: Control the 'pf_options_state_policy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -453,7 +429,6 @@ vars:
 `pf_options_timeouts`
 
     Description: Define the 'pf_options_timeouts' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -468,7 +443,6 @@ vars:
 `pf_pf_dir_name`
 
     Description: Define the 'pf_pf_dir_name' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -479,7 +453,6 @@ vars:
 `pf_queues_all`
 
     Description: Define the 'pf_queues_all' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -494,7 +467,6 @@ vars:
 `pf_queues_group`
 
     Description: Define the 'pf_queues_group' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -509,7 +481,6 @@ vars:
 `pf_queues_host`
 
     Description: Define the 'pf_queues_host' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -524,7 +495,6 @@ vars:
 `pf_tables_all`
 
     Description: Define the 'pf_tables_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -536,7 +506,6 @@ vars:
 `pf_tables_group`
 
     Description: Define the 'pf_tables_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -548,7 +517,6 @@ vars:
 `pf_tables_host`
 
     Description: Define the 'pf_tables_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -560,8 +528,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

@@ -60,7 +60,6 @@ vars:
 `state`
 
     Description: Control the state of the 'rc' entry.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -70,7 +69,6 @@ vars:
 `comment`
 
     Description: Define a comment for the 'rc' entry.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -82,7 +80,6 @@ vars:
 `name`
 
     Description: Define the name of the 'rc' entry.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -93,7 +90,6 @@ vars:
 `path`
 
     Description: Define the path of the 'rc' file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -104,7 +100,6 @@ vars:
 `value`
 
     Description: Define the value of the 'rc' entry.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -117,7 +112,6 @@ vars:
 `rc_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -129,7 +123,6 @@ vars:
 `rc_config_all`
 
     Description: Define the 'rc_config_all' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -142,7 +135,6 @@ vars:
 `rc_config_group`
 
     Description: Define the 'rc_config_group' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -155,7 +147,6 @@ vars:
 `rc_config_host`
 
     Description: Define the 'rc_config_host' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -168,8 +159,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

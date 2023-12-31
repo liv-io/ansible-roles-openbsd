@@ -67,7 +67,6 @@ consult the following sections.
 `node_exporter_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -82,7 +81,6 @@ consult the following sections.
 `node_exporter_monitor_monit_state`
 
     Description: Control the 'node_exporter_monitor_monit_state' option.
-    Implemented: 0.6.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -96,8 +94,6 @@ consult the following sections.
 ### Packages
 
 `node_exporter`
-
-## Parameters
 
 ## Requirements
 

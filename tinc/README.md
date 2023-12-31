@@ -221,7 +221,6 @@ consult the following sections.
 `tinc_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -236,7 +235,6 @@ consult the following sections.
 `tinc_config`
 
     Description: Define the 'tinc_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -255,7 +253,6 @@ consult the following sections.
 `tinc_monitor_monit_state`
 
     Description: Control the 'tinc_monitor_monit_state' option.
-    Implemented: 0.11.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -274,8 +271,6 @@ consult the following sections.
     Name   :
       OpenBSD 7.3: 'tinc'
       OpenBSD 7.4: 'tinc'
-
-## Parameters
 
 ## Requirements
 

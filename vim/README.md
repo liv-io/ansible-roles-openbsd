@@ -51,7 +51,6 @@ consult the following sections.
 `vim_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -73,8 +72,6 @@ consult the following sections.
     Name   :
       OpenBSD 7.3: 'vim--no_x11'
       OpenBSD 7.4: 'vim--no_x11'
-
-## Parameters
 
 ## Requirements
 

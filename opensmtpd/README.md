@@ -86,7 +86,6 @@ consult the following sections.
 `opensmtpd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -101,7 +100,6 @@ consult the following sections.
 `opensmtpd_action_all`
 
     Description: Define the 'opensmtpd_action_all' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -115,7 +113,6 @@ consult the following sections.
 `opensmtpd_action_group`
 
     Description: Define the 'opensmtpd_action_group' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -128,7 +125,6 @@ consult the following sections.
 `opensmtpd_action_host`
 
     Description: Define the 'opensmtpd_action_host' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -141,7 +137,6 @@ consult the following sections.
 `opensmtpd_listen_all`
 
     Description: Define the 'opensmtpd_listen_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -153,7 +148,6 @@ consult the following sections.
 `opensmtpd_listen_group`
 
     Description: Define the 'opensmtpd_listen_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -165,7 +159,6 @@ consult the following sections.
 `opensmtpd_listen_host`
 
     Description: Define the 'opensmtpd_listen_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -177,7 +170,6 @@ consult the following sections.
 `opensmtpd_match_all`
 
     Description: Define the 'opensmtpd_match_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -191,7 +183,6 @@ consult the following sections.
 `opensmtpd_match_group`
 
     Description: Define the 'opensmtpd_match_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -204,7 +195,6 @@ consult the following sections.
 `opensmtpd_match_host`
 
     Description: Define the 'opensmtpd_match_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -217,7 +207,6 @@ consult the following sections.
 `opensmtpd_monitor_monit_state`
 
     Description: Control the 'opensmtpd_monitor_monit_state' option.
-    Implemented: 3.6.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -227,7 +216,6 @@ consult the following sections.
 `opensmtpd_root_mail_address`
 
     Description: Define the 'opensmtpd_root_mail_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -238,7 +226,6 @@ consult the following sections.
 `opensmtpd_secrets_all`
 
     Description: Define the 'opensmtpd_secrets_all' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -251,7 +238,6 @@ consult the following sections.
 `opensmtpd_secrets_group`
 
     Description: Define the 'opensmtpd_secrets_group' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -264,7 +250,6 @@ consult the following sections.
 `opensmtpd_secrets_host`
 
     Description: Define the 'opensmtpd_secrets_host' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -277,7 +262,6 @@ consult the following sections.
 `opensmtpd_table_all`
 
     Description: Define the 'opensmtpd_table_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -291,7 +275,6 @@ consult the following sections.
 `opensmtpd_table_group`
 
     Description: Define the 'opensmtpd_table_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -304,7 +287,6 @@ consult the following sections.
 `opensmtpd_table_host`
 
     Description: Define the 'opensmtpd_table_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -321,8 +303,6 @@ consult the following sections.
 `postfix`
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

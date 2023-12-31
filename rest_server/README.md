@@ -67,7 +67,6 @@ consult the following sections.
 `rest_server_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -82,7 +81,6 @@ consult the following sections.
 `rest_server_monitor_monit_state`
 
     Description: Control the 'rest_server_monitor_monit_state' option.
-    Implemented: 0.4.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -92,7 +90,6 @@ consult the following sections.
 `rest_server_options`
 
     Description: Define the 'rest_server_options' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -104,7 +101,6 @@ consult the following sections.
 `rest_server_version`
 
     Description: Define the 'rest_server_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -128,8 +124,6 @@ consult the following sections.
     Name   :
       OpenBSD 7.3: 'gtar--'
       OpenBSD 7.4: 'gtar--'
-
-## Parameters
 
 ## Requirements
 

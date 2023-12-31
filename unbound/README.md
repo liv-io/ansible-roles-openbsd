@@ -83,7 +83,6 @@ consult the following sections.
 `unbound_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -98,7 +97,6 @@ consult the following sections.
 `unbound_access_control`
 
     Description: Define the 'unbound_access_control' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -117,7 +115,6 @@ consult the following sections.
 `unbound_control_enable`
 
     Description: Control the 'unbound_control_enable' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -127,7 +124,6 @@ consult the following sections.
 `unbound_default_port`
 
     Description: Set the 'unbound_default_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -138,7 +134,6 @@ consult the following sections.
 `unbound_do_not_query_localhost`
 
     Description: Control the 'unbound_do_not_query_localhost' option.
-    Implemented: 0.5.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -148,7 +143,6 @@ consult the following sections.
 `unbound_harden_algo_downgrade`
 
     Description: Control the 'unbound_harden_algo_downgrade' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -158,7 +152,6 @@ consult the following sections.
 `unbound_harden_below_nxdomain`
 
     Description: Control the 'unbound_harden_below_nxdomain' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -168,7 +161,6 @@ consult the following sections.
 `unbound_harden_dnssec_stripped`
 
     Description: Control the 'unbound_harden_dnssec_stripped' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -178,7 +170,6 @@ consult the following sections.
 `unbound_harden_glue`
 
     Description: Control the 'unbound_harden_glue' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -188,7 +179,6 @@ consult the following sections.
 `unbound_harden_large_queries`
 
     Description: Control the 'unbound_harden_large_queries' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -198,7 +188,6 @@ consult the following sections.
 `unbound_harden_referral_path`
 
     Description: Control the 'unbound_harden_referral_path' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -208,7 +197,6 @@ consult the following sections.
 `unbound_harden_short_bufsize`
 
     Description: Control the 'unbound_harden_short_bufsize' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -218,7 +206,6 @@ consult the following sections.
 `unbound_hide_identity`
 
     Description: Control the 'unbound_hide_identity' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -228,7 +215,6 @@ consult the following sections.
 `unbound_hide_trustanchor`
 
     Description: Control the 'unbound_hide_trustanchor' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -238,7 +224,6 @@ consult the following sections.
 `unbound_hide_version`
 
     Description: Control the 'unbound_hide_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -248,7 +233,6 @@ consult the following sections.
 `unbound_identity`
 
     Description: Define the 'unbound_identity' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -260,7 +244,6 @@ consult the following sections.
 `unbound_include`
 
     Description: Define the 'unbound_include' option.
-    Implemented: 0.6.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -272,7 +255,6 @@ consult the following sections.
 `unbound_interface`
 
     Description: Define the 'unbound_interface' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -285,7 +267,6 @@ consult the following sections.
 `unbound_ip4_state`
 
     Description: Control the 'unbound_ip4_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -295,7 +276,6 @@ consult the following sections.
 `unbound_ip6_state`
 
     Description: Control the 'unbound_ip6_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -305,7 +285,6 @@ consult the following sections.
 `unbound_local_data`
 
     Description: Define the 'unbound_local_data' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -317,7 +296,6 @@ consult the following sections.
 `unbound_local_data_ptr`
 
     Description: Define the 'unbound_local_data_ptr' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -329,7 +307,6 @@ consult the following sections.
 `unbound_local_zone`
 
     Description: Define the 'unbound_local_zone' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -342,7 +319,6 @@ consult the following sections.
 `unbound_monitor_monit_state`
 
     Description: Control the 'unbound_monitor_monit_state' option.
-    Implemented: 1.8.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -352,7 +328,6 @@ consult the following sections.
 `unbound_prefer_ip6`
 
     Description: Control the 'unbound_prefer_ip6' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -362,7 +337,6 @@ consult the following sections.
 `unbound_stub_zone`
 
     Description: Define the 'unbound_stub_zone' option.
-    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -374,7 +348,6 @@ consult the following sections.
 `unbound_tcp_state`
 
     Description: Control the 'unbound_tcp_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -384,7 +357,6 @@ consult the following sections.
 `unbound_udp_state`
 
     Description: Control the 'unbound_udp_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -394,7 +366,6 @@ consult the following sections.
 `unbound_version`
 
     Description: Define the 'unbound_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -406,8 +377,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

@@ -59,7 +59,6 @@ vars:
 `state`
 
     Description: Control the state of the group.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -69,7 +68,6 @@ vars:
 `name`
 
     Description: Define the name of the group.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -80,7 +78,6 @@ vars:
 `gid`
 
     Description: Set the GID of the group.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -91,7 +88,6 @@ vars:
 `system`
 
     Description: Control whether to create a system group.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -103,7 +99,6 @@ vars:
 `group_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -115,7 +110,6 @@ vars:
 `group_config_all`
 
     Description: Define the 'group_config_all' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -128,7 +122,6 @@ vars:
 `group_config_group`
 
     Description: Define the 'group_config_group' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -141,7 +134,6 @@ vars:
 `group_config_host`
 
     Description: Define the 'group_config_host' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -154,8 +146,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

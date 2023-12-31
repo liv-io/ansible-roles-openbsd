@@ -18,9 +18,7 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
-* [Contributing](#contributing)
 * [License](#license)
-* [Contact](#contact)
 * [Credits](#credits)
 * [Appendix](#appendix)
 
@@ -46,7 +44,7 @@
 * NSD is available as authoritative DNS server
 * Prometheus has built-in alerting rules and Grafana dashboards
 * Loki has built-in alerting rules and Grafana dashboards
-* Parameters are documented with examples and marked when implemented
+* Parameters are documented with examples
 * Changes adhere to semantic versioning guidelines
 * Roles contain changelog
 
@@ -78,19 +76,11 @@ The Ansible managed node depends on:
 * Support monitoring via Coremon
 * Add OpenBSD support (cron)
 
-## Contributing
-
 ## License
 
 Distributed under the Simplified BSD License.
 
 See `LICENSE` file for more information.
-
-## Contact
-
-Author: l@liv.io
-
-Project: [ansible-roles-openbsd](https://github.com/liv-io/ansible-roles-openbsd)
 
 ## Credits
 

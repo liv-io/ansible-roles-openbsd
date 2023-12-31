@@ -88,7 +88,6 @@ vars:
 `hostname_if_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -100,7 +99,6 @@ vars:
 `hostname_if_carp_allow`
 
     Description: Control the 'hostname_if_carp_allow' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -110,7 +108,6 @@ vars:
 `hostname_if_carp_preempt`
 
     Description: Control the 'hostname_if_carp_preempt' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -120,7 +117,6 @@ vars:
 `hostname_if_config_all`
 
     Description: Define the 'hostname_if_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -142,7 +138,6 @@ vars:
 `hostname_if_config_group`
 
     Description: Define the 'hostname_if_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -164,7 +159,6 @@ vars:
 `hostname_if_config_host`
 
     Description: Define the 'hostname_if_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -186,7 +180,6 @@ vars:
 `hostname_if_mygate`
 
     Description: Define the 'hostname_if_mygate' option.
-    Implemented: 1.4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -203,8 +196,6 @@ vars:
 ### Roles
 
 `sysctl`
-
-## Parameters
 
 ## Requirements
 

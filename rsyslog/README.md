@@ -90,7 +90,6 @@ vars:
 `rsyslog_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -105,7 +104,6 @@ vars:
 `rsyslog_config_all`
 
     Description: Define the 'rsyslog_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -117,7 +115,6 @@ vars:
 `rsyslog_config_group`
 
     Description: Define the 'rsyslog_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -129,7 +126,6 @@ vars:
 `rsyslog_config_host`
 
     Description: Define the 'rsyslog_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -141,7 +137,6 @@ vars:
 `rsyslog_monitor_monit_state`
 
     Description: Control the 'rsyslog_monitor_monit_state' option.
-    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -151,7 +146,6 @@ vars:
 `rsyslog_role`
 
     Description: Set the 'rsyslog_role' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -163,7 +157,6 @@ vars:
 `rsyslog_server`
 
     Description: Define the 'rsyslog_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -184,8 +177,6 @@ vars:
     Name   :
       OpenBSD 7.3: 'rsyslog'
       OpenBSD 7.4: 'rsyslog'
-
-## Parameters
 
 ## Requirements
 

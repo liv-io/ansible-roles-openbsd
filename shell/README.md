@@ -46,7 +46,6 @@ consult the following sections.
 `shell_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -59,7 +58,6 @@ consult the following sections.
 `shell_color_support`
 
     Description: Control the state of colored 'shell' commands.
-    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -69,7 +67,6 @@ consult the following sections.
 `shell_ftp_proxy`
 
     Description: Define the 'shell_ftp_proxy' option.
-    Implemented: 0.10.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -81,7 +78,6 @@ consult the following sections.
 `shell_histsize`
 
     Description: Set the size of the 'shell' history variable.
-    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -93,7 +89,6 @@ consult the following sections.
 `shell_http_proxy`
 
     Description: Define the 'shell_http_proxy' option.
-    Implemented: 0.10.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -105,7 +100,6 @@ consult the following sections.
 `shell_https_proxy`
 
     Description: Define the 'shell_https_proxy' option.
-    Implemented: 2.5.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -117,7 +111,6 @@ consult the following sections.
 `shell_ls_time_style`
 
     Description: Define the time format of the 'ls' command.
-    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -129,7 +122,6 @@ consult the following sections.
 `shell_no_proxy`
 
     Description: Define the 'shell_no_proxy' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -141,7 +133,6 @@ consult the following sections.
 `shell_pager`
 
     Description: Define the default 'PAGER' variable.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -154,7 +145,6 @@ consult the following sections.
 
     Description: Control the safety of various shell commands
                  (chmod, chown, ln, mv, rm...).
-    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
 
@@ -174,8 +164,6 @@ consult the following sections.
     Name   :
       OpenBSD 7.3: 'colorls'
       OpenBSD 7.4: 'colorls'
-
-## Parameters
 
 ## Requirements
 

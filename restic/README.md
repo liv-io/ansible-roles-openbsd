@@ -67,7 +67,6 @@ consult the following sections.
 `restic_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -82,7 +81,6 @@ consult the following sections.
 `restic_cacert`
 
     Description: Define the 'restic_cacert' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -94,7 +92,6 @@ consult the following sections.
 `restic_exclude`
 
     Description: Define the 'restic_exclude' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -106,7 +103,6 @@ consult the following sections.
 `restic_http_proxy`
 
     Description: Define the 'restic_http_proxy' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -118,7 +114,6 @@ consult the following sections.
 `restic_https_proxy`
 
     Description: Define the 'restic_https_proxy' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -130,7 +125,6 @@ consult the following sections.
 `restic_include`
 
     Description: Define the 'restic_include' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -142,7 +136,6 @@ consult the following sections.
 `restic_keep_daily`
 
     Description: Set the 'restic_keep_daily' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -153,7 +146,6 @@ consult the following sections.
 `restic_keep_hourly`
 
     Description: Set the 'restic_keep_hourly' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -164,7 +156,6 @@ consult the following sections.
 `restic_keep_monthly`
 
     Description: Set the 'restic_keep_monthly' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -175,7 +166,6 @@ consult the following sections.
 `restic_keep_weekly`
 
     Description: Set the 'restic_keep_weekly' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -186,7 +176,6 @@ consult the following sections.
 `restic_limit_download`
 
     Description: Set the 'restic_limit_download' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -197,7 +186,6 @@ consult the following sections.
 `restic_limit_upload`
 
     Description: Set the 'restic_limit_upload' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -208,7 +196,6 @@ consult the following sections.
 `restic_monitor_mail_from_address`
 
     Description: Define the 'restic_monitor_mail_from_address' option.
-    Implemented: 0.4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -219,7 +206,6 @@ consult the following sections.
 `restic_monitor_mail_to_address`
 
     Description: Define the 'restic_monitor_mail_to_address' option.
-    Implemented: 0.4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -231,7 +217,6 @@ consult the following sections.
 `restic_monitor_mail_state`
 
     Description: Control the 'restic_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -241,7 +226,6 @@ consult the following sections.
 `restic_monitor_prom_state`
 
     Description: Control the 'restic_monitor_prom_state' option.
-    Implemented: 0.11.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -251,7 +235,6 @@ consult the following sections.
 `restic_monitor_prom_textfile_collector`
 
     Description: Define the 'restic_monitor_prom_textfile_collector' option.
-    Implemented: 0.11.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -262,7 +245,6 @@ consult the following sections.
 `restic_password`
 
     Description: Define the 'restic_password' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -273,7 +255,6 @@ consult the following sections.
 `restic_repository_name`
 
     Description: Define the 'restic_repository_name' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -284,7 +265,6 @@ consult the following sections.
 `restic_run_backup_day`
 
     Description: Define the 'restic_run_backup_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -295,7 +275,6 @@ consult the following sections.
 `restic_run_backup_hour`
 
     Description: Define the 'restic_run_backup_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -306,7 +285,6 @@ consult the following sections.
 `restic_run_backup_minute`
 
     Description: Define the 'restic_run_backup_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -317,7 +295,6 @@ consult the following sections.
 `restic_run_backup_month`
 
     Description: Define the 'restic_run_backup_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -328,7 +305,6 @@ consult the following sections.
 `restic_run_backup_weekday`
 
     Description: Define the 'restic_run_backup_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -339,7 +315,6 @@ consult the following sections.
 `restic_server_address`
 
     Description: Define the 'restic_server_address' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -350,7 +325,6 @@ consult the following sections.
 `restic_server_password`
 
     Description: Define the 'restic_server_password' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -361,7 +335,6 @@ consult the following sections.
 `restic_server_port`
 
     Description: Define the 'restic_server_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -372,7 +345,6 @@ consult the following sections.
 `restic_server_username`
 
     Description: Define the 'restic_server_username' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -392,8 +364,6 @@ consult the following sections.
     Name   :
       OpenBSD 7.3: 'restic'
       OpenBSD 7.4: 'restic'
-
-## Parameters
 
 ## Requirements
 

@@ -73,7 +73,6 @@ consult the following sections.
 `openntpd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -88,7 +87,6 @@ consult the following sections.
 `openntpd_check_time_day`
 
     Description: Define the 'openntpd_check_time_day' option.
-    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -99,7 +97,6 @@ consult the following sections.
 `openntpd_check_time_hour`
 
     Description: Define the 'openntpd_check_time_hour' option.
-    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -110,7 +107,6 @@ consult the following sections.
 `openntpd_check_time_minute`
 
     Description: Define the 'openntpd_check_time_minute' option.
-    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -121,7 +117,6 @@ consult the following sections.
 `openntpd_check_time_month`
 
     Description: Define the 'openntpd_check_time_month' option.
-    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -132,7 +127,6 @@ consult the following sections.
 `openntpd_check_time_weekday`
 
     Description: Define the 'openntpd_check_time_weekday' option.
-    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -143,7 +137,6 @@ consult the following sections.
 `openntpd_check_time_offset_limit`
 
     Description: Set the 'openntpd_check_time_offset_limit' option.
-    Implemented: 1.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -154,7 +147,6 @@ consult the following sections.
 `openntpd_check_time_state`
 
     Description: Control the 'openntpd_check_time_state' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -164,7 +156,6 @@ consult the following sections.
 `openntpd_listen`
 
     Description: Define the 'openntpd_listen' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -179,7 +170,6 @@ consult the following sections.
 `openntpd_monitor_mail_from_address`
 
     Description: Define the 'openntpd_monitor_mail_from_address' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -190,7 +180,6 @@ consult the following sections.
 `openntpd_monitor_mail_to_address`
 
     Description: Define the 'openntpd_monitor_mail_to_address' option.
-    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -202,7 +191,6 @@ consult the following sections.
 `openntpd_monitor_mail_state`
 
     Description: Control the 'openntpd_monitor_mail_state' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -212,7 +200,6 @@ consult the following sections.
 `openntpd_monitor_monit_state`
 
     Description: Control the 'openntpd_monitor_monit_state' option.
-    Implemented: 5.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -222,7 +209,6 @@ consult the following sections.
 `openntpd_monitor_prom_state`
 
     Description: Control the 'openntpd_monitor_prom_state' option.
-    Implemented: 5.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -232,7 +218,6 @@ consult the following sections.
 `openntpd_monitor_prom_textfile_collector`
 
     Description: Define the 'openntpd_monitor_prom_textfile_collector' option.
-    Implemented: 5.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -243,7 +228,6 @@ consult the following sections.
 `openntpd_server`
 
     Description: Define the 'openntpd_server' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -259,7 +243,6 @@ consult the following sections.
 `openntpd_servers`
 
     Description: Define the 'openntpd_servers' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -275,8 +258,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

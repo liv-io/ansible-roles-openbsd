@@ -73,7 +73,6 @@ vars:
 `sysctl_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -86,7 +85,6 @@ vars:
 `sysctl_config_all`
 
     Description: Define the 'sysctl_config_all' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -99,7 +97,6 @@ vars:
 `sysctl_config_dependencies`
 
     Description: Define the 'sysctl_config_dependencies' option.
-    Implemented: 1.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -112,7 +109,6 @@ vars:
 `sysctl_config_group`
 
     Description: Define the 'sysctl_config_group' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -125,7 +121,6 @@ vars:
 `sysctl_config_host`
 
     Description: Define the 'sysctl_config_host' option.
-    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -138,8 +133,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

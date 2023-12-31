@@ -76,7 +76,6 @@ vars:
 `wireguard_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -89,7 +88,6 @@ vars:
 `wireguard_config`
 
     Description: Define the 'wireguard_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -101,7 +99,6 @@ vars:
 `wireguard_monitor_monit_state`
 
     Description: Control the 'wireguard_monitor_monit_state' option.
-    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -120,8 +117,6 @@ vars:
     Name   :
       OpenBSD 7.3: 'wireguard-tools'
       OpenBSD 7.4: 'wireguard-tools'
-
-## Parameters
 
 ## Requirements
 

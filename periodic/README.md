@@ -52,7 +52,6 @@ consult the following sections.
 `periodic_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -65,7 +64,6 @@ consult the following sections.
 `periodic_daily_state`
 
     Description: Control the 'periodic_daily_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -75,7 +73,6 @@ consult the following sections.
 `periodic_monthly_state`
 
     Description: Control the 'periodic_monthly_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -85,7 +82,6 @@ consult the following sections.
 `periodic_weekly_state`
 
     Description: Control the 'periodic_weekly_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Boolean
@@ -95,8 +91,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 
