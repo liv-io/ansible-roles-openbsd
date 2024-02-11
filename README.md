@@ -13,11 +13,6 @@
   * [Features](#features)
   * [Support](#support)
   * [Dependencies](#dependencies)
-* [Setup](#setup)
-  * [Requirements](#requirements)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
 * [License](#license)
 * [Credits](#credits)
 * [Appendix](#appendix)
@@ -61,20 +56,6 @@ The Ansible control machine depends on:
 
 The Ansible managed node depends on:
 * [Python](https://github.com/python/cpython) >= 3.10.0
-
-## Setup
-
-### Requirements
-
-### Installation
-
-## Usage
-
-## Roadmap
-
-* Add IPv6 support
-* Support monitoring via Coremon
-* Add OpenBSD support (cron)
 
 ## License
 
