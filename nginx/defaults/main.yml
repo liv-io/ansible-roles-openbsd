@@ -22,5 +22,4 @@ nginx_monitor_monit_state: False
 nginx_vhosts_d: 'vhosts.d'
 
 nginx_worker_connections: 1024
-
 nginx_worker_rlimit_nofile: 1024

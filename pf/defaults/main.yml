@@ -16,25 +16,19 @@ pf_filters_all:
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
 
 pf_filters_group: []
-
 pf_filters_host: []
-
 pf_filters_policies:
   - {action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'}
   - {action: 'block', direction: 'out', log: False, comment: 'Default outgoing policy'}
 
 pf_macros_all: []
-
 pf_macros_group: []
-
 pf_macros_host: []
-
 pf_macros_state_all:
   - {name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'}
   - {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}
 
 pf_macros_state_group: []
-
 pf_macros_state_host: []
 
 pf_normalization_scrub:
@@ -42,27 +36,16 @@ pf_normalization_scrub:
   - {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'reassemble tcp'}, comment: 'Scrub: Outgoing traffic normalization'}
 
 pf_options_block_policy: 'drop'
-
 pf_options_debug: 'crit'
-
 pf_options_fingerprints: '/etc/pf.os'
-
 pf_options_hostid: ''
-
 pf_options_limits: []
-
 pf_options_loginterface: ''
-
 pf_options_optimization: 'normal'
-
 pf_options_reassemble: True
-
 pf_options_ruleset_optimization: 'basic'
-
 pf_options_skip: ['lo']
-
 pf_options_state_defaults: []
-
 pf_options_state_policy: 'floating'
 
 pf_options_timeouts: []
@@ -70,14 +53,11 @@ pf_options_timeouts: []
 pf_pf_dir_name: 'pf'
 
 pf_queues_all: []
-
 pf_queues_group: []
-
 pf_queues_host: []
 
 pf_tables_all:
   - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
 
 pf_tables_group: []
-
 pf_tables_host: []

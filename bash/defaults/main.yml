@@ -23,5 +23,4 @@ bash_histtimeformat: '%F %T  '
 bash_prompt_command: 'history -a'
 
 bash_tmout: '1800'
-
 bash_tmout_readonly: True
