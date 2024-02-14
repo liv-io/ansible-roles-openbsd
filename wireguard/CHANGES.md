@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2024-02-14)
+
+### Features
+
+- Add option to define routes
+
 ## 1.1.0 (2023-10-19)
 
 ### Changes
