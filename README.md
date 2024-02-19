@@ -83,7 +83,7 @@ See `CREDITS` file for more information.
 
 |Node Exporter|IPMI Exporter|
 |---          |---          |
-|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/4d61301d-696c-4de8-908d-3ffef1502652 height="200" title="Node Exporter">|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/4ff7a7ea-a6b9-4e95-9da5-b8692aa16cb7 height="200" title="IPMI Exporter">|
+|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/77a06411-50db-445c-9b52-7407bc38566d height="200" title="Node Exporter">|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/4ff7a7ea-a6b9-4e95-9da5-b8692aa16cb7 height="200" title="IPMI Exporter">|
 
 |Network Traffic|Ping Prober|
 |---            |---        |
