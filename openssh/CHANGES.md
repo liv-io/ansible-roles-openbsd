@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.1 (2024-03-08)
+
+### Enhancements
+
+- Reduce monit protocol timeout from 60 to 10 seconds
+
 ## 1.1.0 (2023-10-19)
 
 ### Changes
