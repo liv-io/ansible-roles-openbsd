@@ -72,7 +72,6 @@
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
   check_mode: False
-  when: (node_exporter_monitor_monit_state == True)
   tags:
     - node_exporter
 
@@ -101,6 +100,5 @@
   changed_when: (register_check_pf.rc > 2)
   failed_when: (register_check_pf.rc > 2)
   check_mode: False
-  when: (node_exporter_pf_state == True)
   tags:
     - node_exporter
