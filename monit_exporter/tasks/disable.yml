@@ -38,6 +38,40 @@
   tags:
     - monit_exporter
 
+- name: create file monit_exporter.pf
+  template:
+    src: "{{file_src_monit_exporter_pf}}"
+    dest: "{{file_dst_monit_exporter_pf}}"
+    mode: "{{file_mode_monit_exporter_pf}}"
+    owner: "{{file_owner_monit_exporter_pf}}"
+    group: "{{file_group_monit_exporter_pf}}"
+  notify: reload pf
+  when: (monit_exporter_pf_state == True)
+  tags:
+    - monit_exporter
+
+- name: remove file monit_exporter.pf
+  file:
+    state: absent
+    path: "{{file_dst_monit_exporter_pf}}"
+  notify: reload pf
+  when: (monit_exporter_pf_state == False)
+  tags:
+    - monit_exporter
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (monit_exporter_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - monit_exporter
+
 - name: status monit_exporter
   command: "{{command_cmd_status_monit_exporter}}"
   register: register_status_monit_exporter

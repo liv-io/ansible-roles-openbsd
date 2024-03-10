@@ -127,7 +127,31 @@
   tags:
     - monit_exporter
 
-- name: flush meta handlers
-  meta: 'flush_handlers'
+- name: stat file pf.d
+  stat:
+    path: "{{file_dst_pf_d}}"
+  register: register_pf_d
+  when: (monit_exporter_pf_state == True)
+  tags:
+    - monit_exporter
+
+- name: create file pf.d
+  file:
+    state: directory
+    path: "{{file_dst_pf_d}}"
+    mode: "{{file_mode_pf_d}}"
+    owner: "{{file_owner_pf_d}}"
+    group: "{{file_group_pf_d}}"
+  when: (monit_exporter_pf_state == True) and (register_pf_d.stat.exists == False)
+  tags:
+    - monit_exporter
+
+- name: check pf
+  shell: "{{command_cmd_check_pf}}"
+  register: register_check_pf
+  changed_when: (register_check_pf.rc > 2)
+  failed_when: (register_check_pf.rc > 2)
+  check_mode: False
+  when: (monit_exporter_pf_state == True)
   tags:
     - monit_exporter

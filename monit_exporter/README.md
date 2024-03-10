@@ -87,6 +87,28 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`monit_exporter_pf_filters`
+
+    Description: Define the 'monit_exporter_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 9388 # monit_exporter from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port 9388 # monit_exporter from unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto tcp from 10.0.0.0/8 to port 9388 # monit_exporter from internal-networks
+
+`monit_exporter_pf_state`
+
+    Description: Control the 'monit_exporter_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `monit_exporter_version`
 
     Description: Define the 'monit_exporter_version' option.
