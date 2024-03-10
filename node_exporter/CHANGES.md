@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2024-03-10)
+
+### Features
+
+- Add parameter `node_exporter_pf_filters`
+- Add parameter `node_exporter_pf_state`
+
 ## 1.1.0 (2023-10-19)
 
 ### Changes

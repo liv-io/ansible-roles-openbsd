@@ -3,3 +3,9 @@
 node_exporter_state: 'enable'
 
 node_exporter_monitor_monit_state: False
+
+node_exporter_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 9100 # node_exporter from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 9100 # node_exporter from unique local addresses
+
+node_exporter_pf_state: False

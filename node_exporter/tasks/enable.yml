@@ -42,6 +42,40 @@
   tags:
     - node_exporter
 
+- name: create file node_exporter.pf
+  template:
+    src: "{{file_src_node_exporter_pf}}"
+    dest: "{{file_dst_node_exporter_pf}}"
+    mode: "{{file_mode_node_exporter_pf}}"
+    owner: "{{file_owner_node_exporter_pf}}"
+    group: "{{file_group_node_exporter_pf}}"
+  notify: reload pf
+  when: (node_exporter_pf_state == True)
+  tags:
+    - node_exporter
+
+- name: remove file node_exporter.pf
+  file:
+    state: absent
+    path: "{{file_dst_node_exporter_pf}}"
+  notify: reload pf
+  when: (node_exporter_pf_state == False)
+  tags:
+    - node_exporter
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (node_exporter_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - node_exporter
+
 - name: status node_exporter
   command: "{{command_cmd_status_node_exporter}}"
   register: register_status_node_exporter

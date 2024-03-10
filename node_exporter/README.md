@@ -87,6 +87,28 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`node_exporter_pf_filters`
+
+    Description: Define the 'node_exporter_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 9100 # node_exporter from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port 9100 # node_exporter from unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto tcp from 10.0.0.0/8 to port 9100 # node_exporter from internal-networks
+
+`node_exporter_pf_state`
+
+    Description: Control the 'node_exporter_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 ## Conflicts
 
 ## Dependencies

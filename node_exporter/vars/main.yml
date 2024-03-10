@@ -28,10 +28,31 @@ file_mode_node_exporter_cfg: '0640'
 file_owner_node_exporter_cfg: 'root'
 file_group_node_exporter_cfg: 'wheel'
 
+# node_exporter.pf
+file_src_node_exporter_pf: 'node_exporter.pf'
+file_dst_node_exporter_pf: '/etc/pf.d/node_exporter.conf'
+file_mode_node_exporter_pf: '0600'
+file_owner_node_exporter_pf: 'root'
+file_group_node_exporter_pf: 'wheel'
+
 # node_exporter_flags
 file_line_node_exporter_flags: "node_exporter_flags=\"--collector.textfile.directory='/var/node_exporter/textfile_collector'\""
 file_regexp_node_exporter_flags: 'node_exporter_flags'
 file_dest_node_exporter_flags: '/etc/rc.conf.local'
+
+# pf.d
+file_dst_pf_d: '/etc/pf.d'
+file_mode_pf_d: '0750'
+file_owner_pf_d: 'root'
+file_group_pf_d: 'wheel'
+
+# includes.conf
+file_dst_includes_conf: '/etc/pf.d/includes.conf'
+file_line_includes_conf: "include '{{file_dst_node_exporter_pf}}'"
+file_regexp_includes_conf: "^include '{{file_dst_node_exporter_pf}}'$"
+file_mode_includes_conf: '0600'
+file_owner_includes_conf: 'root'
+file_group_includes_conf: 'wheel'
 
 # check node_exporter
 command_cmd_check_node_exporter: 'rcctl check node_exporter'
@@ -53,6 +74,15 @@ command_cmd_status_node_exporter: 'rcctl get node_exporter status'
 
 # stop node_exporter
 command_cmd_stop_node_exporter: 'rcctl stop node_exporter'
+
+# check pf
+command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
+
+# reload pf
+command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+
+# validate pf
+command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
 
 # monit
 service_name_monit: 'monit'
