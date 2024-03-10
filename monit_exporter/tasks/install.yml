@@ -123,7 +123,6 @@
   changed_when: (register_check_service_monit.rc > 2)
   failed_when: (register_check_service_monit.rc > 2)
   check_mode: False
-  when: (monit_exporter_monitor_monit_state == True)
   tags:
     - monit_exporter
 
@@ -152,6 +151,5 @@
   changed_when: (register_check_pf.rc > 2)
   failed_when: (register_check_pf.rc > 2)
   check_mode: False
-  when: (monit_exporter_pf_state == True)
   tags:
     - monit_exporter
