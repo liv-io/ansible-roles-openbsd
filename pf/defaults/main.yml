@@ -2,44 +2,83 @@
 
 pf_state: 'enable'
 
-pf_filters_all:
-  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
-  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
-  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
-  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'}
-  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
+pf_filters_default: |
+  # IPv4 ingress
+  pass in quick inet proto icmp icmp-type echorep # echo reply
+  pass in quick inet proto icmp icmp-type unreach # destination unreachable
+  pass in quick inet proto icmp icmp-type squench # packet loss, slow down
+  pass in quick inet proto icmp icmp-type echoreq # echo request
+  pass in quick inet proto icmp icmp-type timex # time exceeded
+  pass in quick inet proto icmp icmp-type paramprob # invalid IP header
+  # IPv6 ingress
+  pass in quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
+  pass in quick inet6 proto icmp6 icmp6-type toobig # packet too big
+  pass in quick inet6 proto icmp6 icmp6-type timex # time exceeded
+  pass in quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+  pass in quick inet6 proto icmp6 icmp6-type echoreq # echo service request
+  pass in quick inet6 proto icmp6 icmp6-type echorep # echo service reply
+  pass in quick inet6 proto icmp6 icmp6-type routeradv # router advertisement
+  pass in quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+  pass in quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
+  # IPv4 egress
+  pass out quick inet proto icmp icmp-type echorep # echo reply
+  pass out quick inet proto icmp icmp-type unreach # destination unreachable
+  pass out quick inet proto icmp icmp-type squench # packet loss, slow down
+  pass out quick inet proto icmp icmp-type echoreq # echo request
+  pass out quick inet proto icmp icmp-type timex # time exceeded
+  pass out quick inet proto icmp icmp-type paramprob # invalid IP header
+  # IPv6 egress
+  pass out quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
+  pass out quick inet6 proto icmp6 icmp6-type toobig # packet too big
+  pass out quick inet6 proto icmp6 icmp6-type timex # time exceeded
+  pass out quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+  pass out quick inet6 proto icmp6 icmp6-type echoreq # echo service request
+  pass out quick inet6 proto icmp6 icmp6-type echorep # echo service reply
+  pass out quick inet6 proto icmp6 icmp6-type routersol # router solicitation
+  pass out quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+  pass out quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
 
-pf_filters_group: []
-pf_filters_host: []
-pf_filters_policies:
-  - {action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'}
-  - {action: 'block', direction: 'out', log: False, comment: 'Default outgoing policy'}
+pf_filters_all: |
+  # IPv4 ingress
+  pass in inet proto tcp from any to port 22 # ssh from any
+  # IPv6 ingress
+  pass in inet6 proto tcp from any to port 22 # ssh from any
+  # IPv4 egress
+  pass out inet proto { tcp, udp } to any port 53 # dns to any
+  pass out inet proto udp to any port 123 # ntp to any
+  pass out inet proto tcp to any port { 80, 443 } # http, https to any
+  # IPv6 egress
+  pass out inet6 proto { tcp, udp } to any port 53 # dns to any
+  pass out inet6 proto udp to any port 123 # ntp to any
+  pass out inet6 proto tcp to any port { 80, 443 } # http, https to any
 
-pf_macros_all: []
-pf_macros_group: []
-pf_macros_host: []
-pf_macros_state_all:
-  - {name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'}
-  - {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}
+pf_filters_group: ''
+pf_filters_host: ''
+pf_filters_policies: |
+  # default incoming policy
+  block in log all
+  # default outgoing policy
+  block out all
 
-pf_macros_state_group: []
-pf_macros_state_host: []
+pf_macros_default:
+  default_tcp: flags S/SA modulate state
+  default_udp: keep state
 
-pf_normalization_scrub:
-  - {action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'reassemble tcp'}, comment: 'Scrub: Incoming traffic normalization'}
-  - {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'reassemble tcp'}, comment: 'Scrub: Outgoing traffic normalization'}
+pf_macros_all: {}
+pf_macros_group: {}
+pf_macros_host: {}
+
+pf_normalization_scrub: |
+  # scrub incoming traffic
+  match in from any to any scrub (reassemble tcp)
+  # scrub outgoing traffic
+  match out from any to any scrub (random-id, reassemble tcp)
 
 pf_options_block_policy: 'drop'
 pf_options_debug: 'crit'
 pf_options_fingerprints: '/etc/pf.os'
 pf_options_hostid: ''
-pf_options_limits: []
+pf_options_limits: {}
 pf_options_loginterface: ''
 pf_options_optimization: 'normal'
 pf_options_reassemble: True
@@ -47,17 +86,19 @@ pf_options_ruleset_optimization: 'basic'
 pf_options_skip: ['lo']
 pf_options_state_defaults: []
 pf_options_state_policy: 'floating'
+pf_options_timeouts: {}
 
-pf_options_timeouts: []
+pf_queues_default: ''
+pf_queues_all: ''
+pf_queues_group: ''
+pf_queues_host: ''
 
-pf_pf_dir_name: 'pf'
+pf_tables_default: |
+  # private address space (RFC 1918)
+  table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+  # unique local addresses (RFC 4193)
+  table <rfc4193> const { fc00::/7 }
 
-pf_queues_all: []
-pf_queues_group: []
-pf_queues_host: []
-
-pf_tables_all:
-  - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
-
-pf_tables_group: []
-pf_tables_host: []
+pf_tables_all: ''
+pf_tables_group: ''
+pf_tables_host: ''

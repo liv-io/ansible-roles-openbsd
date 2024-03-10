@@ -42,55 +42,6 @@
   tags:
     - pf
 
-- name: remove file anchors.conf
-  file:
-    state: absent
-    path: "{{file_dst_anchors_conf}}"
-  tags:
-    - pf
-
-- name: remove file filters.conf
-  file:
-    state: absent
-    path: "{{file_dst_filters_conf}}"
-  tags:
-    - pf
-
-- name: remove file macros.conf
-  file:
-    state: absent
-    path: "{{file_dst_macros_conf}}"
-  tags:
-    - pf
-
-- name: remove file normalization.conf
-  file:
-    state: absent
-    path: "{{file_dst_normalization_conf}}"
-  tags:
-    - pf
-
-- name: remove file options.conf
-  file:
-    state: absent
-    path: "{{file_dst_options_conf}}"
-  tags:
-    - pf
-
-- name: remove file queues.conf
-  file:
-    state: absent
-    path: "{{file_dst_queues_conf}}"
-  tags:
-    - pf
-
-- name: remove file tables.conf
-  file:
-    state: absent
-    path: "{{file_dst_tables_conf}}"
-  tags:
-    - pf
-
 - name: remove file pf.conf
   file:
     state: absent
@@ -98,9 +49,9 @@
   tags:
     - pf
 
-- name: remove file pf.dir
+- name: remove file pf.d
   file:
     state: absent
-    path: "{{file_dst_ntp_script_dir}}"
+    path: "{{file_dst_pf_d}}"
   tags:
     - pf

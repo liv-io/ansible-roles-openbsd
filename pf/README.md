@@ -66,33 +66,27 @@ consult the following sections.
 
 ```
 vars:
-  pf_filters_all:
-    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
-    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
-    - {action: 'pass', direction: 'in', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
-    - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
-    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
-    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
-    - {action: 'pass', direction: 'out', quick: True, version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
-    - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To dns servers'}
-    - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To dns servers'}
-    - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
-    - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.2.1.15'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To package repository'}
-
-  pf_filters_group:
-    - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
-    - {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
-
-  pf_filters_host:
-    - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'}
-    - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
-    - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
-
-  pf_queues_all:
-    - {name: 'root_data', interface: 'vio0', bandwidth: '1G'}
-    - {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'}
-    - {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'}
-    - {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}
+  pf_filters_all: |
+    # IPv4 ingress
+    pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 22 # ssh from internal private addresses
+    pass in inet proto tcp from 10.1.1.13 to port 9100 # node_exporter from monitoring-server
+    pass in inet proto tcp from 10.1.1.13 to port 9115 # blackbox_exporter from monitoring-server
+    pass in inet proto tcp from 10.1.1.13 to port 9388 # monit_exporter from monitoring-server
+    # IPv4 egress
+    pass out inet proto { tcp, udp } to 10.1.1.10 port 53 # dns to dns-server
+    pass out inet proto udp to 10.1.1.11 port 123 # ntp to ntp-server
+    pass out inet proto tcp to 10.1.1.15 port 443 # https to rest-server
+    pass out inet proto tcp to 10.1.1.14 port 514 # syslog to logging-server
+    pass out inet proto tcp to 10.1.1.12 port 3128 # squid to forward-proxy
+  pf_filters_group: |
+    pass in inet proto tcp from any to port { 80, 443 } # http, https from any
+    pass out inet proto tcp to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port { 80, 443 } # http, https to internal private addresses
+  pf_queues_all: |
+    # vio0
+    queue root_data on vio0 bandwidth 1G
+    queue ssh parent root_data bandwidth 5M min 1M max 100M
+    queue http parent root_data bandwidth 10M max 400M
+    queue other parent root_data bandwidth 50M max 500M default
 ```
 
 ## Parameters
@@ -113,174 +107,219 @@ vars:
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`pf_filters_default`
+
+    Description: Define the 'pf_filters_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      # IPv4 ingress
+      pass in quick inet proto icmp icmp-type echorep # echo reply
+      pass in quick inet proto icmp icmp-type unreach # destination unreachable
+      pass in quick inet proto icmp icmp-type squench # packet loss, slow down
+      pass in quick inet proto icmp icmp-type echoreq # echo request
+      pass in quick inet proto icmp icmp-type timex # time exceeded
+      pass in quick inet proto icmp icmp-type paramprob # invalid IP header
+      # IPv6 ingress
+      pass in quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
+      pass in quick inet6 proto icmp6 icmp6-type toobig # packet too big
+      pass in quick inet6 proto icmp6 icmp6-type timex # time exceeded
+      pass in quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+      pass in quick inet6 proto icmp6 icmp6-type echoreq # echo service request
+      pass in quick inet6 proto icmp6 icmp6-type echorep # echo service reply
+      pass in quick inet6 proto icmp6 icmp6-type routeradv # router advertisement
+      pass in quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+      pass in quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
+      # IPv4 egress
+      pass out quick inet proto icmp icmp-type echorep # echo reply
+      pass out quick inet proto icmp icmp-type unreach # destination unreachable
+      pass out quick inet proto icmp icmp-type squench # packet loss, slow down
+      pass out quick inet proto icmp icmp-type echoreq # echo request
+      pass out quick inet proto icmp icmp-type timex # time exceeded
+      pass out quick inet proto icmp icmp-type paramprob # invalid IP header
+      # IPv6 egress
+      pass out quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
+      pass out quick inet6 proto icmp6 icmp6-type toobig # packet too big
+      pass out quick inet6 proto icmp6 icmp6-type timex # time exceeded
+      pass out quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+      pass out quick inet6 proto icmp6 icmp6-type echoreq # echo service request
+      pass out quick inet6 proto icmp6 icmp6-type echorep # echo service reply
+      pass out quick inet6 proto icmp6 icmp6-type routersol # router solicitation
+      pass out quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+      pass out quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
+    Options    :
+      Examples: |
+        # IPv4 ingress
+        pass in quick inet proto icmp icmp-type echorep # echo reply
+        pass in quick inet proto icmp icmp-type echoreq # echo request
+        # IPv4 egress
+        pass out quick inet proto icmp icmp-type echorep # echo reply
+        pass out quick inet proto icmp icmp-type echoreq # echo request
+      None    : ''
+
 `pf_filters_all`
 
     Description: Define the 'pf_filters_all' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
+    Type       : String
+    Default    : |
+      # IPv4 ingress
+      pass in inet proto tcp from any to port 22 # ssh from any
+      # IPv6 ingress
+      pass in inet6 proto tcp from any to port 22 # ssh from any
+      # IPv4 egress
+      pass out inet proto { tcp, udp } to any port 53 # dns to any
+      pass out inet proto udp to any port 123 # ntp to any
+      pass out inet proto tcp to any port { 80, 443 } # http, https to any
+      # IPv6 egress
+      pass out inet6 proto { tcp, udp } to any port 53 # dns to any
+      pass out inet6 proto udp to any port 123 # ntp to any
+      pass out inet6 proto tcp to any port { 80, 443 } # http, https to any
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'},
-                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
-      None    : []
+      Examples: |
+        # IPv4 ingress
+        pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 22 # ssh from internal private addresses
+        pass in inet proto tcp from 10.1.1.13 to port 9100 # node_exporter from monitoring-server
+        pass in inet proto tcp from 10.1.1.13 to port 9115 # blackbox_exporter from monitoring-server
+        pass in inet proto tcp from 10.1.1.13 to port 9388 # monit_exporter from monitoring-server
+        # IPv4 egress
+        pass out inet proto { tcp, udp } to 10.1.1.10 port 53 # dns to dns-server
+        pass out inet proto udp to 10.1.1.11 port 123 # ntp to ntp-server
+        pass out inet proto tcp to 10.1.1.15 port 443 # https to rest-server
+        pass out inet proto tcp to 10.1.1.14 port 514 # syslog to logging-server
+        pass out inet proto tcp to 10.1.1.12 port 3128 # squid to forward-proxy
+      None    : ''
 
 `pf_filters_group`
 
-    Description: Define the 'pf_filters_group' option.
+    Description: Define the 'pf_filters_all' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'},
-                 {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}]
-      None    : []
+      Examples: |
+        pass in inet proto tcp from any to port { 80, 443 } # http, https from any
+        pass out inet proto tcp to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port { 80, 443 } # http, https to internal private addresses
+      None    : ''
 
 `pf_filters_host`
 
     Description: Define the 'pf_filters_host' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
-                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'},
-                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
-      None    : []
+      Examples: |
+        pass in inet proto tcp from any to port { 80, 443 } # http, https from any
+        pass out inet proto tcp to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port { 80, 443 } # http, https to internal private addresses
+      None    : ''
 
 `pf_filters_policies`
 
     Description: Define the 'pf_filters_policies' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'},
-                  {action: 'block', direction: 'out', log: False, comment: 'Default outgoing policy'}]
+    Type       : String
+    Default    : |
+      # default incoming policy
+      block in log all
+      # default outgoing policy
+      block out all
     Options    :
-      Examples: [{action: 'block', direction: 'in', log: True, comment: 'Default incoming policy'},
-                 {action: 'pass', direction: 'out', log: True, comment: 'Default outgoing policy'}]
-      None    : []
+      Examples: |
+        # default incoming policy
+        block in log all
+        # default outgoing policy
+        pass out log all
+
+`pf_macros_default`
+
+    Description: Define the 'pf_macros_default' option.
+                 The flags 'S/SA' are safe when using scrubbing.
+                 Use the flags 'S/SFRA' when scrubbing is disabled.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Hash
+    Default    : {default_tcp: flags S/SA modulate state, default_udp: keep state}
+    Options    :
+      Examples:
+        default_tcp: flags S/SFRA modulate state
+        default_udp: keep state
+      None: {}
 
 `pf_macros_all`
 
     Description: Define the 'pf_macros_all' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : Hash
+    Default    : {}
     Options    :
-      Examples: [{name: 'h_ns01', value: '10.11.1.11', comment: 'dns server 01'},
-                 {name: 'h_ns02', value: '10.21.1.11', comment: 'dns server 02'},
-                 {name: 'g_ns', value: '{ $h_ns01, $h_ns02 }', comment: 'dns servers'},
-                 {name: 'h_ntp01', value: '10.2.1.11', comment: 'ntp server 01'},
-                 {name: 'h_ntp02', value: '10.2.1.12', comment: 'ntp server 02'},
-                 {name: 'h_ntp03', value: '10.2.1.13', comment: 'ntp server 03'},
-                 {name: 'h_ntp04', value: '10.2.1.14', comment: 'ntp server 04'},
-                 {name: 'g_ntp', value: '{ $h_ntp01, $h_ntp02, $h_ntp03, $h_ntp04 }', comment: 'ntp servers'}]
-      None    : []
+      Examples:
+        dns_server: 10.1.1.10
+        ntp_server: 10.1.1.11
+        forward_proxy: 10.1.1.12
+        monitoring_server: 10.1.1.13
+        logging_server: 10.1.1.14
+        rest_server: 10.1.1.15
+      None: {}
 
 `pf_macros_group`
 
     Description: Define the 'pf_macros_group' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : Hash
+    Default    : {}
     Options    :
-      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
-                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
-                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
-      None    : []
+      Examples:
+        dns_server: 10.1.1.10
+        ntp_server: 10.1.1.11
+        forward_proxy: 10.1.1.12
+        monitoring_server: 10.1.1.13
+        logging_server: 10.1.1.14
+        rest_server: 10.1.1.15
+      None: {}
 
 `pf_macros_host`
 
     Description: Define the 'pf_macros_host' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : Hash
+    Default    : {}
     Options    :
-      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
-                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
-                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
-      None    : []
-
-`pf_macros_state_all`
-
-    Description: Define the 'pf_macros_state_all' option.
-                 The flags 'S/SA' are safe when using scrubbing. Use the flags
-                 'S/SFRA' when scrubbing is disabled.
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
-                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-    Options    :
-      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
-                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-      None    : []
-
-`pf_macros_state_group`
-
-    Description: Define the 'pf_macros_state_group' option.
-                 The flags 'S/SA' are safe when using scrubbing. Use the flags
-                 'S/SFRA' when scrubbing is disabled.
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
-                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-      None    : []
-
-`pf_macros_state_host`
-
-    Description: Define the 'pf_macros_state_host' option.
-                 The flags 'S/SA' are safe when using scrubbing. Use the flags
-                 'S/SFRA' when scrubbing is disabled.
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
-                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-      None    : []
+      Examples:
+        dns_server: 10.1.1.10
+        ntp_server: 10.1.1.11
+        forward_proxy: 10.1.1.12
+        monitoring_server: 10.1.1.13
+        logging_server: 10.1.1.14
+        rest_server: 10.1.1.15
+      None: {}
 
 `pf_normalization_scrub`
 
     Description: Define the 'pf_normalization_scrub' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'reassemble tcp'}, comment: 'Scrub: Incoming traffic normalization'},
-                  {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'reassemble tcp'}, comment: 'Scrub: Outgoing traffic normalization'}]
+    Type       : String
+    Default    : |
+      # scrub incoming traffic
+      match in from any to any scrub (reassemble tcp)
+      # scrub outgoing traffic
+      match out from any to any scrub (random-id, reassemble tcp)
     Options    :
-      Examples: [{action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'reassemble tcp'}, comment: 'Scrub: Incoming traffic normalization'},
-                 {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'reassemble tcp'}, comment: 'Scrub: Outgoing traffic normalization'}]
-      None    : []
+      Examples: |
+        # scrub incoming traffic
+        match in from any to any scrub (reassemble tcp)
+        # scrub outgoing traffic
+        match out from any to any scrub (random-id, reassemble tcp)
+      None: ''
 
 `pf_options_block_policy`
 
@@ -337,15 +376,16 @@ vars:
     Description: Define the 'pf_options_limits' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : Hash
+    Default    : {}
     Options    :
-      Examples: [{name: 'states', value: '20000', comment: 'Limit: Maximum entries for state table'},
-                 {name: 'frags', value: '20000', comment: 'Limit: Maximum entries for fragment reassembly'},
-                 {name: 'src-nodes', value: '2000', comment: 'Limit: Maximum entries for tracking source IP addresses'},
-                 {name: 'tables', value: '1000', comment: 'Limit: Maximum of tables'},
-                 {name: 'table-entries', value: '100000', comment: 'Limit: Overall maximum of addresses'}]
-      None    : []
+      Examples:
+        states: 20000
+        frags: 20000
+        src-nodes: 2000
+        tables: 1000
+        table-entries: 100000
+      None    : {}
 
 `pf_options_loginterface`
 
@@ -431,99 +471,143 @@ vars:
     Description: Define the 'pf_options_timeouts' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : Hash
+    Default    : {}
     Options    :
-      Examples: [{name: 'tcp.first', value: '120', comment: 'State after the first packet'},
-                 {name: 'tcp.established', value: '86400', comment: 'Fully established state'}] |
-                [{name: 'adaptive.start', value: '6000', comment: 'Adaptive scaling start'},
-                 {name: 'adaptive.end', value: '12000', comment: 'Adaptive scaling end'}]
-      None    : []
+      Examples:
+        tcp.first: 120
+        tcp.established: 86400
+        adaptive.start: 6000
+        adaptive.end: 12000
+      None    : {}
 
-`pf_pf_dir_name`
+`pf_queues_default`
 
-    Description: Define the 'pf_pf_dir_name' option.
+    Description: Define the 'pf_queues_default' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'pf'
+    Default    : ''
     Options    :
-      Examples: 'pf' | 'pf.d' | 'pf.conf.d'
+      Examples: |
+        # vio0
+        queue root_data on vio0 bandwidth 1G
+        queue ssh parent root_data bandwidth 5M min 1M max 100M
+        queue http parent root_data bandwidth 10M max 400M
+        queue other parent root_data bandwidth 50M max 500M default
+      None    : ''
 
 `pf_queues_all`
 
     Description: Define the 'pf_queues_all' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
-                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
-                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
-      None    : []
+      Examples: |
+        # vio0
+        queue root_data on vio0 bandwidth 1G
+        queue ssh parent root_data bandwidth 5M min 1M max 100M
+        queue http parent root_data bandwidth 10M max 400M
+        queue other parent root_data bandwidth 50M max 500M default
+      None    : ''
 
 `pf_queues_group`
 
     Description: Define the 'pf_queues_group' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
-                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
-                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
-      None    : []
+      Examples: |
+        # vio0
+        queue root_data on vio0 bandwidth 1G
+        queue ssh parent root_data bandwidth 5M min 1M max 100M
+        queue http parent root_data bandwidth 10M max 400M
+        queue other parent root_data bandwidth 50M max 500M default
+      None    : ''
 
 `pf_queues_host`
 
     Description: Define the 'pf_queues_host' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
-                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
-                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
-                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: True}]
-      None    : []
+      Examples: |
+        # vio0
+        queue root_data on vio0 bandwidth 1G
+        queue ssh parent root_data bandwidth 5M min 1M max 100M
+        queue http parent root_data bandwidth 10M max 400M
+        queue other parent root_data bandwidth 50M max 500M default
+      None    : ''
+
+`pf_tables_default`
+
+    Description: Define the 'pf_tables_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      # private address space (RFC 1918)
+      table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+      # unique local addresses (RFC 4193)
+      table <rfc4193> const { fc00::/7 }
+    Options    :
+      Examples: |
+        # private address space (RFC 1918)
+        table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+        # unique local addresses (RFC 4193)
+        table <rfc4193> const { fc00::/7 }
+      None    : ''
 
 `pf_tables_all`
 
     Description: Define the 'pf_tables_all' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
-      None    : []
+      Examples: |
+        # private address space (RFC 1918)
+        table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+        # unique local addresses (RFC 4193)
+        table <rfc4193> const { fc00::/7 }
+      None    : ''
 
 `pf_tables_group`
 
     Description: Define the 'pf_tables_group' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
-      None    : []
+      Examples: |
+        # private address space (RFC 1918)
+        table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+        # unique local addresses (RFC 4193)
+        table <rfc4193> const { fc00::/7 }
+      None    : ''
 
 `pf_tables_host`
 
     Description: Define the 'pf_tables_host' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
-      None    : []
+      Examples: |
+        # private address space (RFC 1918)
+        table <rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }
+        # unique local addresses (RFC 4193)
+        table <rfc4193> const { fc00::/7 }
+      None    : ''
 
 ## Conflicts
 

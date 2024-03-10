@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2024-03-10)
+
+### Changes
+
+- Entirely redesign Ansible role
+- Change `pf_filters` data structure from list of dictionaries to string
+- Change `pf_macros` data structure from list of dictionaries to dictionary
+- Change `pf_tables` data structure from list of dictionaries to string
+- Move configuration files from `/etc/pf` to `/etc/pf.d`
+- Add support for filter rules from other Ansible roles via `/etc/pf.d/includes.conf`
+
 ## 2.0.0 (2023-12-28)
 
 ### Changes

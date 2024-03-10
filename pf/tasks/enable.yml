@@ -10,39 +10,13 @@
   tags:
     - pf
 
-- name: create file anchors.conf
+- name: create file options.conf
   template:
-    src: "{{file_src_anchors_conf}}"
-    dest: "{{file_dst_anchors_conf}}"
-    mode: "{{file_mode_anchors_conf}}"
-    owner: "{{file_owner_anchors_conf}}"
-    group: "{{file_group_anchors_conf}}"
-  notify:
-    - validate pf
-    - reload pf
-  tags:
-    - pf
-
-- name: create file filters.conf
-  template:
-    src: "{{file_src_filters_conf}}"
-    dest: "{{file_dst_filters_conf}}"
-    mode: "{{file_mode_filters_conf}}"
-    owner: "{{file_owner_filters_conf}}"
-    group: "{{file_group_filters_conf}}"
-  notify:
-    - validate pf
-    - reload pf
-  tags:
-    - pf
-
-- name: create file macros.conf
-  template:
-    src: "{{file_src_macros_conf}}"
-    dest: "{{file_dst_macros_conf}}"
-    mode: "{{file_mode_macros_conf}}"
-    owner: "{{file_owner_macros_conf}}"
-    group: "{{file_group_macros_conf}}"
+    src: "{{file_src_options_conf}}"
+    dest: "{{file_dst_options_conf}}"
+    mode: "{{file_mode_options_conf}}"
+    owner: "{{file_owner_options_conf}}"
+    group: "{{file_group_options_conf}}"
   notify:
     - validate pf
     - reload pf
@@ -62,13 +36,39 @@
   tags:
     - pf
 
-- name: create file options.conf
+- name: create file anchors.conf
   template:
-    src: "{{file_src_options_conf}}"
-    dest: "{{file_dst_options_conf}}"
-    mode: "{{file_mode_options_conf}}"
-    owner: "{{file_owner_options_conf}}"
-    group: "{{file_group_options_conf}}"
+    src: "{{file_src_anchors_conf}}"
+    dest: "{{file_dst_anchors_conf}}"
+    mode: "{{file_mode_anchors_conf}}"
+    owner: "{{file_owner_anchors_conf}}"
+    group: "{{file_group_anchors_conf}}"
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - pf
+
+- name: create file tables.conf
+  template:
+    src: "{{file_src_tables_conf}}"
+    dest: "{{file_dst_tables_conf}}"
+    mode: "{{file_mode_tables_conf}}"
+    owner: "{{file_owner_tables_conf}}"
+    group: "{{file_group_tables_conf}}"
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - pf
+
+- name: create file macros.conf
+  template:
+    src: "{{file_src_macros_conf}}"
+    dest: "{{file_dst_macros_conf}}"
+    mode: "{{file_mode_macros_conf}}"
+    owner: "{{file_owner_macros_conf}}"
+    group: "{{file_group_macros_conf}}"
   notify:
     - validate pf
     - reload pf
@@ -88,13 +88,27 @@
   tags:
     - pf
 
-- name: create file tables.conf
+- name: create file filters.conf
   template:
-    src: "{{file_src_tables_conf}}"
-    dest: "{{file_dst_tables_conf}}"
-    mode: "{{file_mode_tables_conf}}"
-    owner: "{{file_owner_tables_conf}}"
-    group: "{{file_group_tables_conf}}"
+    src: "{{file_src_filters_conf}}"
+    dest: "{{file_dst_filters_conf}}"
+    mode: "{{file_mode_filters_conf}}"
+    owner: "{{file_owner_filters_conf}}"
+    group: "{{file_group_filters_conf}}"
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - pf
+
+- name: create file includes.conf
+  copy:
+    content: ''
+    force: False
+    dest: "{{file_dst_includes_conf}}"
+    mode: "{{file_mode_includes_conf}}"
+    owner: "{{file_owner_includes_conf}}"
+    group: "{{file_group_includes_conf}}"
   notify:
     - validate pf
     - reload pf
