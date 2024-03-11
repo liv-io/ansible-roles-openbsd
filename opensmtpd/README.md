@@ -213,6 +213,31 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`opensmtpd_pf_filters`
+
+    Description: Define the 'opensmtpd_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 25 # smtp from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port 25 # smtp from unique local addresses
+      pass out inet proto tcp to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port 25 # smtp to internal private addresses
+      pass out inet6 proto tcp to fc00::/7 port 25 # smtp to unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto tcp from 10.0.0.0/8 to port 25 # smtp from internal-networks
+        pass out inet proto tcp to 10.0.0.0/8 port 25 # smtp to internal-networks
+
+`opensmtpd_pf_state`
+
+    Description: Control the 'opensmtpd_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `opensmtpd_root_mail_address`
 
     Description: Define the 'opensmtpd_root_mail_address' option.

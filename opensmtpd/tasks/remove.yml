@@ -50,6 +50,26 @@
   tags:
     - opensmtpd
 
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - opensmtpd
+
+- name: remove file opensmtpd.pf
+  file:
+    state: absent
+    path: "{{file_dst_opensmtpd_pf}}"
+  notify: reload pf
+  tags:
+    - opensmtpd
+
 - name: remove file secrets
   file:
     state: absent

@@ -68,6 +68,40 @@
   tags:
     - opensmtpd
 
+- name: create file opensmtpd.pf
+  template:
+    src: "{{file_src_opensmtpd_pf}}"
+    dest: "{{file_dst_opensmtpd_pf}}"
+    mode: "{{file_mode_opensmtpd_pf}}"
+    owner: "{{file_owner_opensmtpd_pf}}"
+    group: "{{file_group_opensmtpd_pf}}"
+  notify: reload pf
+  when: (opensmtpd_pf_state == True)
+  tags:
+    - opensmtpd
+
+- name: remove file opensmtpd.pf
+  file:
+    state: absent
+    path: "{{file_dst_opensmtpd_pf}}"
+  notify: reload pf
+  when: (opensmtpd_pf_state == False)
+  tags:
+    - opensmtpd
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (opensmtpd_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - opensmtpd
+
 - name: status opensmtpd
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd

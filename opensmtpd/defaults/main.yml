@@ -24,6 +24,14 @@ opensmtpd_match_host: []
 
 opensmtpd_monitor_monit_state: False
 
+opensmtpd_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 25 # smtp from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 25 # smtp from unique local addresses
+  pass out inet proto tcp to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port 25 # smtp to internal private addresses
+  pass out inet6 proto tcp to fc00::/7 port 25 # smtp to unique local addresses
+
+opensmtpd_pf_state: False
+
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 
 opensmtpd_secrets_all: []
