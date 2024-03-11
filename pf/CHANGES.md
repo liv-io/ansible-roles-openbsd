@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.1 (2024-03-10)
+
+### Bugs
+
+- Do not use `quick` in `pf_filters_default` ruleset (last rule to match is the winner)
+
 ## 3.0.0 (2024-03-10)
 
 ### Changes

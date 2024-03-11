@@ -4,39 +4,39 @@ pf_state: 'enable'
 
 pf_filters_default: |
   # IPv4 ingress
-  pass in quick inet proto icmp icmp-type echorep # echo reply
-  pass in quick inet proto icmp icmp-type unreach # destination unreachable
-  pass in quick inet proto icmp icmp-type squench # packet loss, slow down
-  pass in quick inet proto icmp icmp-type echoreq # echo request
-  pass in quick inet proto icmp icmp-type timex # time exceeded
-  pass in quick inet proto icmp icmp-type paramprob # invalid IP header
+  pass in inet proto icmp icmp-type echorep # echo reply
+  pass in inet proto icmp icmp-type unreach # destination unreachable
+  pass in inet proto icmp icmp-type squench # packet loss, slow down
+  pass in inet proto icmp icmp-type echoreq # echo request
+  pass in inet proto icmp icmp-type timex # time exceeded
+  pass in inet proto icmp icmp-type paramprob # invalid IP header
   # IPv6 ingress
-  pass in quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
-  pass in quick inet6 proto icmp6 icmp6-type toobig # packet too big
-  pass in quick inet6 proto icmp6 icmp6-type timex # time exceeded
-  pass in quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
-  pass in quick inet6 proto icmp6 icmp6-type echoreq # echo service request
-  pass in quick inet6 proto icmp6 icmp6-type echorep # echo service reply
-  pass in quick inet6 proto icmp6 icmp6-type routeradv # router advertisement
-  pass in quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
-  pass in quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
+  pass in inet6 proto icmp6 icmp6-type unreach # destination unreachable
+  pass in inet6 proto icmp6 icmp6-type toobig # packet too big
+  pass in inet6 proto icmp6 icmp6-type timex # time exceeded
+  pass in inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+  pass in inet6 proto icmp6 icmp6-type echoreq # echo service request
+  pass in inet6 proto icmp6 icmp6-type echorep # echo service reply
+  pass in inet6 proto icmp6 icmp6-type routeradv # router advertisement
+  pass in inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+  pass in inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
   # IPv4 egress
-  pass out quick inet proto icmp icmp-type echorep # echo reply
-  pass out quick inet proto icmp icmp-type unreach # destination unreachable
-  pass out quick inet proto icmp icmp-type squench # packet loss, slow down
-  pass out quick inet proto icmp icmp-type echoreq # echo request
-  pass out quick inet proto icmp icmp-type timex # time exceeded
-  pass out quick inet proto icmp icmp-type paramprob # invalid IP header
+  pass out inet proto icmp icmp-type echorep # echo reply
+  pass out inet proto icmp icmp-type unreach # destination unreachable
+  pass out inet proto icmp icmp-type squench # packet loss, slow down
+  pass out inet proto icmp icmp-type echoreq # echo request
+  pass out inet proto icmp icmp-type timex # time exceeded
+  pass out inet proto icmp icmp-type paramprob # invalid IP header
   # IPv6 egress
-  pass out quick inet6 proto icmp6 icmp6-type unreach # destination unreachable
-  pass out quick inet6 proto icmp6 icmp6-type toobig # packet too big
-  pass out quick inet6 proto icmp6 icmp6-type timex # time exceeded
-  pass out quick inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
-  pass out quick inet6 proto icmp6 icmp6-type echoreq # echo service request
-  pass out quick inet6 proto icmp6 icmp6-type echorep # echo service reply
-  pass out quick inet6 proto icmp6 icmp6-type routersol # router solicitation
-  pass out quick inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
-  pass out quick inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
+  pass out inet6 proto icmp6 icmp6-type unreach # destination unreachable
+  pass out inet6 proto icmp6 icmp6-type toobig # packet too big
+  pass out inet6 proto icmp6 icmp6-type timex # time exceeded
+  pass out inet6 proto icmp6 icmp6-type paramprob # invalid ipv6 header
+  pass out inet6 proto icmp6 icmp6-type echoreq # echo service request
+  pass out inet6 proto icmp6 icmp6-type echorep # echo service reply
+  pass out inet6 proto icmp6 icmp6-type routersol # router solicitation
+  pass out inet6 proto icmp6 icmp6-type neighbrsol # neighbor solicitation
+  pass out inet6 proto icmp6 icmp6-type neighbradv # neighbor advertisement
 
 pf_filters_all: |
   # IPv4 ingress
