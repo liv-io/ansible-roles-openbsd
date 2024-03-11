@@ -83,6 +83,40 @@
   tags:
     - openssh
 
+- name: create file openssh.pf
+  template:
+    src: "{{file_src_openssh_pf}}"
+    dest: "{{file_dst_openssh_pf}}"
+    mode: "{{file_mode_openssh_pf}}"
+    owner: "{{file_owner_openssh_pf}}"
+    group: "{{file_group_openssh_pf}}"
+  notify: reload pf
+  when: (openssh_pf_state == True)
+  tags:
+    - openssh
+
+- name: remove file openssh.pf
+  file:
+    state: absent
+    path: "{{file_dst_openssh_pf}}"
+  notify: reload pf
+  when: (openssh_pf_state == False)
+  tags:
+    - openssh
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (openssh_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - openssh
+
 - name: status openssh
   command: "{{command_cmd_status_openssh}}"
   register: register_status_openssh

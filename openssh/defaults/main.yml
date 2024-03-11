@@ -33,6 +33,12 @@ openssh_password_authentication: True
 
 openssh_permit_root_login: False
 
+openssh_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 22 # ssh from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 22 # ssh from unique local addresses
+
+openssh_pf_state: False
+
 openssh_port: ['22']
 
 openssh_print_motd: True
