@@ -52,3 +52,23 @@
     path: "{{file_dst_monitrc}}"
   tags:
     - monit
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - monit
+
+- name: remove file monit.pf
+  file:
+    state: absent
+    path: "{{file_dst_monit_pf}}"
+  notify: reload pf
+  tags:
+    - monit

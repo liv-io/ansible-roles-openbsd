@@ -23,6 +23,40 @@
   tags:
     - monit
 
+- name: create file monit.pf
+  template:
+    src: "{{file_src_monit_pf}}"
+    dest: "{{file_dst_monit_pf}}"
+    mode: "{{file_mode_monit_pf}}"
+    owner: "{{file_owner_monit_pf}}"
+    group: "{{file_group_monit_pf}}"
+  notify: reload pf
+  when: (monit_pf_state == True)
+  tags:
+    - monit
+
+- name: remove file monit.pf
+  file:
+    state: absent
+    path: "{{file_dst_monit_pf}}"
+  notify: reload pf
+  when: (monit_pf_state == False)
+  tags:
+    - monit
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (monit_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - monit
+
 - name: status monit
   command: "{{command_cmd_status_monit}}"
   register: register_status_monit

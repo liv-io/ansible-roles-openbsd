@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2024-03-11)
+
+### Features
+
+- Add parameter `monit_pf_filters`
+- Add parameter `monit_pf_state`
+
 ## 1.1.0 (2023-10-19)
 
 ### Changes

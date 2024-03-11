@@ -23,6 +23,12 @@ monit_mail_subject: "Monit: $EVENT '$SERVICE' ($HOST)"
 monit_mail_to:
   - {address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}
 
+monit_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 2812 # monit from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 2812 # monit from unique local addresses
+
+monit_pf_state: False
+
 monit_web_server_address: 'localhost'
 monit_web_server_allow: [{user: 'localhost'}]
 monit_web_server_port: 2812
