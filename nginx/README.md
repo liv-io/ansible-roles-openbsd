@@ -378,6 +378,28 @@ vars:
     Default    : False
     Options    : True | False
 
+`nginx_pf_filters`
+
+    Description: Define the 'nginx_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port { 80, 443 } # http, https from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port { 80, 443 } # http, https from unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto tcp from 10.0.0.0/8 to port { 80, 443 } # http, https from internal-networks
+
+`nginx_pf_state`
+
+    Description: Control the 'nginx_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `nginx_vhosts_d`
 
     Description: Define the 'nginx_vhosts_d' option.

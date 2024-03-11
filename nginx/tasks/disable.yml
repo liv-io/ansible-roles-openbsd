@@ -29,6 +29,40 @@
   tags:
     - nginx
 
+- name: create file nginx.pf
+  template:
+    src: "{{file_src_nginx_pf}}"
+    dest: "{{file_dst_nginx_pf}}"
+    mode: "{{file_mode_nginx_pf}}"
+    owner: "{{file_owner_nginx_pf}}"
+    group: "{{file_group_nginx_pf}}"
+  notify: reload pf
+  when: (nginx_pf_state == True)
+  tags:
+    - nginx
+
+- name: remove file nginx.pf
+  file:
+    state: absent
+    path: "{{file_dst_nginx_pf}}"
+  notify: reload pf
+  when: (nginx_pf_state == False)
+  tags:
+    - nginx
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (nginx_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - nginx
+
 - name: status nginx
   command: "{{command_cmd_status_nginx}}"
   register: register_status_nginx

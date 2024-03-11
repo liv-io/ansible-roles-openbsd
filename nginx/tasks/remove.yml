@@ -47,6 +47,26 @@
   tags:
     - nginx
 
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - nginx
+
+- name: remove file nginx.pf
+  file:
+    state: absent
+    path: "{{file_dst_nginx_pf}}"
+  notify: reload pf
+  tags:
+    - nginx
+
 - name: remove file nginx.conf
   file:
     state: absent

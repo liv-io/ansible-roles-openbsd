@@ -19,6 +19,12 @@ nginx_log_format_main_ssl: |-
 
 nginx_monitor_monit_state: False
 
+nginx_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port { 80, 443 } # http, https from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port { 80, 443 } # http, https from unique local addresses
+
+nginx_pf_state: False
+
 nginx_vhosts_d: 'vhosts.d'
 
 nginx_worker_connections: 1024

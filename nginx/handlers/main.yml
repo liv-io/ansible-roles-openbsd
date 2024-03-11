@@ -21,3 +21,11 @@
   service:
     state: reloaded
     name: "{{service_name_nginx}}"
+
+- name: validate pf
+  command: "{{command_cmd_validate_pf}}"
+  when: (register_check_pf.rc == 0)
+
+- name: reload pf
+  command: "{{command_cmd_reload_pf}}"
+  when: (register_check_pf.rc == 0)
