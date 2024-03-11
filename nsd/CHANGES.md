@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2024-03-11)
+
+### Bugs
+
+- Fix `monit` check task
+
+### Features
+
+- Add parameter `nsd_pf_filters`
+- Add parameter `nsd_pf_state`
+
 ## 1.1.1 (2024-01-04)
 
 ### Enhancements

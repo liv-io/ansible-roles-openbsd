@@ -18,6 +18,12 @@ nsd_ip6_state: False
 
 nsd_monitor_monit_state: False
 
+nsd_pf_filters: |
+  pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 53 # dns from internal private addresses
+  pass in inet6 proto { tcp, udp } from fc00::/7 to port 53 # dns from unique local addresses
+
+nsd_pf_state: False
+
 nsd_version: ''
 
 nsd_zone: []

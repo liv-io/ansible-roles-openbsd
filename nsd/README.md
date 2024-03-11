@@ -226,6 +226,28 @@ vars:
     Default    : False
     Options    : True | False
 
+`nsd_pf_filters`
+
+    Description: Define the 'nsd_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 53 # dns from internal private addresses
+      pass in inet6 proto { tcp, udp } from fc00::/7 to port 53 # dns from unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto { tcp, udp } from 10.0.0.0/8 to port 53 # dns from internal-networks
+
+`nsd_pf_state`
+
+    Description: Control the 'nsd_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `nsd_version`
 
     Description: Define the 'nsd_version' option.
