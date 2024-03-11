@@ -50,6 +50,40 @@
   tags:
     - openntpd
 
+- name: create file openntpd.pf
+  template:
+    src: "{{file_src_openntpd_pf}}"
+    dest: "{{file_dst_openntpd_pf}}"
+    mode: "{{file_mode_openntpd_pf}}"
+    owner: "{{file_owner_openntpd_pf}}"
+    group: "{{file_group_openntpd_pf}}"
+  notify: reload pf
+  when: (openntpd_pf_state == True)
+  tags:
+    - openntpd
+
+- name: remove file openntpd.pf
+  file:
+    state: absent
+    path: "{{file_dst_openntpd_pf}}"
+  notify: reload pf
+  when: (openntpd_pf_state == False)
+  tags:
+    - openntpd
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (openntpd_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - openntpd
+
 - name: status openntpd
   command: "{{command_cmd_status_openntpd}}"
   register: register_status_openntpd

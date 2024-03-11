@@ -19,6 +19,14 @@ openntpd_monitor_monit_state: False
 openntpd_monitor_prom_state: False
 openntpd_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
+openntpd_pf_filters: |
+  pass in inet proto udp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 123 # ntp from internal private addresses
+  pass in inet6 proto udp from fc00::/7 to port 123 # ntp from unique local addresses
+  pass out inet proto udp to any port 123 # ntp to any
+  pass out inet6 proto udp to any port 123 # ntp to any
+
+openntpd_pf_state: False
+
 openntpd_server:
   - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}
 

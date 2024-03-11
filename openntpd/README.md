@@ -225,6 +225,30 @@ consult the following sections.
     Options    :
       Examples: '/var/node_exporter/textfile_collector'
 
+`openntpd_pf_filters`
+
+    Description: Define the 'openntpd_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto udp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 123 # ntp from internal private addresses
+      pass in inet6 proto udp from fc00::/7 to port 123 # ntp from unique local addresses
+      pass out inet proto udp to any port 123 # ntp to any
+      pass out inet6 proto udp to any port 123 # ntp to any
+    Options    :
+      Examples: |
+        pass out inet proto udp to 10.0.0.0/8 port 123 # ntp to internal-networks
+
+`openntpd_pf_state`
+
+    Description: Control the 'openntpd_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `openntpd_server`
 
     Description: Define the 'openntpd_server' option.
