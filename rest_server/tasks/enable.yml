@@ -28,7 +28,9 @@
     mode: "{{file_mode_rest_server_cfg}}"
     owner: "{{file_owner_rest_server_cfg}}"
     group: "{{file_group_rest_server_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (rest_server_monitor_monit_state == True)
   tags:
     - rest_server
@@ -37,8 +39,42 @@
   file:
     state: absent
     path: "{{file_dst_rest_server_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (rest_server_monitor_monit_state == False)
+  tags:
+    - rest_server
+
+- name: create file rest_server.pf
+  template:
+    src: "{{file_src_rest_server_pf}}"
+    dest: "{{file_dst_rest_server_pf}}"
+    mode: "{{file_mode_rest_server_pf}}"
+    owner: "{{file_owner_rest_server_pf}}"
+    group: "{{file_group_rest_server_pf}}"
+  notify: reload pf
+  when: (rest_server_pf_state == True)
+  tags:
+    - rest_server
+
+- name: remove file rest_server.pf
+  file:
+    state: absent
+    path: "{{file_dst_rest_server_pf}}"
+  notify: reload pf
+  when: (rest_server_pf_state == False)
+  tags:
+    - rest_server
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (rest_server_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - rest_server
 

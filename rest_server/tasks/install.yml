@@ -116,13 +116,22 @@
   tags:
     - rest_server
 
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 2)
-  failed_when: (register_check_service_monit.rc > 2)
-  check_mode: False
-  when: (rest_server_monitor_monit_state == True)
+- name: stat file pf.d
+  stat:
+    path: "{{file_dst_pf_d}}"
+  register: register_pf_d
+  when: (rest_server_pf_state == True)
+  tags:
+    - rest_server
+
+- name: create file pf.d
+  file:
+    state: directory
+    path: "{{file_dst_pf_d}}"
+    mode: "{{file_mode_pf_d}}"
+    owner: "{{file_owner_pf_d}}"
+    group: "{{file_group_pf_d}}"
+  when: (rest_server_pf_state == True) and (register_pf_d.stat.exists == False)
   tags:
     - rest_server
 

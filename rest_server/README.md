@@ -98,6 +98,28 @@ consult the following sections.
       Examples: ['--prometheus'] | ['--path /data/restic', '--prometheus']
       None    : []
 
+`rest_server_pf_filters`
+
+    Description: Define the 'rest_server_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 443 # https from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port 443 # https from unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto tcp from 10.0.0.0/8 to port 443 # https from internal-networks
+
+`rest_server_pf_state`
+
+    Description: Control the 'rest_server_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `rest_server_version`
 
     Description: Define the 'rest_server_version' option.

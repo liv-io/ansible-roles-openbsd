@@ -8,4 +8,10 @@ rest_server_options:
   - '--prometheus'
   - '--no-auth'
 
+rest_server_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 443 # https from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 443 # https from unique local addresses
+
+rest_server_pf_state: False
+
 rest_server_version: '0.12.0'
