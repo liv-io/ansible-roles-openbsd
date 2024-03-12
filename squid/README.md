@@ -361,6 +361,31 @@ consult the following sections.
                  {name: '10.1.1.12', comment: 'registry'}]
       None    : []
 
+`squid_pf_filters`
+
+    Description: Define the 'squid_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 3128 # squid from internal private addresses
+      pass in inet6 proto tcp from fc00::/7 to port 3128 # squid from unique local addresses
+      pass out inet proto tcp to any port { 80, 443 } # http, https to any
+      pass out inet6 proto tcp to any port { 80, 443 } # http, https to any
+    Options    :
+      Examples: |
+      pass in inet proto tcp from 10.0.0.0/8 to port 3128 # squid from internal-networks
+      pass out inet proto tcp to any port { 80, 443 } # http, https to any
+
+`squid_pf_state`
+
+    Description: Control the 'squid_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `squid_quick_abort_max`
 
     Description: Define the 'squid_quick_abort_max' option.

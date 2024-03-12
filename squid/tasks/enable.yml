@@ -103,7 +103,9 @@
     mode: "{{file_mode_squid_cfg}}"
     owner: "{{file_owner_squid_cfg}}"
     group: "{{file_group_squid_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (squid_monitor_monit_state == True)
   tags:
     - squid
@@ -112,7 +114,7 @@
   file:
     state: absent
     path: "{{file_dst_squid_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (squid_monitor_monit_state == False)
   tags:
     - squid
@@ -121,6 +123,40 @@
   shell: "{{command_cmd_create_cache_dir}}"
   check_mode: False
   when: (register_cache_dir.stat.exists == False)
+  tags:
+    - squid
+
+- name: create file squid.pf
+  template:
+    src: "{{file_src_squid_pf}}"
+    dest: "{{file_dst_squid_pf}}"
+    mode: "{{file_mode_squid_pf}}"
+    owner: "{{file_owner_squid_pf}}"
+    group: "{{file_group_squid_pf}}"
+  notify: reload pf
+  when: (squid_pf_state == True)
+  tags:
+    - squid
+
+- name: remove file squid.pf
+  file:
+    state: absent
+    path: "{{file_dst_squid_pf}}"
+  notify: reload pf
+  when: (squid_pf_state == False)
+  tags:
+    - squid
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (squid_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - squid
 

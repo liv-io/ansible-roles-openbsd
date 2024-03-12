@@ -49,14 +49,6 @@
   tags:
     - squid
 
-- name: remove file squid.cfg
-  file:
-    state: absent
-    path: "{{file_dst_squid_cfg}}"
-  notify: reload service monit
-  tags:
-    - squid
-
 - name: remove file squid.conf
   file:
     state: absent
@@ -68,5 +60,33 @@
   file:
     state: absent
     path: "{{file_dst_acl_dir}}"
+  tags:
+    - squid
+
+- name: remove file squid.cfg
+  file:
+    state: absent
+    path: "{{file_dst_squid_cfg}}"
+  notify: reload monit
+  tags:
+    - squid
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - squid
+
+- name: remove file squid.pf
+  file:
+    state: absent
+    path: "{{file_dst_squid_pf}}"
+  notify: reload pf
   tags:
     - squid

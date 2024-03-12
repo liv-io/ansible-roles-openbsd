@@ -50,6 +50,14 @@ squid_network_blocked:
 
 squid_network_unrestricted: []
 
+squid_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 3128 # squid from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 3128 # squid from unique local addresses
+  pass out inet proto tcp to any port { 80, 443 } # http, https to any
+  pass out inet6 proto tcp to any port { 80, 443 } # http, https to any
+
+squid_pf_state: False
+
 squid_quick_abort_max: '0 KB'
 squid_quick_abort_min: '0 KB'
 
