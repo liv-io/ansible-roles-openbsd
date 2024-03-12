@@ -58,14 +58,6 @@
   tags:
     - monit_exporter
 
-- name: remove file monit_exporter.cfg
-  file:
-    state: absent
-    path: "{{file_dst_monit_exporter_cfg}}"
-  notify: reload service monit
-  tags:
-    - monit_exporter
-
 - name: config line monit_exporter_flags
   lineinfile:
     state: absent
@@ -73,26 +65,6 @@
     regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
     dest: "{{file_dest_monit_exporter_flags}}"
     create: True
-  tags:
-    - monit_exporter
-
-- name: config file includes.conf
-  lineinfile:
-    state: absent
-    regexp: "{{file_regexp_includes_conf}}"
-    dest: "{{file_dst_includes_conf}}"
-    create: True
-  notify:
-    - validate pf
-    - reload pf
-  tags:
-    - monit_exporter
-
-- name: remove file monit_exporter.pf
-  file:
-    state: absent
-    path: "{{file_dst_monit_exporter_pf}}"
-  notify: reload pf
   tags:
     - monit_exporter
 
@@ -121,5 +93,33 @@
   file:
     state: absent
     path: "{{file_dst_monit_exporter_tar_gz}}"
+  tags:
+    - monit_exporter
+
+- name: remove file monit_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_monit_exporter_cfg}}"
+  notify: reload monit
+  tags:
+    - monit_exporter
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - monit_exporter
+
+- name: remove file monit_exporter.pf
+  file:
+    state: absent
+    path: "{{file_dst_monit_exporter_pf}}"
+  notify: reload pf
   tags:
     - monit_exporter

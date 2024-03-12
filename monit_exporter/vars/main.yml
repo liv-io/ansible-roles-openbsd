@@ -84,9 +84,6 @@ file_group_includes_conf: 'wheel'
 # check monit_exporter
 command_cmd_check_monit_exporter: 'rcctl check monit_exporter'
 
-# check service monit
-command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
-
 # disable monit_exporter
 command_cmd_disable_monit_exporter: 'rcctl disable monit_exporter'
 
@@ -102,17 +99,17 @@ command_cmd_status_monit_exporter: 'rcctl get monit_exporter status'
 # stop monit_exporter
 command_cmd_stop_monit_exporter: 'rcctl stop monit_exporter'
 
-# check pf
-command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
+# reload monit
+command_cmd_reload_monit: 'rcctl get monit > /dev/null 2>&1 && rcctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'rcctl get monit > /dev/null 2>&1 && monit -t || true'
 
 # reload pf
-command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -f /etc/pf.conf || true'
 
 # validate pf
-command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
-
-# monit
-service_name_monit: 'monit'
+command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
 
 # monit_exporter
 group_name_monit_exporter: '_monit_exporter'
