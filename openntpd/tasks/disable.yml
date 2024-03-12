@@ -46,7 +46,7 @@
   file:
     state: absent
     path: "{{file_dst_openntpd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - openntpd
 
