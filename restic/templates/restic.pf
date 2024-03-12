@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{restic_pf_filters}}

@@ -252,6 +252,28 @@ consult the following sections.
     Options    :
       Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
 
+`restic_pf_filters`
+
+    Description: Define the 'restic_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass out inet proto tcp to any port 443 # restic to any
+      pass out inet6 proto tcp to any port 443 # restic to any
+    Options    :
+      Examples: |
+        pass out inet proto tcp to 10.0.0.0/8 port 443 # restic to internal-networks
+
+`restic_pf_state`
+
+    Description: Control the 'restic_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `restic_repository_name`
 
     Description: Define the 'restic_repository_name' option.

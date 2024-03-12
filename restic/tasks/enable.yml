@@ -24,3 +24,37 @@
     job: "{{cron_job_restic_run_backup}}"
   tags:
     - restic
+
+- name: create file restic.pf
+  template:
+    src: "{{file_src_restic_pf}}"
+    dest: "{{file_dst_restic_pf}}"
+    mode: "{{file_mode_restic_pf}}"
+    owner: "{{file_owner_restic_pf}}"
+    group: "{{file_group_restic_pf}}"
+  notify: reload pf
+  when: (restic_pf_state == True)
+  tags:
+    - restic
+
+- name: remove file restic.pf
+  file:
+    state: absent
+    path: "{{file_dst_restic_pf}}"
+  notify: reload pf
+  when: (restic_pf_state == False)
+  tags:
+    - restic
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (restic_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - restic

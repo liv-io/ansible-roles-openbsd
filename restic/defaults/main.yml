@@ -42,6 +42,12 @@ restic_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
 restic_password: ''
 
+restic_pf_filters: |
+  pass out inet proto tcp to any port 443 # restic to any
+  pass out inet6 proto tcp to any port 443 # restic to any
+
+restic_pf_state: False
+
 restic_repository_name: "{{ansible_hostname}}"
 
 restic_run_backup_day: '*'
