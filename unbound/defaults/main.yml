@@ -42,6 +42,14 @@ unbound_local_zone: []
 
 unbound_monitor_monit_state: False
 
+unbound_pf_filters: |
+  pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 53 # dns from internal private addresses
+  pass in inet6 proto { tcp, udp } from fc00::/7 to port 53 # dns from unique local addresses
+  pass out inet proto { tcp, udp } to any port 53 # dns to internal private addresses
+  pass out inet6 proto { tcp, udp } to any port 53 # dns to unique local addresses
+
+unbound_pf_state: False
+
 unbound_prefer_ip6: False
 
 unbound_stub_zone: []

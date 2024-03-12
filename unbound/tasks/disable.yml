@@ -36,7 +36,41 @@
   file:
     state: absent
     path: "{{file_dst_unbound_cfg}}"
-  notify: reload service monit
+  notify: reload monit
+  tags:
+    - unbound
+
+- name: create file unbound.pf
+  template:
+    src: "{{file_src_unbound_pf}}"
+    dest: "{{file_dst_unbound_pf}}"
+    mode: "{{file_mode_unbound_pf}}"
+    owner: "{{file_owner_unbound_pf}}"
+    group: "{{file_group_unbound_pf}}"
+  notify: reload pf
+  when: (unbound_pf_state == True)
+  tags:
+    - unbound
+
+- name: remove file unbound.pf
+  file:
+    state: absent
+    path: "{{file_dst_unbound_pf}}"
+  notify: reload pf
+  when: (unbound_pf_state == False)
+  tags:
+    - unbound
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (unbound_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - unbound
 

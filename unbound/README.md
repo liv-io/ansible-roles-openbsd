@@ -325,6 +325,31 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`unbound_pf_filters`
+
+    Description: Define the 'unbound_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 53 # dns from internal private addresses
+      pass in inet6 proto { tcp, udp } from fc00::/7 to port 53 # dns from unique local addresses
+      pass out inet proto { tcp, udp } to any port 53 # dns to internal private addresses
+      pass out inet6 proto { tcp, udp } to any port 53 # dns to unique local addresses
+    Options    :
+      Examples: |
+      pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 53 # dns from internal private addresses
+      pass out inet proto { tcp, udp } to any port 53 # dns to internal private addresses
+
+`unbound_pf_state`
+
+    Description: Control the 'unbound_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `unbound_prefer_ip6`
 
     Description: Control the 'unbound_prefer_ip6' option.
