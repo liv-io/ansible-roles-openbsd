@@ -17,9 +17,7 @@
     name: "{{service_name_monit}}"
 
 - name: validate pf
-  command: "{{command_cmd_validate_pf}}"
-  when: (register_check_pf.rc == 0)
+  shell: "{{command_cmd_validate_pf}}"
 
 - name: reload pf
-  command: "{{command_cmd_reload_pf}}"
-  when: (register_check_pf.rc == 0)
+  shell: "{{command_cmd_reload_pf}}"

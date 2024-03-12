@@ -45,12 +45,3 @@
   when: (monit_pf_state == True) and (register_pf_d.stat.exists == False)
   tags:
     - monit
-
-- name: check pf
-  shell: "{{command_cmd_check_pf}}"
-  register: register_check_pf
-  changed_when: (register_check_pf.rc > 2)
-  failed_when: (register_check_pf.rc > 2)
-  check_mode: False
-  tags:
-    - monit

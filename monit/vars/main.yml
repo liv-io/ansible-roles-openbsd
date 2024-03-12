@@ -44,7 +44,7 @@ file_owner_includes_conf: 'root'
 file_group_includes_conf: 'wheel'
 
 # validate-monit
-command_cmd_validate_monit: '/usr/local/bin/monit -t'
+command_cmd_validate_monit: 'monit -t'
 
 # check monit
 command_cmd_check_monit: 'rcctl check monit'
@@ -67,14 +67,11 @@ command_cmd_status_monit: 'rcctl get monit status'
 # stop monit
 command_cmd_stop_monit: 'rcctl stop monit'
 
-# check pf
-command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
-
 # reload pf
-command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -f /etc/pf.conf || true'
 
 # validate pf
-command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
+command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
 
 # monit
 service_name_monit: 'monit'
