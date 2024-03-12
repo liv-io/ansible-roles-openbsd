@@ -25,8 +25,8 @@
   file:
     state: absent
     path: "{{file_dst_nsd_cfg}}"
-  notify: reload service monit
-  tags:
+    notify: reload monit
+tags:
     - nsd
 
 - name: create file nsd.pf
