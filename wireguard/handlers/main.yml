@@ -8,12 +8,18 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
 
-- name: reload service monit
-  service:
-    state: reloaded
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
-
 - name: run netstart
   command: "{{command_cmd_run_netstart}} {{item.device}}"
   loop: "{{wireguard_config}}"
+
+- name: validate monit
+  shell: "{{command_cmd_validate_monit}}"
+
+- name: reload monit
+  shell: "{{command_cmd_reload_monit}}"
+
+- name: validate pf
+  shell: "{{command_cmd_validate_pf}}"
+
+- name: reload pf
+  shell: "{{command_cmd_reload_pf}}"

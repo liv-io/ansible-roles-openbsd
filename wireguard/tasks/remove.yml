@@ -23,3 +23,23 @@
     path: "{{file_dst_wireguard_dir}}"
   tags:
     - wireguard
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - wireguard
+
+- name: remove file wireguard.pf
+  file:
+    state: absent
+    path: "{{file_dst_wireguard_pf}}"
+  notify: reload pf
+  tags:
+    - wireguard

@@ -108,6 +108,31 @@ vars:
     Default    : False
     Options    : True | False
 
+`wireguard_pf_filters`
+
+    Description: Define the 'wireguard_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto udp from any to port 51820 # wireguard from any
+      pass in inet6 proto udp from any to port 51820 # wireguard from any
+      pass out inet proto udp to any port 51820 # wireguard to any
+      pass out inet6 proto udp to any port 51820 # wireguard to any
+    Options    :
+      Examples: |
+        pass in inet proto udp from any to port 51820 # wireguard from any
+        pass out inet proto udp to any port 51820 # wireguard to any
+
+`wireguard_pf_state`
+
+    Description: Control the 'wireguard_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 ## Conflicts
 
 ## Dependencies

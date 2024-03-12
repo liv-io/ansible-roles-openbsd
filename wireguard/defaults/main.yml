@@ -5,3 +5,11 @@ wireguard_state: 'install'
 wireguard_config: []
 
 wireguard_monitor_monit_state: False
+
+wireguard_pf_filters: |
+  pass in inet proto udp from any to port 51820 # wireguard from any
+  pass in inet6 proto udp from any to port 51820 # wireguard from any
+  pass out inet proto udp to any port 51820 # wireguard to any
+  pass out inet6 proto udp to any port 51820 # wireguard to any
+
+wireguard_pf_state: False

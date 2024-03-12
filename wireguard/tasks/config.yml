@@ -73,7 +73,7 @@
     mode: "{{file_mode_wireguard_cfg}}"
     owner: "{{file_owner_wireguard_cfg}}"
     group: "{{file_group_wireguard_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   loop: "{{wireguard_config}}"
   when: (wireguard_monitor_monit_state == True)
   tags:
@@ -83,7 +83,7 @@
   file:
     state: absent
     path: "/etc/monit.d/wireguard-{{item.device}}.cfg"
-  notify: reload service monit
+  notify: reload monit
   loop: "{{wireguard_config}}"
   when: (wireguard_monitor_monit_state == False)
   tags:

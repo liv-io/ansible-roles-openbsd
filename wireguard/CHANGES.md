@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 1.3.0 (2024-03-12)
+
+### Bugs
+
+- Fix `monit` check task
+
+### Features
+
+- Add parameter `wireguard_pf_filters`
+- Add parameter `wireguard_pf_state`
+
 ## 1.2.0 (2024-02-14)
 
 ### Features
