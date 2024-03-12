@@ -42,11 +42,18 @@
   tags:
     - opensmtpd
 
+- name: remove file secrets
+  file:
+    state: absent
+    path: "{{file_dst_secrets}}"
+  tags:
+    - opensmtpd
+
 - name: remove file opensmtpd.cfg
   file:
     state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - opensmtpd
 
@@ -67,12 +74,5 @@
     state: absent
     path: "{{file_dst_opensmtpd_pf}}"
   notify: reload pf
-  tags:
-    - opensmtpd
-
-- name: remove file secrets
-  file:
-    state: absent
-    path: "{{file_dst_secrets}}"
   tags:
     - opensmtpd

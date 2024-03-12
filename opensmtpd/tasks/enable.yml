@@ -54,7 +54,9 @@
     mode: "{{file_mode_opensmtpd_cfg}}"
     owner: "{{file_owner_opensmtpd_cfg}}"
     group: "{{file_group_opensmtpd_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (opensmtpd_monitor_monit_state == True)
   tags:
     - opensmtpd
@@ -63,7 +65,7 @@
   file:
     state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (opensmtpd_monitor_monit_state == False)
   tags:
     - opensmtpd

@@ -67,9 +67,6 @@ command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
 # check opensmtpd
 command_cmd_check_opensmtpd: 'rcctl check smtpd'
 
-# check service monit
-command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
-
 # disable opensmtpd
 command_cmd_disable_opensmtpd: 'rcctl disable smtpd'
 
@@ -85,17 +82,17 @@ command_cmd_status_opensmtpd: 'rcctl get smtpd status'
 # stop opensmtpd
 command_cmd_stop_opensmtpd: 'rcctl stop smtpd'
 
-# check pf
-command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
+# reload monit
+command_cmd_reload_monit: 'rcctl get monit > /dev/null 2>&1 && rcctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'rcctl get monit > /dev/null 2>&1 && monit -t || true'
 
 # reload pf
-command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -f /etc/pf.conf || true'
 
 # validate pf
-command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
-
-# monit
-service_name_monit: 'monit'
+command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
 
 # smtpd
 service_name_opensmtpd: 'smtpd'

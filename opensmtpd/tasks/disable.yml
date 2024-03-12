@@ -45,7 +45,7 @@
   file:
     state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - opensmtpd
 
