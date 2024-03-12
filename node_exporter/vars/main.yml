@@ -57,9 +57,6 @@ file_group_includes_conf: 'wheel'
 # check node_exporter
 command_cmd_check_node_exporter: 'rcctl check node_exporter'
 
-# check service monit
-command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
-
 # disable node_exporter
 command_cmd_disable_node_exporter: 'rcctl disable node_exporter'
 
@@ -75,17 +72,17 @@ command_cmd_status_node_exporter: 'rcctl get node_exporter status'
 # stop node_exporter
 command_cmd_stop_node_exporter: 'rcctl stop node_exporter'
 
-# check pf
-command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
+# reload monit
+command_cmd_reload_monit: 'rcctl get monit > /dev/null 2>&1 && rcctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'rcctl get monit > /dev/null 2>&1 && monit -t || true'
 
 # reload pf
-command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -f /etc/pf.conf || true'
 
 # validate pf
-command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
-
-# monit
-service_name_monit: 'monit'
+command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
 
 # node_exporter
 service_name_node_exporter: 'node_exporter'

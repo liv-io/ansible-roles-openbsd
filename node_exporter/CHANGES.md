@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.2 (2024-03-12)
+
+### Bugs
+
+- Fix `monit` and `pf` check task
+
 ## 1.2.1 (2024-03-10)
 
 ### Bugs

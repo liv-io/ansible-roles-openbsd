@@ -42,14 +42,6 @@
   tags:
     - node_exporter
 
-- name: remove file node_exporter.cfg
-  file:
-    state: absent
-    path: "{{file_dst_node_exporter_cfg}}"
-  notify: reload service monit
-  tags:
-    - node_exporter
-
 - name: config line node_exporter_flags
   lineinfile:
     state: absent
@@ -57,6 +49,21 @@
     regexp: "^{{file_regexp_node_exporter_flags}}=.*"
     dest: "{{file_dest_node_exporter_flags}}"
     create: True
+  tags:
+    - node_exporter
+
+- name: remove file node_exporter_var.dir
+  file:
+    state: absent
+    path: "{{file_dst_node_exporter_var_dir}}"
+  tags:
+    - node_exporter
+
+- name: remove file node_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_node_exporter_cfg}}"
+  notify: reload monit
   tags:
     - node_exporter
 
@@ -77,12 +84,5 @@
     state: absent
     path: "{{file_dst_node_exporter_pf}}"
   notify: reload pf
-  tags:
-    - node_exporter
-
-- name: remove file node_exporter_var.dir
-  file:
-    state: absent
-    path: "{{file_dst_node_exporter_var_dir}}"
   tags:
     - node_exporter
