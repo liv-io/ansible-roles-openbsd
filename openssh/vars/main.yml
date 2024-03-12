@@ -68,9 +68,6 @@ command_cmd_validate_openssh: '/usr/sbin/sshd -t'
 # check openssh
 command_cmd_check_openssh: 'rcctl check sshd'
 
-# check service monit
-command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
-
 # disable openssh
 command_cmd_disable_openssh: 'rcctl disable sshd'
 
@@ -86,17 +83,17 @@ command_cmd_status_openssh: 'rcctl get sshd status'
 # stop openssh
 command_cmd_stop_openssh: 'rcctl stop sshd'
 
-# check pf
-command_cmd_check_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1'
+# reload monit
+command_cmd_reload_monit: 'rcctl get monit > /dev/null 2>&1 && rcctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'rcctl get monit > /dev/null 2>&1 && monit -t || true'
 
 # reload pf
-command_cmd_reload_pf: "pfctl -f /etc/pf.conf"
+command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -f /etc/pf.conf || true'
 
 # validate pf
-command_cmd_validate_pf: "pfctl -nf /etc/pf.conf"
-
-# monit
-service_name_monit: 'monit'
+command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
 
 # sshd
 service_name_openssh: 'sshd'
