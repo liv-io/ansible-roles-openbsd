@@ -36,12 +36,21 @@
   tags:
     - tinc
 
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 2)
-  failed_when: (register_check_service_monit.rc > 2)
-  check_mode: False
-  when: (tinc_monitor_monit_state == True)
+- name: stat file pf.d
+  stat:
+    path: "{{file_dst_pf_d}}"
+  register: register_pf_d
+  when: (tinc_pf_state == True)
+  tags:
+    - tinc
+
+- name: create file pf.d
+  file:
+    state: directory
+    path: "{{file_dst_pf_d}}"
+    mode: "{{file_mode_pf_d}}"
+    owner: "{{file_owner_pf_d}}"
+    group: "{{file_group_pf_d}}"
+  when: (tinc_pf_state == True) and (register_pf_d.stat.exists == False)
   tags:
     - tinc

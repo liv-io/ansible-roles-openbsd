@@ -259,6 +259,31 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`tinc_pf_filters`
+
+    Description: Define the 'tinc_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto { tcp, udp } from any to port 655 # tinc from any
+      pass in inet6 proto { tcp, udp } from any to port 655 # tinc from any
+      pass out inet proto { tcp, udp } to any port 655 # tinc to any
+      pass out inet6 proto { tcp, udp } to any port 655 # tinc to any
+    Options    :
+      Examples: |
+      pass in inet proto { tcp, udp } from any to port 655 # tinc from any
+      pass out inet proto { tcp, udp } to any port 655 # tinc to any
+
+`tinc_pf_state`
+
+    Description: Control the 'tinc_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 ## Conflicts
 
 ## Dependencies

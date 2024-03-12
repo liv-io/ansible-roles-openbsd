@@ -17,7 +17,9 @@
     mode: "{{file_mode_tinc_cfg}}"
     owner: "{{file_owner_tinc_cfg}}"
     group: "{{file_group_tinc_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (tinc_monitor_monit_state == True)
   tags:
     - tinc
@@ -26,8 +28,42 @@
   file:
     state: absent
     path: "{{file_dst_tinc_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (tinc_monitor_monit_state == False)
+  tags:
+    - tinc
+
+- name: create file tinc.pf
+  template:
+    src: "{{file_src_tinc_pf}}"
+    dest: "{{file_dst_tinc_pf}}"
+    mode: "{{file_mode_tinc_pf}}"
+    owner: "{{file_owner_tinc_pf}}"
+    group: "{{file_group_tinc_pf}}"
+  notify: reload pf
+  when: (tinc_pf_state == True)
+  tags:
+    - tinc
+
+- name: remove file tinc.pf
+  file:
+    state: absent
+    path: "{{file_dst_tinc_pf}}"
+  notify: reload pf
+  when: (tinc_pf_state == False)
+  tags:
+    - tinc
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (tinc_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - tinc
 

@@ -5,3 +5,11 @@ tinc_state: 'enable'
 tinc_config: []
 
 tinc_monitor_monit_state: False
+
+tinc_pf_filters: |
+  pass in inet proto { tcp, udp } from any to port 655 # tinc from any
+  pass in inet6 proto { tcp, udp } from any to port 655 # tinc from any
+  pass out inet proto { tcp, udp } to any port 655 # tinc to any
+  pass out inet6 proto { tcp, udp } to any port 655 # tinc to any
+
+tinc_pf_state: False
