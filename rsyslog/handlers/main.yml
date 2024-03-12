@@ -8,13 +8,19 @@
         - "vars/{{ansible_distribution_version}}.yml"
         - 'vars/main.yml'
 
-- name: reload service monit
-  service:
-    state: reloaded
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
-
 - name: restart service rsyslogd
   service:
     state: restarted
     name: "{{service_name_rsyslogd}}"
+
+- name: validate monit
+  shell: "{{command_cmd_validate_monit}}"
+
+- name: reload monit
+  shell: "{{command_cmd_reload_monit}}"
+
+- name: validate pf
+  shell: "{{command_cmd_validate_pf}}"
+
+- name: reload pf
+  shell: "{{command_cmd_reload_pf}}"

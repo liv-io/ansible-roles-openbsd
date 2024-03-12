@@ -10,4 +10,12 @@ rsyslog_monitor_monit_state: False
 
 rsyslog_role: 'client'
 
+rsyslog_pf_filters: |
+  pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 514 # syslog from internal private addresses
+  pass in inet6 proto { tcp, udp } from fc00::/7 to port 514 # syslog from unique local addresses
+  pass out inet proto { tcp, udp } to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port 514 # syslog to internal private addresses
+  pass out inet6 proto { tcp, udp } to fc00::/7 port 514 # syslog to unique local addresses
+
+rsyslog_pf_state: False
+
 rsyslog_server: 'log.{{ansible_domain}}'

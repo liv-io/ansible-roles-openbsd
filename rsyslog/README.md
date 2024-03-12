@@ -143,6 +143,31 @@ vars:
     Default    : False
     Options    : True | False
 
+`rsyslog_pf_filters`
+
+    Description: Define the 'rsyslog_pf_filters' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      pass in inet proto { tcp, udp } from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 514 # syslog from internal private addresses
+      pass in inet6 proto { tcp, udp } from fc00::/7 to port 514 # syslog from unique local addresses
+      pass out inet proto { tcp, udp } to { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } port 514 # syslog to internal private addresses
+      pass out inet6 proto { tcp, udp } to fc00::/7 port 514 # syslog to unique local addresses
+    Options    :
+      Examples: |
+        pass in inet proto { tcp, udp } from 10.0.0.0/8 to port 514 # syslog from internal-networks
+        pass out inet proto { tcp, udp } to 10.0.0.0/8 port 514 # syslog to internal-networks
+
+`rsyslog_pf_state`
+
+    Description: Control the 'rsyslog_pf_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `rsyslog_role`
 
     Description: Set the 'rsyslog_role' option.

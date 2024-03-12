@@ -24,7 +24,41 @@
   file:
     state: absent
     path: "{{file_dst_rsyslog_cfg}}"
-  notify: reload service monit
+  notify: reload monit
+  tags:
+    - rsyslog
+
+- name: create file rsyslog.pf
+  template:
+    src: "{{file_src_rsyslog_pf}}"
+    dest: "{{file_dst_rsyslog_pf}}"
+    mode: "{{file_mode_rsyslog_pf}}"
+    owner: "{{file_owner_rsyslog_pf}}"
+    group: "{{file_group_rsyslog_pf}}"
+  notify: reload pf
+  when: (rsyslog_pf_state == True)
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.pf
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_pf}}"
+  notify: reload pf
+  when: (rsyslog_pf_state == False)
+  tags:
+    - rsyslog
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (rsyslog_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - rsyslog
 

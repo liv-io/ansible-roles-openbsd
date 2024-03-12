@@ -39,14 +39,6 @@
   tags:
     - rsyslog
 
-- name: remove file rsyslog.cfg
-  file:
-    state: absent
-    path: "{{file_dst_rsyslog_cfg}}"
-  notify: reload service monit
-  tags:
-    - rsyslog
-
 - name: remove file rsyslog.conf
   file:
     state: absent
@@ -58,5 +50,33 @@
   file:
     state: absent
     path: "{{file_dst_rsyslog_d}}"
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_cfg}}"
+  notify: reload monit
+  tags:
+    - rsyslog
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.pf
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_pf}}"
+  notify: reload pf
   tags:
     - rsyslog
