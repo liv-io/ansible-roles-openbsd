@@ -14,6 +14,26 @@
   file:
     state: absent
     path: "{{file_dst_syslogd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - syslogd
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - syslog
+
+- name: remove file syslogd.pf
+  file:
+    state: absent
+    path: "{{file_dst_syslogd_pf}}"
+  notify: reload pf
+  tags:
+    - syslog

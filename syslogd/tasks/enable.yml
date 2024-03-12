@@ -21,7 +21,7 @@
   tags:
     - syslogd
 
-- name: create file syslog.conf
+- name: create file syslogd.conf
   template:
     src: "{{file_src_syslog_conf}}"
     dest: "{{file_dst_syslog_conf}}"
@@ -39,7 +39,9 @@
     mode: "{{file_mode_syslogd_cfg}}"
     owner: "{{file_owner_syslogd_cfg}}"
     group: "{{file_group_syslogd_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (syslogd_monitor_monit_state == True)
   tags:
     - syslogd
@@ -48,10 +50,44 @@
   file:
     state: absent
     path: "{{file_dst_syslogd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (syslogd_monitor_monit_state == False)
   tags:
     - syslogd
+
+- name: create file syslog.pf
+  template:
+    src: "{{file_src_syslogd_pf}}"
+    dest: "{{file_dst_syslogd_pf}}"
+    mode: "{{file_mode_syslogd_pf}}"
+    owner: "{{file_owner_syslogd_pf}}"
+    group: "{{file_group_syslogd_pf}}"
+  notify: reload pf
+  when: (syslogd_pf_state == True)
+  tags:
+    - syslog
+
+- name: remove file syslog.pf
+  file:
+    state: absent
+    path: "{{file_dst_syslogd_pf}}"
+  notify: reload pf
+  when: (syslogd_pf_state == False)
+  tags:
+    - syslog
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (syslogd_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - syslog
 
 - name: status syslogd
   command: "{{command_cmd_status_syslogd}}"

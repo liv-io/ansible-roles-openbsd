@@ -34,7 +34,41 @@
   file:
     state: absent
     path: "{{file_dst_syslogd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
+  tags:
+    - syslogd
+
+- name: create file syslogd.pf
+  template:
+    src: "{{file_src_syslogd_pf}}"
+    dest: "{{file_dst_syslogd_pf}}"
+    mode: "{{file_mode_syslogd_pf}}"
+    owner: "{{file_owner_syslogd_pf}}"
+    group: "{{file_group_syslogd_pf}}"
+  notify: reload pf
+  when: (syslogd_pf_state == True)
+  tags:
+    - syslogd
+
+- name: remove file syslogd.pf
+  file:
+    state: absent
+    path: "{{file_dst_syslogd_pf}}"
+  notify: reload pf
+  when: (syslogd_pf_state == False)
+  tags:
+    - syslogd
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (syslogd_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
   tags:
     - syslogd
 

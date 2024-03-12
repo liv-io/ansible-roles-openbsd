@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.0 (2024-03-12)
+
+### Bugs
+
+- Fix `monit` check task
+
+### Features
+
+- Add parameter `syslogd_pf_filters`
+- Add parameter `syslogd_pf_state`
+
 ## 2.0.0 (2023-12-28)
 
 ### Changes
