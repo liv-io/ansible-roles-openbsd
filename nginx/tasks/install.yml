@@ -34,6 +34,13 @@
   tags:
     - nginx
 
+- name: generate dhparam
+  shell: "{{command_cmd_generate_dhparam}}"
+  check_mode: False
+  when: (register_dhparam_pem.stat.exists == False)
+  tags:
+    - nginx
+
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
@@ -53,22 +60,6 @@
   tags:
     - nginx
 
-- name: generate dhparam
-  shell: "{{command_cmd_generate_dhparam}}"
-  check_mode: False
-  when: (register_dhparam_pem.stat.exists == False)
-  tags:
-    - nginx
-
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 2)
-  failed_when: (register_check_service_monit.rc > 2)
-  check_mode: False
-  tags:
-    - nginx
-
 - name: stat file pf.d
   stat:
     path: "{{file_dst_pf_d}}"
@@ -85,14 +76,5 @@
     owner: "{{file_owner_pf_d}}"
     group: "{{file_group_pf_d}}"
   when: (nginx_pf_state == True) and (register_pf_d.stat.exists == False)
-  tags:
-    - nginx
-
-- name: check pf
-  shell: "{{command_cmd_check_pf}}"
-  register: register_check_pf
-  changed_when: (register_check_pf.rc > 2)
-  failed_when: (register_check_pf.rc > 2)
-  check_mode: False
   tags:
     - nginx

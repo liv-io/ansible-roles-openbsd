@@ -39,11 +39,32 @@
   tags:
     - nginx
 
+- name: remove file nginx.conf
+  file:
+    state: absent
+    path: "{{file_dst_nginx_conf}}"
+  tags:
+    - nginx
+
+- name: remove file dhparam.pem
+  file:
+    state: absent
+    path: "{{file_dst_dhparam_pem}}"
+  tags:
+    - nginx
+
+- name: remove file vhosts.d
+  file:
+    state: absent
+    path: "{{file_dst_vhosts_d}}"
+  tags:
+    - nginx
+
 - name: remove file nginx.cfg
   file:
     state: absent
     path: "{{file_dst_nginx_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - nginx
 
@@ -64,26 +85,5 @@
     state: absent
     path: "{{file_dst_nginx_pf}}"
   notify: reload pf
-  tags:
-    - nginx
-
-- name: remove file nginx.conf
-  file:
-    state: absent
-    path: "{{file_dst_nginx_conf}}"
-  tags:
-    - nginx
-
-- name: remove file dhparam.pem
-  file:
-    state: absent
-    path: "{{file_dst_dhparam_pem}}"
-  tags:
-    - nginx
-
-- name: remove file vhosts.d
-  file:
-    state: absent
-    path: "{{file_dst_vhosts_d}}"
   tags:
     - nginx
