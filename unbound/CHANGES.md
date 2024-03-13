@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.1 (2024-03-13)
+
+### Bugs
+
+- Fix YAML syntax (missing dash)
+
 ## 1.2.0 (2024-03-11)
 
 ### Bugs

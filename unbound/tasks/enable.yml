@@ -56,7 +56,7 @@
   tags:
     - unbound
 
-name: create file unbound.pf
+- name: create file unbound.pf
   template:
     src: "{{file_src_unbound_pf}}"
     dest: "{{file_dst_unbound_pf}}"
