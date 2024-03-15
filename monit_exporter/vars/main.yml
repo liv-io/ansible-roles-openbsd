@@ -81,6 +81,24 @@ file_mode_includes_conf: '0600'
 file_owner_includes_conf: 'root'
 file_group_includes_conf: 'wheel'
 
+# monit_exporter
+group_name_monit_exporter: '_monit_exporter'
+group_system_monit_exporter: True
+
+# monit_exporter
+user_name_monit_exporter: '_monit_exporter'
+user_comment_monit_exporter: 'Monit Exporter'
+user_group_monit_exporter: '_monit_exporter'
+user_append_monit_exporter: False
+user_home_create_monit_exporter: False
+user_home_move_monit_exporter: False
+user_home_remove_monit_exporter: True
+user_home_force_monit_exporter: False
+user_password_monit_exporter: '!'
+user_password_update_monit_exporter: 'always'
+user_shell_monit_exporter: '/sbin/nologin'
+user_system_monit_exporter: True
+
 # check monit_exporter
 command_cmd_check_monit_exporter: 'rcctl check monit_exporter'
 
@@ -110,24 +128,6 @@ command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -
 
 # validate pf
 command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
-
-# monit_exporter
-group_name_monit_exporter: '_monit_exporter'
-group_system_monit_exporter: True
-
-# monit_exporter
-user_name_monit_exporter: '_monit_exporter'
-user_comment_monit_exporter: 'Monit Exporter'
-user_group_monit_exporter: '_monit_exporter'
-user_append_monit_exporter: False
-user_home_create_monit_exporter: False
-user_home_move_monit_exporter: False
-user_home_remove_monit_exporter: True
-user_home_force_monit_exporter: False
-user_password_monit_exporter: '!'
-user_password_update_monit_exporter: 'always'
-user_shell_monit_exporter: '/sbin/nologin'
-user_system_monit_exporter: True
 
 # monit_exporter
 service_name_monit_exporter: 'monit_exporter'

@@ -79,6 +79,25 @@ file_mode_includes_conf: '0600'
 file_owner_includes_conf: 'root'
 file_group_includes_conf: 'wheel'
 
+# rest-server
+group_name_rest_server: '_rest-server'
+group_system_rest_server: True
+
+# rest-server
+user_name_rest_server: '_rest-server'
+user_comment_rest_server: 'Rest Server'
+user_group_rest_server: '_rest-server'
+user_append_rest_server: False
+user_home_rest_server: '/var/empty'
+user_home_create_rest_server: False
+user_home_move_rest_server: False
+user_home_remove_rest_server: True
+user_home_force_rest_server: False
+user_password_rest_server: '!'
+user_password_update_rest_server: 'always'
+user_shell_rest_server: '/sbin/nologin'
+user_system_rest_server: True
+
 # check rest_server
 command_cmd_check_rest_server: 'rcctl check rest_server'
 
@@ -108,25 +127,6 @@ command_cmd_reload_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -
 
 # validate pf
 command_cmd_validate_pf: 'rcctl get pf | grep -i "YES" > /dev/null 2>&1 && pfctl -nf /etc/pf.conf || true'
-
-# rest-server
-group_name_rest_server: '_rest-server'
-group_system_rest_server: True
-
-# rest-server
-user_name_rest_server: '_rest-server'
-user_comment_rest_server: 'Rest Server'
-user_group_rest_server: '_rest-server'
-user_append_rest_server: False
-user_home_rest_server: '/var/empty'
-user_home_create_rest_server: False
-user_home_move_rest_server: False
-user_home_remove_rest_server: True
-user_home_force_rest_server: False
-user_password_rest_server: '!'
-user_password_update_rest_server: 'always'
-user_shell_rest_server: '/sbin/nologin'
-user_system_rest_server: True
 
 # rest_server
 service_name_rest_server: 'rest_server'
