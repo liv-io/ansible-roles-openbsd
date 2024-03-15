@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.2 (2024-03-15)
+
+### Enhancements
+
+- Reload service upon config change
+
 ## 1.2.1 (2024-03-12)
 
 ### Bugs
