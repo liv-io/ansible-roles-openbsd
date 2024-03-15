@@ -17,6 +17,7 @@
     mode: "{{file_mode_options_conf}}"
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -27,6 +28,7 @@
     mode: "{{file_mode_normalization_conf}}"
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -37,6 +39,7 @@
     mode: "{{file_mode_anchors_conf}}"
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -47,6 +50,7 @@
     mode: "{{file_mode_tables_conf}}"
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -57,6 +61,7 @@
     mode: "{{file_mode_macros_conf}}"
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -67,6 +72,7 @@
     mode: "{{file_mode_queues_conf}}"
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -77,6 +83,7 @@
     mode: "{{file_mode_filters_conf}}"
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -88,6 +95,7 @@
     mode: "{{file_mode_includes_conf}}"
     owner: "{{file_owner_includes_conf}}"
     group: "{{file_group_includes_conf}}"
+  notify: validate pf
   tags:
     - pf
 
@@ -98,6 +106,7 @@
     mode: "{{file_mode_pf_conf}}"
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
+  notify: validate pf
   tags:
     - pf
 
