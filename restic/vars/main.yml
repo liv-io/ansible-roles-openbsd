@@ -56,18 +56,18 @@ file_mode_restic_run_backup: '0754'
 file_owner_restic_run_backup: 'root'
 file_group_restic_run_backup: 'wheel'
 
+# pf.d
+file_dst_pf_d: '/etc/pf.d'
+file_mode_pf_d: '0750'
+file_owner_pf_d: 'root'
+file_group_pf_d: 'wheel'
+
 # restic.pf
 file_src_restic_pf: 'restic.pf'
 file_dst_restic_pf: '/etc/pf.d/restic.conf'
 file_mode_restic_pf: '0600'
 file_owner_restic_pf: 'root'
 file_group_restic_pf: 'wheel'
-
-# pf.d
-file_dst_pf_d: '/etc/pf.d'
-file_mode_pf_d: '0750'
-file_owner_pf_d: 'root'
-file_group_pf_d: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'

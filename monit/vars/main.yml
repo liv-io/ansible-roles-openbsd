@@ -22,18 +22,18 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'
 
+# pf.d
+file_dst_pf_d: '/etc/pf.d'
+file_mode_pf_d: '0750'
+file_owner_pf_d: 'root'
+file_group_pf_d: 'wheel'
+
 # monit.pf
 file_src_monit_pf: 'monit.pf'
 file_dst_monit_pf: '/etc/pf.d/monit.conf'
 file_mode_monit_pf: '0600'
 file_owner_monit_pf: 'root'
 file_group_monit_pf: 'wheel'
-
-# pf.d
-file_dst_pf_d: '/etc/pf.d'
-file_mode_pf_d: '0750'
-file_owner_pf_d: 'root'
-file_group_pf_d: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'

@@ -28,13 +28,6 @@ file_mode_node_exporter_cfg: '0640'
 file_owner_node_exporter_cfg: 'root'
 file_group_node_exporter_cfg: 'wheel'
 
-# node_exporter.pf
-file_src_node_exporter_pf: 'node_exporter.pf'
-file_dst_node_exporter_pf: '/etc/pf.d/node_exporter.conf'
-file_mode_node_exporter_pf: '0600'
-file_owner_node_exporter_pf: 'root'
-file_group_node_exporter_pf: 'wheel'
-
 # node_exporter_flags
 file_line_node_exporter_flags: "node_exporter_flags=\"--collector.textfile.directory='/var/node_exporter/textfile_collector'\""
 file_regexp_node_exporter_flags: 'node_exporter_flags'
@@ -44,7 +37,13 @@ file_dest_node_exporter_flags: '/etc/rc.conf.local'
 file_dst_pf_d: '/etc/pf.d'
 file_mode_pf_d: '0750'
 file_owner_pf_d: 'root'
-file_group_pf_d: 'wheel'
+
+# node_exporter.pf
+file_src_node_exporter_pf: 'node_exporter.pf'
+file_dst_node_exporter_pf: '/etc/pf.d/node_exporter.conf'
+file_mode_node_exporter_pf: '0600'
+file_owner_node_exporter_pf: 'root'
+file_group_node_exporter_pf: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'

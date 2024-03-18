@@ -34,18 +34,18 @@ file_mode_opensmtpd_cfg: '0640'
 file_owner_opensmtpd_cfg: 'root'
 file_group_opensmtpd_cfg: 'wheel'
 
+# pf.d
+file_dst_pf_d: '/etc/pf.d'
+file_mode_pf_d: '0750'
+file_owner_pf_d: 'root'
+file_group_pf_d: 'wheel'
+
 # opensmtpd.pf
 file_src_opensmtpd_pf: 'opensmtpd.pf'
 file_dst_opensmtpd_pf: '/etc/pf.d/opensmtpd.conf'
 file_mode_opensmtpd_pf: '0600'
 file_owner_opensmtpd_pf: 'root'
 file_group_opensmtpd_pf: 'wheel'
-
-# pf.d
-file_dst_pf_d: '/etc/pf.d'
-file_mode_pf_d: '0750'
-file_owner_pf_d: 'root'
-file_group_pf_d: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'

@@ -55,13 +55,6 @@ file_mode_monit_exporter_cfg: '0640'
 file_owner_monit_exporter_cfg: 'root'
 file_group_monit_exporter_cfg: 'wheel'
 
-# monit_exporter.pf
-file_src_monit_exporter_pf: 'monit_exporter.pf'
-file_dst_monit_exporter_pf: '/etc/pf.d/monit_exporter.conf'
-file_mode_monit_exporter_pf: '0600'
-file_owner_monit_exporter_pf: 'root'
-file_group_monit_exporter_pf: 'wheel'
-
 # monit_exporter_flags
 file_line_monit_exporter_flags: "monit_exporter_flags=\"-conf='/etc/monit_exporter/config.toml'\""
 file_regexp_monit_exporter_flags: 'monit_exporter_flags'
@@ -72,6 +65,13 @@ file_dst_pf_d: '/etc/pf.d'
 file_mode_pf_d: '0750'
 file_owner_pf_d: 'root'
 file_group_pf_d: 'wheel'
+
+# monit_exporter.pf
+file_src_monit_exporter_pf: 'monit_exporter.pf'
+file_dst_monit_exporter_pf: '/etc/pf.d/monit_exporter.conf'
+file_mode_monit_exporter_pf: '0600'
+file_owner_monit_exporter_pf: 'root'
+file_group_monit_exporter_pf: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'

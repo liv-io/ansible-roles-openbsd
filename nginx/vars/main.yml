@@ -38,18 +38,18 @@ file_mode_nginx_cfg: '0640'
 file_owner_nginx_cfg: 'root'
 file_group_nginx_cfg: 'wheel'
 
+# pf.d
+file_dst_pf_d: '/etc/pf.d'
+file_mode_pf_d: '0750'
+file_owner_pf_d: 'root'
+file_group_pf_d: 'wheel'
+
 # nginx.pf
 file_src_nginx_pf: 'nginx.pf'
 file_dst_nginx_pf: '/etc/pf.d/nginx.conf'
 file_mode_nginx_pf: '0600'
 file_owner_nginx_pf: 'root'
 file_group_nginx_pf: 'wheel'
-
-# pf.d
-file_dst_pf_d: '/etc/pf.d'
-file_mode_pf_d: '0750'
-file_owner_pf_d: 'root'
-file_group_pf_d: 'wheel'
 
 # includes.conf
 file_dst_includes_conf: '/etc/pf.d/includes.conf'
