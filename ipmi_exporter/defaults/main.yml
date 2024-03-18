@@ -1,0 +1,40 @@
+---
+
+ipmi_exporter_state: 'enable'
+
+ipmi_exporter_config: |
+  modules:
+    default:
+      collectors:
+        - bmc
+        - chassis
+        - dcmi
+        - ipmi
+        - sel
+      collector_cmd:
+        bmc: sudo
+        chassis: sudo
+        dcmi: sudo
+        ipmi: sudo
+        sel: sudo
+      custom_args:
+        bmc:
+          - "bmc-info"
+        chassis:
+          - "ipmi-chassis"
+        dcmi:
+          - "ipmi-dcmi"
+        ipmi:
+          - "ipmimonitoring"
+        sel:
+          - "ipmi-sel"
+
+ipmi_exporter_monitor_monit_state: False
+
+ipmi_exporter_version: '1.8.0'
+
+ipmi_exporter_pf_filters: |
+  pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 9290 # ipmi_exporter from internal private addresses
+  pass in inet6 proto tcp from fc00::/7 to port 9290 # ipmi_exporter from unique local addresses
+
+ipmi_exporter_pf_state: False

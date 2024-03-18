@@ -1,0 +1,139 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ipmi_exporter
+
+- name: status ipmi_exporter
+  command: "{{command_cmd_status_ipmi_exporter}}"
+  register: register_status_ipmi_exporter
+  changed_when: (register_status_ipmi_exporter.rc > 2)
+  failed_when: (register_status_ipmi_exporter.rc > 2)
+  check_mode: False
+  tags:
+    - ipmi_exporter
+
+- name: disable ipmi_exporter
+  command: "{{command_cmd_disable_ipmi_exporter}}"
+  check_mode: False
+  when: register_status_ipmi_exporter.rc == 0
+  tags:
+    - ipmi_exporter
+
+- name: check ipmi_exporter
+  command: "{{command_cmd_check_ipmi_exporter}}"
+  register: register_check_ipmi_exporter
+  changed_when: (register_check_ipmi_exporter.rc > 1)
+  failed_when: (register_check_ipmi_exporter.rc > 1)
+  check_mode: False
+  tags:
+    - ipmi_exporter
+
+- name: stop ipmi_exporter
+  command: "{{command_cmd_stop_ipmi_exporter}}"
+  check_mode: False
+  when: register_check_ipmi_exporter.rc == 0
+  tags:
+    - ipmi_exporter
+
+- name: remove package freeipmi
+  package:
+    state: absent
+    name: "{{package_name_freeipmi}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.sudo
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_sudo}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove user ipmi_exporter
+  user:
+    state: absent
+    name: "{{user_name_ipmi_exporter}}"
+    remove: "{{user_home_remove_ipmi_exporter}}"
+    force: "{{user_home_force_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove group ipmi_exporter
+  group:
+    state: absent
+    name: "{{group_name_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: config line ipmi_exporter_flags
+  lineinfile:
+    state: absent
+    line: "{{file_line_ipmi_exporter_flags}}"
+    regexp: "^{{file_regexp_ipmi_exporter_flags}}=.*"
+    dest: "{{file_dest_ipmi_exporter_flags}}"
+    create: True
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter_etc.dir
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_etc_dir}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.service
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_service}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter
+  file:
+    state: absent
+    path: "{{file_creates_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.tar.gz
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_tar_gz}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_cfg}}"
+  notify: reload monit
+  tags:
+    - ipmi_exporter
+
+- name: config file includes.conf
+  lineinfile:
+    state: absent
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.pf
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_pf}}"
+  notify: reload pf
+  tags:
+    - ipmi_exporter

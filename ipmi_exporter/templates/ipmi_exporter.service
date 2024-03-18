@@ -1,0 +1,15 @@
+#!/bin/ksh
+
+{{ansible_managed|comment(decoration='#')}}
+
+daemon="{{file_creates_ipmi_exporter}}"
+daemon_logger="daemon.info"
+daemon_user="_ipmi_exporter"
+
+. /etc/rc.d/rc.subr
+
+pexp="${daemon}.*"
+rc_bg=YES
+rc_reload=NO
+
+rc_cmd $1

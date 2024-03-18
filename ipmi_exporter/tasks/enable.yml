@@ -1,0 +1,122 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ipmi_exporter
+
+- name: config line ipmi_exporter_flags
+  lineinfile:
+    state: present
+    line: "{{file_line_ipmi_exporter_flags}}"
+    regexp: "^{{file_regexp_ipmi_exporter_flags}}=.*"
+    dest: "{{file_dest_ipmi_exporter_flags}}"
+    create: True
+  notify: restart service ipmi_exporter
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi.yml
+  template:
+    src: "{{file_src_ipmi_yml}}"
+    dest: "{{file_dst_ipmi_yml}}"
+    mode: "{{file_mode_ipmi_yml}}"
+    owner: "{{file_owner_ipmi_yml}}"
+    group: "{{file_group_ipmi_yml}}"
+  notify: restart service ipmi_exporter
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.cfg
+  template:
+    src: "{{file_src_ipmi_exporter_cfg}}"
+    dest: "{{file_dst_ipmi_exporter_cfg}}"
+    mode: "{{file_mode_ipmi_exporter_cfg}}"
+    owner: "{{file_owner_ipmi_exporter_cfg}}"
+    group: "{{file_group_ipmi_exporter_cfg}}"
+  notify:
+    - validate monit
+    - reload monit
+  when: (ipmi_exporter_monitor_monit_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_cfg}}"
+  notify: reload monit
+  when: (ipmi_exporter_monitor_monit_state == False)
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.pf
+  template:
+    src: "{{file_src_ipmi_exporter_pf}}"
+    dest: "{{file_dst_ipmi_exporter_pf}}"
+    mode: "{{file_mode_ipmi_exporter_pf}}"
+    owner: "{{file_owner_ipmi_exporter_pf}}"
+    group: "{{file_group_ipmi_exporter_pf}}"
+  notify: reload pf
+  when: (ipmi_exporter_pf_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.pf
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_pf}}"
+  notify: reload pf
+  when: (ipmi_exporter_pf_state == False)
+  tags:
+    - ipmi_exporter
+
+- name: config file includes.conf
+  lineinfile:
+    state: "{{'present' if (ipmi_exporter_pf_state == True) else 'absent'}}"
+    line: "{{file_line_includes_conf}}"
+    regexp: "{{file_regexp_includes_conf}}"
+    dest: "{{file_dst_includes_conf}}"
+    create: True
+  notify:
+    - validate pf
+    - reload pf
+  tags:
+    - ipmi_exporter
+
+- name: status ipmi_exporter
+  command: "{{command_cmd_status_ipmi_exporter}}"
+  register: register_status_ipmi_exporter
+  changed_when: (register_status_ipmi_exporter.rc > 1)
+  failed_when: (register_status_ipmi_exporter.rc > 1)
+  check_mode: False
+  tags:
+    - ipmi_exporter
+
+- name: enable ipmi_exporter
+  command: "{{command_cmd_enable_ipmi_exporter}}"
+  check_mode: False
+  when: (register_status_ipmi_exporter.rc == 1)
+  tags:
+    - ipmi_exporter
+
+- name: check ipmi_exporter
+  command: "{{command_cmd_check_ipmi_exporter}}"
+  register: register_check_ipmi_exporter
+  changed_when: (register_check_ipmi_exporter.rc > 1)
+  failed_when: (register_check_ipmi_exporter.rc > 1)
+  check_mode: False
+  tags:
+    - ipmi_exporter
+
+- name: start ipmi_exporter
+  command: "{{command_cmd_start_ipmi_exporter}}"
+  check_mode: False
+  when: (register_check_ipmi_exporter.rc == 1)
+  tags:
+    - ipmi_exporter
