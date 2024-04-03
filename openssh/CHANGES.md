@@ -10,7 +10,17 @@ The headers are:
 - enhancements
 - features
 
-## 1.2.1 (2024-04-03)
+## 1.4.0 (2024-04-03)
+
+### Enhancements
+
+- Remove unnecessary defaults in configuration file
+
+### Features
+
+- Add parameter `openssh_pubkey_accepted_algorithms`
+
+## 1.3.0 (2024-04-03)
 
 ### Changes
 

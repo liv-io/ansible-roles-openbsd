@@ -183,7 +183,7 @@ consult the following sections.
     Type       : Array
     Default    : ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
     Options    :
-      Examples: ['/etc/ssh/ssh_host_rsa_key']
+      Examples: ['/etc/ssh/ssh_host_ed25519_key']
 
 `openssh_host_key_algorithms`
 
@@ -344,6 +344,16 @@ consult the following sections.
     Type       : Boolean
     Default    : True
     Options    : True | False
+
+`openssh_pubkey_accepted_algorithms`
+
+    Description: PubkeyAcceptedAlgorithms
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['rsa-sha2-256', 'rsa-sha2-256-cert-v01@openssh.com', 'rsa-sha2-512', 'rsa-sha2-512-cert-v01@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
+    Options    :
+      Examples: ['sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
 
 `openssh_pubkey_authentication`
 
