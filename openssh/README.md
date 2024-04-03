@@ -93,7 +93,7 @@ consult the following sections.
 
 `openssh_address_family`
 
-    Description: Set the 'openssh_address_family' option.
+    Description: AddressFamily
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -105,7 +105,7 @@ consult the following sections.
 
 `openssh_allow_groups`
 
-    Description: Define the 'openssh_allow_groups' option.
+    Description: AllowGroups
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -116,7 +116,7 @@ consult the following sections.
 
 `openssh_allow_users`
 
-    Description: Define the 'openssh_allow_users' option.
+    Description: AllowUsers
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -127,7 +127,7 @@ consult the following sections.
 
 `openssh_banner`
 
-    Description: Control the 'openssh_banner' option.
+    Description: Banner
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -136,7 +136,7 @@ consult the following sections.
 
 `openssh_ciphers`
 
-    Description: Define the 'openssh_ciphers' option.
+    Description: Ciphers
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -146,7 +146,7 @@ consult the following sections.
 
 `openssh_compression`
 
-    Description: Control the 'openssh_compression' option.
+    Description: Compression
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -155,7 +155,7 @@ consult the following sections.
 
 `openssh_deny_groups`
 
-    Description: Define the 'openssh_deny_groups' option.
+    Description: DenyGroups
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -166,7 +166,7 @@ consult the following sections.
 
 `openssh_deny_users`
 
-    Description: Define the 'openssh_deny_users' option.
+    Description: DenyUsers
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -177,7 +177,7 @@ consult the following sections.
 
 `openssh_host_key`
 
-    Description: Define the 'openssh_host_key' option.
+    Description: HostKey
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -187,7 +187,7 @@ consult the following sections.
 
 `openssh_host_key_algorithms`
 
-    Description: Define the 'openssh_host_key_algorithms' option.
+    Description: HostKeyAlgorithms
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -197,7 +197,7 @@ consult the following sections.
 
 `openssh_kex_algorithms`
 
-    Description: Define the 'openssh_kex_algorithms' option.
+    Description: KexAlgorithms
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -207,7 +207,7 @@ consult the following sections.
 
 `openssh_listen_address`
 
-    Description: Define the 'openssh_listen_address' option.
+    Description: ListenAddress
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -216,9 +216,19 @@ consult the following sections.
       Examples: ['0.0.0.0'] | ['127.0.0.1', '::', '::1'] |
                 ['192.168.1.1', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
 
+`openssh_login_grace_time`
+
+    Description: LoginGraceTime
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 300
+    Options    :
+      Examples: 60 | 120 | 240
+
 `openssh_macs`
 
-    Description: Define the 'openssh_macs' option.
+    Description: MACs
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -228,7 +238,7 @@ consult the following sections.
 
 `openssh_match`
 
-    Description: Define the 'openssh_match' option.
+    Description: Match
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -237,6 +247,26 @@ consult the following sections.
       Examples: [{name: 'sftpuser', type: 'User', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}},
                  {name: 'sftpgroup', type: 'Group', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}}]
       None    : []
+
+`openssh_max_auth_tries`
+
+    Description: MaxAuthTries
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 3
+    Options    :
+      Examples: 5 | 10
+
+`openssh_max_startups`
+
+    Description: MaxAuthTries
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '10:30:100'
+    Options    :
+      Examples: '10:30:60'
 
 `openssh_monitor_monit_state`
 
@@ -249,7 +279,7 @@ consult the following sections.
 
 `openssh_password_authentication`
 
-    Description: Control the 'openssh_password_authentication' option.
+    Description: PasswordAuthentication
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -258,7 +288,7 @@ consult the following sections.
 
 `openssh_permit_root_login`
 
-    Description: Control the 'openssh_permit_root_login' option.
+    Description: PermitRootLogin
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -289,7 +319,7 @@ consult the following sections.
 
 `openssh_port`
 
-    Description: Define the 'openssh_port' option.
+    Description: Port
     Required   : False
     Value      : Arbitrary
     Type       : Array, Integer, String
@@ -299,7 +329,7 @@ consult the following sections.
 
 `openssh_print_motd`
 
-    Description: Control the 'openssh_print_motd' option.
+    Description: PrintMotd
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -308,7 +338,7 @@ consult the following sections.
 
 `openssh_print_last_log`
 
-    Description: Control the 'openssh_print_last_log' option.
+    Description: PrintLastLog
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -317,16 +347,7 @@ consult the following sections.
 
 `openssh_pubkey_authentication`
 
-    Description: Control the 'openssh_pubkey_authentication' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : True
-    Options    : True | False
-
-`openssh_rsa_authentication`
-
-    Description: Control the 'openssh_rsa_authentication' option.
+    Description: PubkeyAuthentication
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -335,7 +356,7 @@ consult the following sections.
 
 `openssh_tcp_keep_alive`
 
-    Description: Control the 'openssh_tcp_keep_alive' option.
+    Description: TCPKeepAlive
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -344,7 +365,7 @@ consult the following sections.
 
 `openssh_use_dns`
 
-    Description: Control the 'openssh_use_dns' option.
+    Description: UseDNS
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -353,7 +374,7 @@ consult the following sections.
 
 `openssh_version_addendum`
 
-    Description: Define the 'openssh_version_addendum' option.
+    Description: VersionAddendum
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -363,7 +384,7 @@ consult the following sections.
 
 `openssh_x11_display_offset`
 
-    Description: Define the 'openssh_x11_display_offset' option.
+    Description: X11DisplayOffset
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -373,7 +394,7 @@ consult the following sections.
 
 `openssh_x11_forwarding`
 
-    Description: Control the 'openssh_x11_forwarding' option.
+    Description: X11Forwarding
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -382,7 +403,7 @@ consult the following sections.
 
 `openssh_x11_use_localhost`
 
-    Description: Control the 'openssh_x11_use_localhost' option.
+    Description: X11UseLocalhost
     Required   : False
     Value      : Predetermined
     Type       : Boolean

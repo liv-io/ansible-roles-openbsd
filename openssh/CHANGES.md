@@ -10,6 +10,18 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.1 (2024-04-03)
+
+### Changes
+
+- Remove unused and deprecated parameter `openssh_rsa_authentication`
+
+### Features
+
+- Add parameter `openssh_login_grace_time`
+- Add parameter `openssh_max_auth_tries`
+- Add parameter `openssh_max_startups`
+
 ## 1.2.1 (2024-03-12)
 
 ### Bugs
