@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.2 (2024-04-04)
+
+### Enhancements
+
+- Unclutter configuration file, remove comments
+
 ## 1.4.1 (2024-04-03)
 
 ### Bugs
