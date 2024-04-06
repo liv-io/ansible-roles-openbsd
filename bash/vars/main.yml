@@ -3,6 +3,12 @@
 # bash
 package_name_bash: 'bash'
 
+# profile.d
+file_dst_profile_d: '/etc/profile.d'
+file_mode_profile_d: '0755'
+file_owner_profile_d: 'root'
+file_group_profile_d: 'wheel'
+
 # bash.bash
 file_src_bash_bash: 'bash.bash'
 file_dst_bash_bash: '/etc/profile.d/bash.bash'

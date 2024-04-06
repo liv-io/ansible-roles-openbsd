@@ -11,6 +11,6 @@
       import_tasks: remove.yml
       when: (bash_state is match('false|no|remove'))
 
-  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.3|7\.4')))
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.4|7\.5')))
   tags:
     - bash

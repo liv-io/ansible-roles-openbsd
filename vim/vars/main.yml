@@ -8,7 +8,7 @@ file_dst_vimrc: '/usr/local/share/vim/vimrc'
 
 # defaults.vim
 file_src_defaults_vim: 'defaults.vim'
-file_dst_defaults_vim: '/usr/local/share/vim/vim90/defaults.vim'
+file_dst_defaults_vim: '/usr/local/share/vim/vim91/defaults.vim'
 file_mode_defaults_vim: '0644'
 file_owner_defaults_vim: 'root'
 file_group_defaults_vim: 'wheel'

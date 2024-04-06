@@ -143,8 +143,8 @@ vars:
 
     Version: >= 1.0
     Name   :
-      OpenBSD 7.3: 'wireguard-tools'
       OpenBSD 7.4: 'wireguard-tools'
+      OpenBSD 7.5: 'wireguard-tools'
 
 ## Requirements
 
@@ -166,5 +166,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.3
     Version: 7.4
+    Version: 7.5

@@ -218,8 +218,8 @@ consult the following sections.
 
     Version: >= 7.19
     Name   :
-      OpenBSD 7.3: 'curl'
       OpenBSD 7.4: 'curl'
+      OpenBSD 7.5: 'curl'
 
 ### Roles
 
@@ -247,5 +247,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.3
     Version: 7.4
+    Version: 7.5

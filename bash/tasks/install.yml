@@ -17,6 +17,16 @@
   tags:
     - bash
 
+- name: create file profile.d
+  file:
+    state: directory
+    path: "{{file_dst_profile_d}}"
+    mode: "{{file_mode_profile_d}}"
+    owner: "{{file_owner_profile_d}}"
+    group: "{{file_group_profile_d}}"
+  tags:
+    - bash
+
 - name: create file bash.bash
   template:
     src: "{{file_src_bash_bash}}"
