@@ -2,11 +2,16 @@
 
 rest_server_state: 'enable'
 
+rest_server_htpasswd: ''
+
 rest_server_monitor_monit_state: False
+
 rest_server_options:
+  - '--append-only'
+  - '--htpasswd-file /etc/rest-server/htpasswd'
   - '--path /data/rest-server'
+  - '--private-repos'
   - '--prometheus'
-  - '--no-auth'
 
 rest_server_pf_filters: |
   pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 443 # https from internal private addresses
@@ -14,4 +19,4 @@ rest_server_pf_filters: |
 
 rest_server_pf_state: False
 
-rest_server_version: '0.12.0'
+rest_server_version: '0.12.1'

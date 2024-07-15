@@ -10,6 +10,22 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2024-07-15)
+
+### Changes
+
+- Remove option `--no-auth`
+
+### Features
+
+- Add option `--append-only`
+- Add option `--htpasswd-file /etc/rest-server/htpasswd`
+- Add option `--private-repos`
+
+### Enhancements
+
+- Update rest-server to version 0.12.1
+
 ## 1.3.0 (2024-04-06)
 
 ### Changes

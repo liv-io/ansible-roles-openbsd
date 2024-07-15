@@ -3,6 +3,12 @@
 # gtar--
 package_name_gnu_tar: 'gtar--'
 
+# rest-server_etc.dir
+file_dst_rest_server_etc_dir: '/etc/rest-server'
+file_mode_rest_server_etc_dir: '0750'
+file_owner_rest_server_etc_dir: 'root'
+file_group_rest_server_etc_dir: '_rest-server'
+
 # src.dir
 file_dst_src_dir: '/usr/local/src'
 file_mode_src_dir: '0755'
@@ -32,11 +38,19 @@ file_checksum_rest_server_tar_gz: "sha256:https://github.com/restic/rest-server/
 # rest-server
 file_src_rest_server: "/usr/local/src/rest-server_{{rest_server_version}}_openbsd_amd64.tar.gz"
 file_dst_rest_server: '/usr/local/bin'
+file_mode_rest_server: '0755'
 file_owner_rest_server: 'root'
 file_group_rest_server: 'wheel'
 file_creates_rest_server: '/usr/local/bin/rest-server'
 file_exclude_rest_server: ['CHANGELOG.md', 'LICENSE', 'README.md']
 file_extra_opts_rest_server: ['--strip-components=1']
+
+# htpasswd
+file_src_htpasswd: 'htpasswd'
+file_dst_htpasswd: '/etc/rest-server/htpasswd'
+file_mode_htpasswd: '0640'
+file_owner_htpasswd: 'root'
+file_group_htpasswd: '_rest-server'
 
 # rest_server.service
 file_src_rest_server_service: 'rest_server.service'
