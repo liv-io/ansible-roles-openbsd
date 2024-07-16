@@ -108,7 +108,7 @@
   tags:
     - rest_server
 
-- name: create file htpasswd
+- name: copy file htpasswd
   copy:
     content: "{{rest_server_htpasswd}}"
     dest: "{{file_dst_htpasswd}}"

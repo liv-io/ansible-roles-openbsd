@@ -10,7 +10,7 @@
   tags:
     - signify
 
-- name: create file signify.dir
+- name: copy file signify.dir
   copy:
     src: "{{file_src_signify_dir}}"
     dest: "{{file_dst_signify_dir}}"
