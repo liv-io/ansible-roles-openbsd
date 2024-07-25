@@ -62,11 +62,13 @@ vars:
       peers:
         - endpoint: '1.2.3.4:51820'
           public_key: 'RJquVUwxWCBBbM0puXnujeR3+X6L9Ttnm6e0LJ1Fgw4='
+          preshared_key: 'PLV18KM8TfGhJPMYoh+fCmeSCk4hT4VEmlWgF3cmsak='
           description: 'site02.example.com'
           allowed_ips: ['10.0.0.21/32']
           persistent_keepalive: 25
         - endpoint: '5.6.7.8:51820'
           public_key: 'fmtMwFBFHz1i5KRk+uozBCSBtZzqy+NTRSjCGMd4exs='
+          preshared_key: 'Tr0VnYvAjxRt9988GzAeIEWDA4jNPKxfUgrxfRUs+ns='
           description: 'site03.example.com'
           allowed_ips: ['10.0.0.31/32']
           persistent_keepalive: 25
@@ -96,7 +98,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{device: wg0, interfaces: [{ip: 10.0.0.11, netmask: 255.255.255.0, description: site-to-site vpn}], listen_port: 51820, private_key: yF0WEk5FcCquHWbYSt3wwuv6Bu6RBHWw+pfq21avd24=, routes: [{ network: '10.2.0.0/16', gateway: '10.0.0.21' }, { network: '10.3.0.0/16', gateway: '10.0.0.31' }], peers: [{public_key: RJquVUwxWCBBbM0puXnujeR3+X6L9Ttnm6e0LJ1Fgw4=, description: site02.example.com, allowed_ips: [10.0.0.21/32], persistent_keepalive: 25}, {public_key: fmtMwFBFHz1i5KRk+uozBCSBtZzqy+NTRSjCGMd4exs=, description: site03.example.com, allowed_ips: [10.0.0.31/32], persistent_keepalive: 25}]}]
+      Examples: [{device: wg0, interfaces: [{ip: 10.0.0.11, netmask: 255.255.255.0, description: site-to-site vpn}], listen_port: 51820, private_key: yF0WEk5FcCquHWbYSt3wwuv6Bu6RBHWw+pfq21avd24=, routes: [{ network: '10.2.0.0/16', gateway: '10.0.0.21' }, { network: '10.3.0.0/16', gateway: '10.0.0.31' }], peers: [{public_key: RJquVUwxWCBBbM0puXnujeR3+X6L9Ttnm6e0LJ1Fgw4=, preshared_key: 'PLV18KM8TfGhJPMYoh+fCmeSCk4hT4VEmlWgF3cmsak=', description: site02.example.com, allowed_ips: [10.0.0.21/32], persistent_keepalive: 25}, {public_key: fmtMwFBFHz1i5KRk+uozBCSBtZzqy+NTRSjCGMd4exs=, preshared_key: 'Tr0VnYvAjxRt9988GzAeIEWDA4jNPKxfUgrxfRUs+ns=', description: site03.example.com, allowed_ips: [10.0.0.31/32], persistent_keepalive: 25}]}]
       None    : []
 
 `wireguard_monitor_monit_state`

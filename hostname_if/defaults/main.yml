@@ -9,4 +9,6 @@ hostname_if_config_all: []
 hostname_if_config_group: []
 hostname_if_config_host: []
 
-hostname_if_mygate: "{{ansible_default_ipv4.gateway}}"
+hostname_if_mygate:
+  - "{{ansible_default_ipv4.gateway}}"
+  - "{{ansible_default_ipv6.gateway}}"

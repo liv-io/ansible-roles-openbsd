@@ -1,1 +1,3 @@
-{{hostname_if_mygate}}
+{% for item in hostname_if_mygate %}
+{{item}}
+{% endfor %}

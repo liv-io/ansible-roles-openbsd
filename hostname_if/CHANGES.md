@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2024-07-23)
+
+### Changes
+
+- Redesign Ansible role and add IPv6 support
+- Convert `hostname_if_mygate` into array
+
 ## 1.2.0 (2024-04-06)
 
 ### Changes

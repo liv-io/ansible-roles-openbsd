@@ -18,7 +18,7 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
-  notify: run netstart
+  #notify: run netstart
   when: (item.state|default(True) == True)
   tags:
     - hostname_if
@@ -28,7 +28,7 @@
     state: absent
     path: "/etc/hostname.{{item.device|default(ansible_default_ipv4.device)}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
-  notify: run netstart
+  #notify: run netstart
   when: (item.state|default(True) == False)
   tags:
     - hostname_if

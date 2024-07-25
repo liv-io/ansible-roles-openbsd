@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.0 (2024-04-28)
+
+### Features
+
+- Add support for `preshared_key`
+
 ## 1.4.0 (2024-04-06)
 
 ### Changes
