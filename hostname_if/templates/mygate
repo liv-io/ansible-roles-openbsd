@@ -1,3 +1,6 @@
-{% for item in hostname_if_mygate %}
-{{item}}
-{% endfor %}
+{% if ansible_default_ipv4.gateway is defined and ansible_default_ipv4.gateway %}
+{{ansible_default_ipv4.gateway}}
+{% endif %}
+{% if ansible_default_ipv6.gateway is defined and ansible_default_ipv6.gateway %}
+{{ansible_default_ipv6.gateway}}
+{% endif %}

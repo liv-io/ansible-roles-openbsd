@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.1 (2024-07-28)
+
+### Bugs
+
+- Fix `mygate` if-statement
+- Activate `notify` statements
+
 ## 2.0.0 (2024-07-23)
 
 ### Changes

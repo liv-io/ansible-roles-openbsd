@@ -17,6 +17,5 @@
     mode: "{{file_mode_mygate}}"
     owner: "{{file_owner_mygate}}"
     group: "{{file_group_mygate}}"
-  when: not (hostname_if_mygate == [])
   tags:
     - hostname_if
