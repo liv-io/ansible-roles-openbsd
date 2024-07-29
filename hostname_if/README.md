@@ -297,7 +297,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ["{{ansible_default_ipv4.gateway}}", "{{ansible_default_ipv4.gateway}}"]
+    Default    : ["{{ansible_default_ipv4.gateway|default('')}}", "{{ansible_default_ipv6.gateway|default('')}}"]
     Options    :
       Examples: ['5.6.7.9', '2001:bad:cafe::1']
       None    : []

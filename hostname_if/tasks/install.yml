@@ -17,5 +17,6 @@
     mode: "{{file_mode_mygate}}"
     owner: "{{file_owner_mygate}}"
     group: "{{file_group_mygate}}"
+  notify: run netstart
   tags:
     - hostname_if
