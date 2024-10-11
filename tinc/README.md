@@ -294,8 +294,8 @@ consult the following sections.
 
     Version: >= 1.0
     Name   :
-      OpenBSD 7.4: 'tinc'
       OpenBSD 7.5: 'tinc'
+      OpenBSD 7.6: 'tinc'
 
 ## Requirements
 
@@ -317,5 +317,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.4
     Version: 7.5
+    Version: 7.6

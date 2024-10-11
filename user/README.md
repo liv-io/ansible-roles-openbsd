@@ -316,5 +316,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.4
     Version: 7.5
+    Version: 7.6

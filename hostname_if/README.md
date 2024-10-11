@@ -208,7 +208,7 @@ vars:
     link: up
     config: |
       description 'i_pfsync'
-      inet 10.1.0.2 255.255.255.0 10.1.0.255
+      inet 10.1.0.2 255.255.255.0 NONE
 
 ## Parameters
 
@@ -330,5 +330,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.4
     Version: 7.5
+    Version: 7.6

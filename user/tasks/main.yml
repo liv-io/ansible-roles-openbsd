@@ -7,6 +7,6 @@
       import_tasks: config.yml
       when: not (user_state is match('false|no|remove|quiesce|inactive'))
 
-  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.4|7\.5')))
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.5|7\.6')))
   tags:
     - user

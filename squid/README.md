@@ -437,8 +437,8 @@ consult the following sections.
 
     Version: >= 3.5
     Name   :
-      OpenBSD 7.4: 'squid'
       OpenBSD 7.5: 'squid'
+      OpenBSD 7.6: 'squid'
 
 ## Requirements
 
@@ -460,5 +460,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.4
     Version: 7.5
+    Version: 7.6
