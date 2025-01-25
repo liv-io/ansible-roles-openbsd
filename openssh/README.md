@@ -140,9 +140,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['aes256-ctr']
+    Default    : ['aes256-ctr', 'aes256-gcm@openssh.com', 'chacha20-poly1305@openssh.com']
     Options    :
-      Examples: ['aes256-ctr']
+      Examples: ['chacha20-poly1305@openssh.com']
 
 `openssh_compression`
 
@@ -191,9 +191,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['ssh-ed25519', 'ssh-rsa']
+    Default    : ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com']
     Options    :
-      Examples: ['ssh-ed25519']
+      Examples: ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com', 'rsa-sha2-512', 'rsa-sha2-512-cert-v01@openssh.com']
 
 `openssh_kex_algorithms`
 
@@ -201,9 +201,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['curve25519-sha256@libssh.org']
+    Default    : ['mlkem768x25519-sha256', 'sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
     Options    :
-      Examples: ['curve25519-sha256']
+      Examples: ['mlkem768x25519-sha256']
 
 `openssh_listen_address`
 
@@ -232,9 +232,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['hmac-sha2-512', 'hmac-sha2-256']
+    Default    : ['hmac-sha2-512-etm@openssh.com', 'umac-128-etm@openssh.com']
     Options    :
-      Examples: ['hmac-sha2-512']
+      Examples: ['hmac-sha2-512-etm@openssh.com']
 
 `openssh_match`
 
@@ -351,9 +351,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['rsa-sha2-256', 'rsa-sha2-256-cert-v01@openssh.com', 'rsa-sha2-512', 'rsa-sha2-512-cert-v01@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
+    Default    : ['sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
     Options    :
-      Examples: ['sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
+      Examples: ['sk-ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'rsa-sha2-256', 'rsa-sha2-256-cert-v01@openssh.com', 'rsa-sha2-512', 'rsa-sha2-512-cert-v01@openssh.com']
 
 `openssh_pubkey_authentication`
 

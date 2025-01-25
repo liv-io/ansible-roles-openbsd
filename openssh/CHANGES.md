@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.6.1 (2025-01-25)
+
+### Enhancements
+
+- Upgrade Ciphers, HostKeyAlgorithms, KexAlgorithms, MACs, PubkeyAcceptedAlgorithms
+
 ## 1.6.0 (2024-10-11)
 
 ### Changes
