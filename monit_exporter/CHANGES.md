@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.1 (2025-02-01)
+
+### Enhancements
+
+- Update monit_exporter to version 0.2.3
+
 ## 1.5.0 (2024-10-11)
 
 ### Changes
