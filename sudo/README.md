@@ -242,8 +242,8 @@ vars:
 
     Version: >= 1.8
     Name   :
-      OpenBSD 7.5: 'sudo'
       OpenBSD 7.6: 'sudo'
+      OpenBSD 7.7: 'sudo'
 
 ## Requirements
 
@@ -265,5 +265,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.5
     Version: 7.6
+    Version: 7.7

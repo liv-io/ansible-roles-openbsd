@@ -19,6 +19,6 @@
       import_tasks: remove.yml
       when: (monit_exporter_state is match('false|no|remove'))
 
-  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.5|7\.6')))
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.6|7\.7')))
   tags:
     - monit_exporter

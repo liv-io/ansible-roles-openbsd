@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.0 (2025-05-10)
+
+### Changes
+
+- Add support for OpenBSD 7.7
+- Drop support for OpenBSD 7.5
+
 ## 1.4.0 (2024-10-11)
 
 ### Changes
