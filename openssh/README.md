@@ -201,9 +201,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['mlkem768x25519-sha256', 'sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
+    Default    : ['mlkem768x25519-sha256']
     Options    :
-      Examples: ['mlkem768x25519-sha256']
+      Examples: ['mlkem768x25519-sha256', 'sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
 
 `openssh_listen_address`
 

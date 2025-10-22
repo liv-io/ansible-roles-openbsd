@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.7.1 (2025-08-12)
+
+### Enhancements
+
+- Limit KexAlgorithms to `mlkem768x25519-sha256`
+
 ## 1.7.0 (2025-05-10)
 
 ### Changes
