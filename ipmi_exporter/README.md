@@ -198,5 +198,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.6
     Version: 7.7
+    Version: 7.8

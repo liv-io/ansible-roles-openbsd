@@ -506,8 +506,8 @@ vars:
 
     Version: >= 5.9
     Name   :
-      OpenBSD 7.6: 'monit'
       OpenBSD 7.7: 'monit'
+      OpenBSD 7.8: 'monit'
 
 ## Requirements
 
@@ -529,5 +529,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.6
     Version: 7.7
+    Version: 7.8

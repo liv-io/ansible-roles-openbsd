@@ -46,8 +46,8 @@
 ### Support
 
 The following operating systems are supported:
-* OpenBSD 7.6
 * OpenBSD 7.7
+* OpenBSD 7.8
 
 ### Dependencies
 

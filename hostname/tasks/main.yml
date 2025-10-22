@@ -7,6 +7,6 @@
       import_tasks: install.yml
       when: not (hostname_state is match('false|no|remove|quiesce|inactive'))
 
-  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.6|7\.7')))
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version is match('7\.7|7\.8')))
   tags:
     - hostname

@@ -158,8 +158,8 @@ consult the following sections.
 
     Version: >= 1.28
     Name   :
-      OpenBSD 7.6: 'gtar--'
       OpenBSD 7.7: 'gtar--'
+      OpenBSD 7.8: 'gtar--'
 
 ## Requirements
 
@@ -181,5 +181,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.6
     Version: 7.7
+    Version: 7.8
