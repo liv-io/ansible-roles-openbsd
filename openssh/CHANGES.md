@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.8.1 (2025-10-23)
+
+### Enhancements
+
+- Update `ssh_config` configuration file to ensure compatibility with OpenBSD 7.8
+
 ## 1.8.0 (2025-10-22)
 
 ### Changes

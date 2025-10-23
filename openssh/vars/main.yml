@@ -15,7 +15,7 @@ file_owner_moduli: 'root'
 file_group_moduli: 'wheel'
 
 # ssh_config
-file_src_ssh_config: 'ssh_config'
+file_src_ssh_config: "{{ansible_distribution_version}}/ssh_config"
 file_dst_ssh_config: '/etc/ssh/ssh_config'
 file_mode_ssh_config: '0644'
 file_owner_ssh_config: 'root'
