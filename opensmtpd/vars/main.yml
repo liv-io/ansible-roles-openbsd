@@ -1,7 +1,7 @@
 ---
 
 # aliases
-file_src_aliases: 'aliases'
+file_src_aliases: "{{ansible_distribution_version}}/aliases"
 file_dst_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'

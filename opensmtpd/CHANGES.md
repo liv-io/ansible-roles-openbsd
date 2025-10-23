@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.6.1 (2025-10-23)
+
+### Bugs
+
+- Update `aliases` configuration file to ensure compatibility with OpenBSD 7.8
+
 ## 1.6.0 (2025-10-22)
 
 ### Changes
