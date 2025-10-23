@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.6.1 (2025-10-23)
+
+### Bugs
+
+- Fix time offset by checking for sensors and falling back to peers when applicable
+
 ## 1.6.0 (2025-10-22)
 
 ### Changes

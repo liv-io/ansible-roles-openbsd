@@ -202,8 +202,15 @@ get_system_time_status() {
 }
 
 get_system_time_offset() {
-    OFFSET_RAW=$(${NTPCTL} -s peers | ${AWK} '/^ \*/ {gsub(/ms/,"");print $7}')
-    log_and_exit_on_error "${?}" 'Unable to get system time offset.'
+    SENSORS_STATE=$(${NTPCTL} -s Sensors)
+
+    if [ "${SENSORS_STATE}" != "no sensors configured" ]; then
+        OFFSET_RAW=$(${NTPCTL} -s Sensors | ${AWK} '/^ \*/ {gsub(/ms/,"");print $7}')
+        log_and_exit_on_error "${?}" 'Unable to get sensors system time offset.'
+    else
+        OFFSET_RAW=$(${NTPCTL} -s peers | ${AWK} '/^ \*/ {gsub(/ms/,"");print $7}')
+        log_and_exit_on_error "${?}" 'Unable to get peers system time offset.'
+    fi
 }
 
 convert_system_time_offset() {
