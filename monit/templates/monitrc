@@ -62,6 +62,7 @@ set statefile /var/monit/state
 #     stopTimeout:       30 seconds  # timeout for service stop
 #     startTimeout:      30 seconds  # timeout for service start
 #     restartTimeout:    30 seconds  # timeout for service restart
+#     execTimeout:       0 seconds   # timeout for test action exec
 # }
 
 ## Set global SSL options (just most common options showed, see manual for
