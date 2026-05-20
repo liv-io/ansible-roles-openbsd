@@ -162,8 +162,8 @@ consult the following sections.
 
     Version: >= 5.7
     Name   :
-      OpenBSD 7.7: 'colorls'
       OpenBSD 7.8: 'colorls'
+      OpenBSD 7.9: 'colorls'
 
 ## Requirements
 
@@ -185,5 +185,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.7
     Version: 7.8
+    Version: 7.9

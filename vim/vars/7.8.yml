@@ -1,0 +1,7 @@
+---
+
+# vim--no_x11
+package_name_vim: 'vim--no_x11'
+
+# defaults.vim
+file_dst_defaults_vim: '/usr/local/share/vim/vim91/defaults.vim'

@@ -200,8 +200,8 @@ vars:
 
     Version: >= 8.0
     Name   :
-      OpenBSD 7.7: 'rsyslog'
       OpenBSD 7.8: 'rsyslog'
+      OpenBSD 7.9: 'rsyslog'
 
 ## Requirements
 
@@ -223,5 +223,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.7
     Version: 7.8
+    Version: 7.9

@@ -70,8 +70,8 @@ consult the following sections.
 
     Version: >= 7.2
     Name   :
-      OpenBSD 7.7: 'vim--no_x11'
       OpenBSD 7.8: 'vim--no_x11'
+      OpenBSD 7.9: 'vim--'
 
 ## Requirements
 
@@ -93,5 +93,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.7
     Version: 7.8
+    Version: 7.9
