@@ -1,0 +1,7 @@
+---
+
+ifstated_state: 'enable'
+
+ifstated_config: []
+
+ifstated_monit_state: False

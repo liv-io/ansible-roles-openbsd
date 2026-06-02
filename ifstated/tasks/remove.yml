@@ -1,0 +1,58 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ifstated
+
+- name: status ifstated
+  command: "{{command_cmd_status_ifstated}}"
+  register: register_status_ifstated
+  changed_when: (register_status_ifstated.rc > 1)
+  failed_when: (register_status_ifstated.rc > 1)
+  check_mode: False
+  tags:
+    - ifstated
+
+- name: disable ifstated
+  command: "{{command_cmd_disable_ifstated}}"
+  check_mode: False
+  when: register_status_ifstated.rc == 0
+  tags:
+    - ifstated
+
+- name: check ifstated
+  command: "{{command_cmd_check_ifstated}}"
+  register: register_check_ifstated
+  changed_when: (register_check_ifstated.rc > 1)
+  failed_when: (register_check_ifstated.rc > 1)
+  check_mode: False
+  tags:
+    - ifstated
+
+- name: stop ifstated
+  command: "{{command_cmd_stop_ifstated}}"
+  check_mode: False
+  when: register_check_ifstated.rc == 0
+  tags:
+    - ifstated
+
+- name: remove file ifstated.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ifstated_cfg}}"
+  notify: reload monit
+  tags:
+    - ifstated
+
+- name: remove file ifstated.conf
+  file:
+    state: absent
+    path: "{{file_dst_ifstated_conf}}"
+  tags:
+    - ifstated

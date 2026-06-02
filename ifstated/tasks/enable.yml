@@ -1,0 +1,77 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ifstated
+
+- name: create file ifstated.conf
+  template:
+    src: "{{file_src_ifstated_conf}}"
+    dest: "{{file_dst_ifstated_conf}}"
+    mode: "{{file_mode_ifstated_conf}}"
+    owner: "{{file_owner_ifstated_conf}}"
+    group: "{{file_group_ifstated_conf}}"
+  notify: reload service ifstated
+  tags:
+    - ifstated
+
+- name: create file ifstated.cfg
+  template:
+    src: "{{file_src_ifstated_cfg}}"
+    dest: "{{file_dst_ifstated_cfg}}"
+    mode: "{{file_mode_ifstated_cfg}}"
+    owner: "{{file_owner_ifstated_cfg}}"
+    group: "{{file_group_ifstated_cfg}}"
+  notify:
+    - validate monit
+    - reload monit
+  when: (ifstated_monit_state == True)
+  tags:
+    - ifstated
+
+- name: remove file ifstated.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ifstated_cfg}}"
+  notify: reload monit
+  when: (ifstated_monit_state == False)
+  tags:
+    - ifstated
+
+- name: status ifstated
+  command: "{{command_cmd_status_ifstated}}"
+  register: register_status_ifstated
+  changed_when: (register_status_ifstated.rc > 1)
+  failed_when: (register_status_ifstated.rc > 1)
+  check_mode: False
+  tags:
+    - ifstated
+
+- name: enable ifstated
+  command: "{{command_cmd_enable_ifstated}}"
+  check_mode: False
+  when: (register_status_ifstated.rc == 1)
+  tags:
+    - ifstated
+
+- name: check ifstated
+  command: "{{command_cmd_check_ifstated}}"
+  register: register_check_ifstated
+  changed_when: (register_check_ifstated.rc > 1)
+  failed_when: (register_check_ifstated.rc > 1)
+  check_mode: False
+  tags:
+    - ifstated
+
+- name: start ifstated
+  command: "{{command_cmd_start_ifstated}}"
+  check_mode: False
+  when: (register_check_ifstated.rc == 1)
+  tags:
+    - ifstated

@@ -1,0 +1,48 @@
+---
+
+# ifstated.conf
+file_src_ifstated_conf: 'ifstated.conf'
+file_dst_ifstated_conf: '/etc/ifstated.conf'
+file_mode_ifstated_conf: '0644'
+file_owner_ifstated_conf: 'root'
+file_group_ifstated_conf: 'wheel'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# ifstated.cfg
+file_src_ifstated_cfg: 'ifstated.cfg'
+file_dst_ifstated_cfg: '/etc/monit.d/ifstated.cfg'
+file_mode_ifstated_cfg: '0640'
+file_owner_ifstated_cfg: 'root'
+file_group_ifstated_cfg: 'wheel'
+
+# check ifstated
+command_cmd_check_ifstated: 'rcctl check ifstated'
+
+# disable ifstated
+command_cmd_disable_ifstated: 'rcctl disable ifstated'
+
+# enable ifstated
+command_cmd_enable_ifstated: 'rcctl enable ifstated'
+
+# start ifstated
+command_cmd_start_ifstated: 'rcctl start ifstated'
+
+# status ifstated
+command_cmd_status_ifstated: 'rcctl get ifstated status'
+
+# stop ifstated
+command_cmd_stop_ifstated: 'rcctl stop ifstated'
+
+# reload monit
+command_cmd_reload_monit: 'rcctl get monit > /dev/null 2>&1 && rcctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'rcctl get monit > /dev/null 2>&1 && monit -t || true'
+
+# ifstated
+service_name_ifstated: 'ifstated'
