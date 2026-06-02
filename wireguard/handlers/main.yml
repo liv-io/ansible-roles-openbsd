@@ -11,6 +11,7 @@
 - name: run netstart
   command: "{{command_cmd_run_netstart}} {{item.device}}"
   loop: "{{wireguard_config}}"
+  when: (item.link|default('up') == 'up')
 
 - name: validate monit
   shell: "{{command_cmd_validate_monit}}"

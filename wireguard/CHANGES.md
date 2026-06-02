@@ -10,6 +10,14 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2026-06-02)
+
+### Changes
+
+- Rename interface state variable from `status` to `link`
+- Change interface state variable from boolean to string
+- Add 3rd state called 'external' to allow external tools (e.g. ifstated) to manage the interface
+
 ## 2.1.3 (2026-05-26)
 
 ### Bugs

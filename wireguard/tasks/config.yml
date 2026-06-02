@@ -19,7 +19,7 @@
     group: "{{file_group_wireguard_config}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default(True) == True)
+  when: not (item.link|default('up') == 'down')
   tags:
     - wireguard
 
@@ -32,7 +32,7 @@
     group: "{{file_group_hostname_config}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default(True) == True)
+  when: not (item.link|default('up') == 'down')
   tags:
     - wireguard
 
@@ -42,7 +42,7 @@
     path: "/etc/hostname.{{item.device}}"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default(True) == False)
+  when: (item.link|default('up') == 'down')
   tags:
     - wireguard
 
@@ -52,7 +52,7 @@
     path: "/etc/wireguard/{{item.interface}}.conf"
   loop: "{{wireguard_config}}"
   notify: run netstart
-  when: (item.state|default(True) == False)
+  when: (item.link|default('up') == 'down')
   tags:
     - wireguard
 
@@ -62,7 +62,7 @@
   changed_when: (register_check_ifconfig.rc > 1)
   failed_when: (register_check_ifconfig.rc > 1)
   loop: "{{wireguard_config}}"
-  when: (item.state|default(True) == False) and (item.device in ansible_devices)
+  when: (item.link|default('up') == 'down') and (item.device in ansible_devices)
   tags:
     - wireguard
 
