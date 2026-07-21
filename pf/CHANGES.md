@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 3.5.1 (2026-07-21)
+
+### Bugs
+
+- Fix option `pf_options_limits`
+- Fix option `pf_options_timeouts`
+
 ## 3.5.0 (2026-05-20)
 
 ### Changes
