@@ -393,8 +393,8 @@ consult the following sections.
 
     Version: >= 0.8.3
     Name   :
-      OpenBSD 7.8: 'restic'
       OpenBSD 7.9: 'restic'
+      OpenBSD 8.0: 'restic'
 
 ## Requirements
 
@@ -416,5 +416,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.8
     Version: 7.9
+    Version: 8.0

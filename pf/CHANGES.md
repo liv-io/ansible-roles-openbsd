@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 3.6.0 (2026-10-21)
+
+### Changes
+
+- Add support for OpenBSD 8.0
+- Drop support for OpenBSD 7.8
+
 ## 3.5.1 (2026-07-21)
 
 ### Bugs

@@ -236,5 +236,5 @@ vars:
 
 `openbsd`
 
-    Version: 7.8
     Version: 7.9
+    Version: 8.0

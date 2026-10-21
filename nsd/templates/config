@@ -28,5 +28,4 @@ $ORIGIN		{{item.name}}.		; base domain name
 {%- else %}		A{% endif %}
 {%- if not (item.priority|default('') == '') %}	{{item.priority}}{% endif %}
 		{{item.value}}
-
 {% endfor %}

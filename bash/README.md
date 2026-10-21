@@ -192,8 +192,8 @@ consult the following sections.
 
     Version: >= 4.0
     Name   :
-      OpenBSD 7.8: 'bash'
       OpenBSD 7.9: 'bash'
+      OpenBSD 8.0: 'bash'
 
 ### Roles
 
@@ -219,5 +219,5 @@ consult the following sections.
 
 `openbsd`
 
-    Version: 7.8
     Version: 7.9
+    Version: 8.0
