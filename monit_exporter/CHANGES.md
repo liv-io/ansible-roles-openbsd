@@ -10,7 +10,7 @@ The headers are:
 - enhancements
 - features
 
-## 0.2.5-2 (2026-10-22)
+## 0.2.6-1 (2026-10-22)
 
 ### Bugs
 
