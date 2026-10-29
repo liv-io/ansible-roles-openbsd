@@ -31,7 +31,7 @@ ipmi_exporter_config: |
 
 ipmi_exporter_monit_state: False
 
-ipmi_exporter_version: '1.8.0'
+ipmi_exporter_version: '1.10.1'
 
 ipmi_exporter_pf_filters: |
   pass in inet proto tcp from { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } to port 9290 # ipmi_exporter from internal private addresses
